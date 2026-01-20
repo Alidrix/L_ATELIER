@@ -1,0 +1,269 @@
+:root {
+  color-scheme: light;
+  --white: #ffffff;
+  --light: #f4f5f7;
+  --gray: #d9dbe2;
+  --dark: #2f2f3a;
+  --purple: #6f5cff;
+  --shadow: 0 20px 40px rgba(34, 37, 50, 0.12);
+  --shadow-strong: 0 16px 32px rgba(164, 36, 32, 0.25);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Inter", "Segoe UI", system-ui, sans-serif;
+}
+
+body {
+  background: var(--light);
+  color: var(--dark);
+}
+
+.page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 16px;
+}
+
+.card {
+  background: var(--white);
+  border-radius: 24px;
+  box-shadow: var(--shadow);
+  padding: 32px;
+  max-width: 520px;
+  width: 100%;
+}
+
+.card--wide {
+  max-width: 900px;
+}
+
+.card__header {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.card__eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 12px;
+  color: #7b7c87;
+}
+
+.card__subtitle {
+  margin-top: 6px;
+  color: #62646f;
+  font-size: 14px;
+}
+
+.logo {
+  width: 52px;
+  height: 52px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 4px;
+}
+
+.logo__block {
+  border-radius: 6px;
+}
+
+.logo__block--purple {
+  background: var(--purple);
+}
+
+.logo__block--gray {
+  background: var(--gray);
+}
+
+.logo__block--white {
+  background: var(--white);
+  border: 1px solid var(--gray);
+}
+
+.logo__block--dark {
+  background: var(--dark);
+}
+
+.form {
+  display: grid;
+  gap: 16px;
+}
+
+.field {
+  display: grid;
+  gap: 8px;
+  font-size: 14px;
+  color: #3c3f4c;
+}
+
+.field input {
+  border-radius: 12px;
+  border: 1px solid var(--gray);
+  padding: 12px 14px;
+  font-size: 15px;
+  background: var(--white);
+}
+
+.field input:disabled {
+  background: #eff0f3;
+  color: #a0a3ad;
+}
+
+.hint {
+  color: #7d7f88;
+  font-size: 12px;
+}
+
+.password {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 8px;
+  align-items: center;
+}
+
+.ghost {
+  border: none;
+  background: #eef0ff;
+  color: #4c4fa1;
+  padding: 8px 12px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.ghost:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.submit {
+  width: 100%;
+  background: var(--purple);
+  color: var(--white);
+  border: none;
+  border-radius: 14px;
+  padding: 12px 16px;
+  font-size: 16px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  cursor: pointer;
+}
+
+.submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.submit__loader {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  border-top-color: var(--white);
+  animation: spin 1s linear infinite;
+  display: none;
+}
+
+.submit.loading .submit__loader {
+  display: inline-block;
+}
+
+.form__status {
+  font-size: 13px;
+  color: #b74c42;
+  min-height: 18px;
+}
+
+.confirmation {
+  position: fixed;
+  inset: 0;
+  background: rgba(244, 245, 247, 0.9);
+  display: grid;
+  place-items: center;
+  padding: 24px;
+}
+
+.confirmation__panel {
+  background: #fff5f5;
+  border: 3px solid #e04b4b;
+  border-radius: 24px;
+  box-shadow: var(--shadow-strong);
+  padding: 32px;
+  text-align: center;
+  max-width: 520px;
+}
+
+.confirmation__panel h2 {
+  color: #b12f2f;
+  font-size: 22px;
+  margin-bottom: 12px;
+}
+
+.confirmation__panel p {
+  color: #5c2b2b;
+  margin-bottom: 20px;
+}
+
+.table {
+  overflow-x: auto;
+}
+
+.table--wide table {
+  min-width: 760px;
+}
+
+.table table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.table th,
+.table td {
+  text-align: left;
+  padding: 12px 10px;
+  border-bottom: 1px solid #eceef3;
+}
+
+.table th {
+  background: #f3f4f8;
+  color: #3c3f4c;
+}
+
+.maskable {
+  display: inline-flex;
+  align-items: center;
+  min-width: 160px;
+  font-variant-numeric: tabular-nums;
+}
+
+.chip {
+  border: 1px solid #d7d9e5;
+  background: #f7f7fb;
+  color: #3c3f4c;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  cursor: pointer;
+  margin-right: 6px;
+}
+
+.chip:hover {
+  border-color: #bfc3d9;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
