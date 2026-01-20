@@ -38,6 +38,10 @@ body {
   width: 100%;
 }
 
+.card--wide {
+  max-width: 900px;
+}
+
 .card__header {
   display: flex;
   gap: 16px;
@@ -214,6 +218,10 @@ body {
   overflow-x: auto;
 }
 
+.table--wide table {
+  min-width: 760px;
+}
+
 .table table {
   width: 100%;
   border-collapse: collapse;
@@ -230,6 +238,28 @@ body {
 .table th {
   background: #f3f4f8;
   color: #3c3f4c;
+}
+
+.maskable {
+  display: inline-flex;
+  align-items: center;
+  min-width: 160px;
+  font-variant-numeric: tabular-nums;
+}
+
+.chip {
+  border: 1px solid #d7d9e5;
+  background: #f7f7fb;
+  color: #3c3f4c;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  cursor: pointer;
+  margin-right: 6px;
+}
+
+.chip:hover {
+  border-color: #bfc3d9;
 }
 
 @keyframes spin {

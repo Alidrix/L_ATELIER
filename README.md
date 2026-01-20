@@ -129,6 +129,16 @@ sequenceDiagram
 | 3 | 🟨 Menu | Lire les accès affichés par le service `menu` | Automatique (terminal) | — |
 | 4 | 🟪 Portail | Accéder au portail applicatif | Navigateur | http://portal-legacy.example.com |
 | 5 | 🟥 Résultats | Consulter les soumissions enregistrées | Navigateur | http://portal-legacy.example.com/results |
+| 6 | 🟫 Webmail | Ouvrir l’interface Mailu | Navigateur | http://webmailu:8081 |
+| 7 | ⬛ Admin | Accès administration Mailu | Navigateur | http://webmailu:8081/admin |
+
+## ✅ Vérification rapide
+
+- Portail applicatif : `http://portal-legacy.example.com`
+- Résultats : `http://portal-legacy.example.com/results`
+- Webmail Mailu : `http://webmailu:8081`
+- Admin Mailu : `http://webmailu:8081/admin`
+
 | 6 | 🟫 Webmail | Ouvrir l’interface Mailu | Navigateur | http://localhost:8081 |
 | 7 | ⬛ Admin | Accès administration Mailu | Navigateur | http://localhost:8081/admin |
 

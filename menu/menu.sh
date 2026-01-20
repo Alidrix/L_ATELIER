@@ -6,6 +6,8 @@ cat <<'MENU'
 =========================================
 - Portail applicatif : http://portal-legacy.example.com
 - Résultats : http://portal-legacy.example.com/results
+- Mailu (webmail) : http://webmailu:8081
+- Mailu (admin)   : http://webmailu:8081/admin
 - Mailu (webmail) : http://localhost:8081
 - Mailu (admin)   : http://localhost:8081/admin
 
