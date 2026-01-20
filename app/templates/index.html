@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Mise à jour de sécurité</title>
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <section class="card" aria-live="polite">
+        <header class="card__header">
+          <div class="logo" aria-hidden="true">
+            <div class="logo__block logo__block--purple"></div>
+            <div class="logo__block logo__block--gray"></div>
+            <div class="logo__block logo__block--white"></div>
+            <div class="logo__block logo__block--dark"></div>
+          </div>
+          <div>
+            <p class="card__eyebrow">C'CCIN</p>
+            <h1>Mise à jour de sécurité</h1>
+            <p class="card__subtitle">Authentifiez-vous pour finaliser la mise à jour locale.</p>
+          </div>
+        </header>
+
+        <form id="login-form" class="form" autocomplete="off">
+          <label class="field">
+            <span>Email</span>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              placeholder="prenom.nom@microloft.xyz"
+              required
+            />
+            <small class="hint" id="email-hint">Format attendu : nom@domaine</small>
+          </label>
+
+          <label class="field">
+            <span>Mot de passe</span>
+            <div class="password">
+              <input
+                id="password"
+                name="password"
+                type="password"
+                placeholder="••••••••"
+                required
+                disabled
+              />
+              <button type="button" id="toggle-password" class="ghost" disabled>
+                Afficher
+              </button>
+            </div>
+          </label>
+
+          <button id="submit" class="submit" type="submit" disabled>
+            <span class="submit__text">Se connecter</span>
+            <span class="submit__loader" aria-hidden="true"></span>
+          </button>
+          <p class="form__status" id="form-status" role="status"></p>
+        </form>
+      </section>
+
+      <section id="confirmation" class="confirmation" hidden>
+        <div class="confirmation__panel">
+          <h2>Merci, votre demande a bien été enregistrée</h2>
+          <p>Votre mise à jour sera appliquée dans le flux interne sécurisé.</p>
+          <button id="back-home" class="submit" type="button" hidden>
+            Revenir à l'accueil
+          </button>
+        </div>
+      </section>
+    </main>
+
+    <script src="/static/app.js"></script>
+  </body>
+</html>
