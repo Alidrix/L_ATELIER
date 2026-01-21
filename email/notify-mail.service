@@ -1,0 +1,12 @@
+[Unit]
+Description=Surveillance IMAP Poste.io (notification locale)
+After=network-online.target
+
+[Service]
+Type=simple
+ExecStart=%h/.local/share/securityupdate/notify_new_mail.py
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=default.target

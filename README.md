@@ -164,6 +164,43 @@ sequenceDiagram
 Le template HTML de l'email "Mise à jour de sécurité" est disponible dans :
 `email/security_update_email.html`.
 
+## 📤 Envoi automatique via SMTP Poste.io
+
+Un script prêt à l'emploi est fourni pour envoyer l'email HTML via le SMTP local de Poste.io :
+
+```bash
+SMTP_HOST=mail.local \
+SMTP_PORT=587 \
+SMTP_USER=admin@mail.local \
+SMTP_PASSWORD=VOTRE_MDP \
+SMTP_FROM="C'CCIN <admin@mail.local>" \
+SMTP_TO="destinataire@mail.local" \
+python3 email/send_security_update.py
+```
+
+- Le template est chargé par défaut depuis `email/security_update_email.html`.
+- Utilisez `--no-tls` si votre configuration SMTP n'utilise pas STARTTLS.
+
+## 🔔 Notification locale (nouvel email)
+
+Un script de surveillance IMAP notifie votre poste via `notify-send` lorsqu'un mail arrive :
+
+```bash
+IMAP_HOST=mail.local \
+IMAP_PORT=143 \
+IMAP_USER=admin@mail.local \
+IMAP_PASSWORD=VOTRE_MDP \
+python3 email/notify_new_mail.py
+```
+
+Pour lancer automatiquement la surveillance au login (systemd utilisateur) :
+
+```bash
+email/install_notifications.sh
+```
+
+> Le service utilise `notify-send` (libnotify). Si indisponible, un message est affiché dans le terminal.
+
 `<!doctype html>
 <html lang="fr">
   <head>
