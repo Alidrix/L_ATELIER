@@ -190,9 +190,3 @@ docker compose up --build
 ```
 
 Le service `menu` affiche directement les liens utiles dans le terminal.
-
-
-## Notes hors ligne
-
-- Aucun service n'effectue d'accès sortant.
-- Les images Docker doivent être disponibles localement pour respecter un environnement entièrement déconnecté.
