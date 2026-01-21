@@ -3,12 +3,14 @@
 Ce dépôt déploie une plateforme locale (100% hors ligne) pour démontrer les flux d'une mise à jour de sécurité.
 L'ensemble est orchestré avec Docker Compose et repose sur : NGINX, Mailu, une application web et PostgreSQL.
 
+
 ## 🎯 Objectif
 
 Construire une **plateforme locale complète**, entièrement **hors ligne**, afin de :
 - comprendre le **fonctionnement réel d’une chaîne applicative moderne**,
 - visualiser clairement les **flux entre services**,
 - présenter une **architecture propre, lisible et professionnelle**.
+
 
 ## 🧭 Principes fondamentaux
 
@@ -18,6 +20,7 @@ Construire une **plateforme locale complète**, entièrement **hors ligne**, afi
 - ✉️ **Mailu** pour la chaîne mail complète
 - 🗄️ **PostgreSQL** pour la persistance
 - 🎨 Interfaces sobres et cohérentes
+
 
 ## 🧱 Architecture globale (vue paysage)
 
@@ -42,6 +45,7 @@ flowchart LR
   A -->|Confirmation| U
 ```
 
+
 ## 🔁 Flux applicatif & bénéfices (vue paysage)
 
 ```mermaid
@@ -65,6 +69,7 @@ sequenceDiagram
   A-->>U: Confirmation visuelle
 ```
 
+
 ### 💡 Lecture simple du flux
 
 - 👤 **Utilisateur** : suit un parcours clair et guidé.
@@ -72,6 +77,7 @@ sequenceDiagram
 - 🌐 **NGINX** : point de passage unique et optimisé.
 - 🧩 **Application** : cœur fonctionnel.
 - 🗄️ **PostgreSQL** : mémoire du système.
+
 
 ## 🧩 Conteneurs & responsabilités
 
@@ -82,6 +88,7 @@ sequenceDiagram
 | 🧩 Application | Logique | Maîtrise |
 | 🗄️ PostgreSQL | Données | Fiabilité |
 
+
 ## 🖥️ Portail applicatif
 
 - 🎨 Blanc / gris
@@ -89,6 +96,7 @@ sequenceDiagram
 - 👁️ Mot de passe masquable
 - ⏳ Animation de chargement
 - 🔴 Écran de confirmation
+
 
 ## 🗂️ Arborescence
 
@@ -118,6 +126,7 @@ sequenceDiagram
 └── README.md
 ```
 
+
 ## 🚀 Lancement (étapes détaillées)
 
 > Tous les services sont **100% locaux**. Aucune dépendance Internet.
@@ -132,6 +141,7 @@ sequenceDiagram
 | 6 | 🟫 Webmail | Ouvrir l’interface Mailu | Navigateur | http://webmailu:8081 |
 | 7 | ⬛ Admin | Accès administration Mailu | Navigateur | http://webmailu:8081/admin |
 
+
 ## ✅ Vérification rapide
 
 - Portail applicatif : `http://portal-legacy.example.com`
@@ -142,6 +152,7 @@ sequenceDiagram
 | 6 | 🟫 Webmail | Ouvrir l’interface Mailu | Navigateur | http://localhost:8081 |
 | 7 | ⬛ Admin | Accès administration Mailu | Navigateur | http://localhost:8081/admin |
 
+
 ## ✅ Vérification rapide
 
 - Portail applicatif : `http://portal-legacy.example.com`
@@ -149,15 +160,18 @@ sequenceDiagram
 - Webmail Mailu : `http://localhost:8081`
 - Admin Mailu : `http://localhost:8081/admin`
 
+
 ## ✉️ Email HTML
 
 Le template HTML de l'email "Mise à jour de sécurité" est disponible dans :
 `email/security_update_email.html`.
 
+
 ## 📴 Notes hors ligne
 
 - Aucun service n'effectue d'accès sortant.
 - Les images Docker doivent être disponibles localement pour respecter un environnement entièrement déconnecté.
+
 
 ## 📌 Valeur ajoutée
 
@@ -166,37 +180,11 @@ Le template HTML de l'email "Mise à jour de sécurité" est disponible dans :
 - 📦 Base extensible
 - 🗣️ Support de présentation
 
+
 ## 📜 Licence
 
 Apache License 2.0
 
-## Arborescence
-
-```
-.
-├── app
-│   ├── Dockerfile
-│   ├── app.py
-│   ├── requirements.txt
-│   ├── static
-│   │   ├── app.js
-│   │   └── styles.css
-│   └── templates
-│       ├── index.html
-│       └── results.html
-├── db
-│   └── init.sql
-├── email
-│   └── security_update_email.html
-├── mailu
-│   └── mailu.env
-├── menu
-│   └── menu.sh
-├── nginx
-│   └── site.conf
-├── docker-compose.yml
-└── README.md
-```
 
 ## Lancement
 
@@ -214,6 +202,7 @@ docker compose up --build
 
 Le service `menu` affiche directement les liens utiles dans le terminal.
 
+
 ## Vérification rapide
 
 - Portail applicatif : `http://portal-legacy.example.com`
@@ -221,10 +210,12 @@ Le service `menu` affiche directement les liens utiles dans le terminal.
 - Webmail Mailu : `http://localhost:8081`
 - Admin Mailu : `http://localhost:8081/admin`
 
+
 ## Email HTML
 
 Le template HTML de l'email "Mise à jour de sécurité" est disponible dans :
 `email/security_update_email.html`.
+
 
 ## Notes hors ligne
 
