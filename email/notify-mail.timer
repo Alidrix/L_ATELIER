@@ -1,0 +1,10 @@
+[Unit]
+Description=Démarre la surveillance IMAP Poste.io au login
+
+[Timer]
+OnBootSec=10s
+OnUnitActiveSec=30s
+Unit=notify-mail.service
+
+[Install]
+WantedBy=timers.target
