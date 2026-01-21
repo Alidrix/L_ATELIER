@@ -96,6 +96,7 @@ services:
       - mailu_net
 
   mailu-webmail:
+    image: mailu/snappymail:2.0
     image: ghcr.io/mailu/snappymail:2.0
     image: ghcr.io/mailu/roundcube:latest
     image: ghcr.io/mailu/roundcube:2.0
