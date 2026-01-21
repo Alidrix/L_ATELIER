@@ -169,8 +169,8 @@ Le template HTML de l'email "Mise à jour de sécurité" est disponible dans :
 - En cas de services bloqués ou d’anciennes ressources, réinitialisez proprement :
 
 ```bash
-docker compose down -v --remove-orphans
-docker compose up -d --build
+docker-compose down -v --remove-orphans
+docker-compose up -d --build
 ```
 
 
@@ -204,7 +204,6 @@ sudo sh -c 'printf "127.0.0.1 portal-legacy.example.com\n127.0.0.1 mail.local\n"
 2. Démarrer la plateforme :
 
 ```bash
-docker compose up -d --build
 docker-compose up -d --build
 docker-compose -f docker-compose-posteio.yml up -d --build
 ```
