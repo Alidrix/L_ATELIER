@@ -164,6 +164,17 @@ sequenceDiagram
 Le template HTML de l'email "Mise à jour de sécurité" est disponible dans :
 `email/security_update_email.html`.
 
+## 🧰 Dépannage rapide
+
+- Utilisez **Docker Compose v2** : commande `docker compose ...` (et pas `docker-compose ...`).
+- Ne lancez pas d’ancien fichier `docker-compose-posteio.yml` : la stack est unique dans `docker-compose.yml`.
+- En cas de services bloqués ou d’anciennes ressources, réinitialisez proprement :
+
+```bash
+docker compose down -v --remove-orphans
+docker compose up -d --build
+```
+
 
 ## 📴 Notes hors ligne
 
@@ -195,6 +206,7 @@ sudo sh -c 'printf "127.0.0.1 portal-legacy.example.com\n127.0.0.1 mail.local\n"
 2. Démarrer la plateforme :
 
 ```bash
+docker compose up -d --build
 docker-compose up -d --build
 docker-compose -f docker-compose-posteio.yml up -d --build
 ```
