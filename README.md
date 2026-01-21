@@ -1,7 +1,7 @@
 # Plateforme locale "Mise à jour de sécurité"
 
 Ce dépôt déploie une plateforme locale (100% hors ligne) pour démontrer les flux d'une mise à jour de sécurité.
-L'ensemble est orchestré avec Docker Compose et repose sur : NGINX, Mailu, une application web et PostgreSQL.
+L'ensemble est orchestré avec Docker Compose et repose sur : NGINX, Poste.io, une application web et PostgreSQL.
 
 
 ## 🎯 Objectif
@@ -17,7 +17,7 @@ Construire une **plateforme locale complète**, entièrement **hors ligne**, afi
 - 📴 **Aucune dépendance Internet**
 - 🐳 **Tout est conteneurisé** (Docker Compose)
 - 🌐 **NGINX** comme point d’entrée unique
-- ✉️ **Mailu** pour la chaîne mail complète
+- ✉️ **Poste.io** pour la chaîne mail complète
 - 🗄️ **PostgreSQL** pour la persistance
 - 🎨 Interfaces sobres et cohérentes
 
@@ -33,7 +33,7 @@ flowchart LR
   classDef db fill:#FFF1E8,stroke:#FF9F4F,color:#442A1F;
 
   U[👤 Utilisateur]:::user
-  M[📮 Mailu Webmail]:::mail
+  M[📮 Poste.io Webmail]:::mail
   N[🌐 NGINX Reverse Proxy]:::web
   A[🧩 Application Portail local]:::app
   D[(🗄️ PostgreSQL)]:::db
@@ -51,7 +51,7 @@ flowchart LR
 ```mermaid
 sequenceDiagram
   participant U as 👤 Utilisateur
-  participant M as 📮 Mailu
+  participant M as 📮 Poste.io
   participant N as 🌐 NGINX
   participant A as 🧩 Application
   participant D as 🗄️ PostgreSQL
@@ -73,7 +73,7 @@ sequenceDiagram
 ### 💡 Lecture simple du flux
 
 - 👤 **Utilisateur** : suit un parcours clair et guidé.
-- 📮 **Mailu** : démontre la réception et lecture d’un message.
+- 📮 **Poste.io** : démontre la réception et lecture d’un message.
 - 🌐 **NGINX** : point de passage unique et optimisé.
 - 🧩 **Application** : cœur fonctionnel.
 - 🗄️ **PostgreSQL** : mémoire du système.
@@ -83,7 +83,7 @@ sequenceDiagram
 
 | Service | Rôle | Bénéfice |
 |-------|------|----------|
-| 📮 Mailu | Webmail + SMTP | Autonomie |
+| 📮 Poste.io | Webmail + SMTP | Autonomie |
 | 🌐 NGINX | Reverse proxy | Performance |
 | 🧩 Application | Logique | Maîtrise |
 | 🗄️ PostgreSQL | Données | Fiabilité |
@@ -116,13 +116,11 @@ sequenceDiagram
 │   └── init.sql
 ├── email
 │   └── security_update_email.html
-├── mailu
-│   └── mailu.env
+├── docker-compose.yml
 ├── menu
 │   └── menu.sh
 ├── nginx
 │   └── site.conf
-├── docker-compose.yml
 └── README.md
 ```
 
@@ -133,21 +131,30 @@ sequenceDiagram
 
 | Étape | Status | Description essentielle | Commande/Action | Liens utiles |
 |---|---|---|---|---|
-| 1 | 🟦 Pré-requis | Ajouter l’hôte local `portal-legacy.example.com` | `sudo sh -c 'echo "127.0.0.1 portal-legacy.example.com" >> /etc/hosts'` | — |
-| 2 | 🟩 Démarrage | Lancer la stack Docker Compose | `docker compose up --build` | — |
+| 1 | 🟦 Pré-requis | Ajouter les hôtes locaux `portal-legacy.example.com` et `mail.local` | `sudo sh -c 'printf "127.0.0.1 portal-legacy.example.com\n127.0.0.1 mail.local\n" >> /etc/hosts'` | — |
+| 2 | 🟩 Démarrage | Lancer la stack Docker Compose | `docker compose up -d --build` | — |
 | 3 | 🟨 Menu | Lire les accès affichés par le service `menu` | Automatique (terminal) | — |
 | 4 | 🟪 Portail | Accéder au portail applicatif | Navigateur | http://portal-legacy.example.com |
 | 5 | 🟥 Résultats | Consulter les soumissions enregistrées | Navigateur | http://portal-legacy.example.com/results |
-| 6 | 🟫 Webmail | Ouvrir l’interface Mailu | Navigateur | http://webmailu:8081 |
-| 7 | ⬛ Admin | Accès administration Mailu | Navigateur | http://webmailu:8081/admin |
+| 6 | 🟫 Webmail | Ouvrir l’interface Poste.io | Navigateur | http://mail.local:8080 |
+| 7 | ⬛ Admin | Accès administration Poste.io | Navigateur | http://mail.local:8080/admin |
 
 
 ## ✅ Vérification rapide
 
 - Portail applicatif : `http://portal-legacy.example.com`
 - Résultats : `http://portal-legacy.example.com/results`
-- Webmail Mailu : `http://webmailu:8081`
-- Admin Mailu : `http://webmailu:8081/admin`
+- Webmail Poste.io : `http://mail.local:8080`
+- Admin Poste.io : `http://mail.local:8080/admin`
+
+## ✉️ Poste.io (ports exposés)
+
+- HTTP (webmail/admin) : `http://mail.local:8080` → conteneur 80
+- HTTPS : `https://mail.local:8443` → conteneur 443
+- SMTP : `25` / `465` / `587`
+- IMAP : `143` / `993`
+- POP3 : `110` / `995`
+- Sieve : `4190`
 
 
 ## ✉️ Email HTML
@@ -177,16 +184,16 @@ Apache License 2.0
 
 ## Lancement
 
-1. Ajouter l'hôte local (si nécessaire) :
+1. Ajouter les hôtes locaux (si nécessaire) :
 
 ```bash
-sudo sh -c 'echo "127.0.0.1 portal-legacy.example.com" >> /etc/hosts'
+sudo sh -c 'printf "127.0.0.1 portal-legacy.example.com\n127.0.0.1 mail.local\n" >> /etc/hosts'
 ```
 
 2. Démarrer la plateforme :
 
 ```bash
-docker compose up --build
+docker compose up -d --build
 ```
 
 Le service `menu` affiche directement les liens utiles dans le terminal.
