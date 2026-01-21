@@ -117,6 +117,7 @@ sequenceDiagram
 ├── email
 │   └── security_update_email.html
 ├── docker-compose.yml
+├── docker-compose-posteio.yml
 ├── menu
 │   └── menu.sh
 ├── nginx
@@ -133,6 +134,7 @@ sequenceDiagram
 |---|---|---|---|---|
 | 1 | 🟦 Pré-requis | Ajouter les hôtes locaux `portal-legacy.example.com` et `mail.local` | `sudo sh -c 'printf "127.0.0.1 portal-legacy.example.com\n127.0.0.1 mail.local\n" >> /etc/hosts'` | — |
 | 2 | 🟩 Démarrage | Lancer la stack Docker Compose | `docker compose up -d --build` | — |
+| 2 | 🟩 Démarrage | Lancer la stack Docker Compose | `docker compose -f docker-compose-posteio.yml up -d --build` | — |
 | 3 | 🟨 Menu | Lire les accès affichés par le service `menu` | Automatique (terminal) | — |
 | 4 | 🟪 Portail | Accéder au portail applicatif | Navigateur | http://portal-legacy.example.com |
 | 5 | 🟥 Résultats | Consulter les soumissions enregistrées | Navigateur | http://portal-legacy.example.com/results |
@@ -205,6 +207,8 @@ sudo sh -c 'printf "127.0.0.1 portal-legacy.example.com\n127.0.0.1 mail.local\n"
 
 ```bash
 docker compose up -d --build
+docker-compose up -d --build
+docker-compose -f docker-compose-posteio.yml up -d --build
 ```
 
 Le service `menu` affiche directement les liens utiles dans le terminal.
