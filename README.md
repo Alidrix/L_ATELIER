@@ -192,20 +192,6 @@ docker compose up --build
 Le service `menu` affiche directement les liens utiles dans le terminal.
 
 
-## Vérification rapide
-
-- Portail applicatif : `http://portal-legacy.example.com`
-- Résultats : `http://portal-legacy.example.com/results`
-- Webmail Mailu : `http://localhost:8081`
-- Admin Mailu : `http://localhost:8081/admin`
-
-
-## Email HTML
-
-Le template HTML de l'email "Mise à jour de sécurité" est disponible dans :
-`email/security_update_email.html`.
-
-
 ## Notes hors ligne
 
 - Aucun service n'effectue d'accès sortant.
