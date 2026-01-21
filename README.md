@@ -171,6 +171,10 @@ Un script prêt à l'emploi est fourni pour envoyer l'email HTML via le SMTP loc
 ```bash
 SMTP_HOST=localhost \
 SMTP_PORT=25 \
+SMTP_HOST=mail.local \
+SMTP_PORT=587 \
+SMTP_USER=admin@mail.local \
+SMTP_PASSWORD=VOTRE_MDP \
 SMTP_FROM="C'CCIN <admin@mail.local>" \
 SMTP_TO="destinataire@mail.local" \
 python3 email/send_security_update.py
@@ -189,6 +193,7 @@ Un script de surveillance IMAP notifie votre poste via `notify-send` lorsqu'un m
 IMAP_HOST=mail.local \
 IMAP_PORT=993 \
 IMAP_USE_SSL=true \
+IMAP_PORT=143 \
 IMAP_USER=admin@mail.local \
 IMAP_PASSWORD=VOTRE_MDP \
 python3 email/notify_new_mail.py

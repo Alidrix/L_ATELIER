@@ -36,6 +36,10 @@ def main() -> None:
     parser = argparse.ArgumentParser(description="Notifier l'arrivée de nouveaux emails (Poste.io IMAP).")
     parser.add_argument("--host", default=os.getenv("IMAP_HOST", "mail.local"))
     parser.add_argument("--port", type=int, default=int(os.getenv("IMAP_PORT", "993")))
+def main() -> None:
+    parser = argparse.ArgumentParser(description="Notifier l'arrivée de nouveaux emails (Poste.io IMAP).")
+    parser.add_argument("--host", default=os.getenv("IMAP_HOST", "mail.local"))
+    parser.add_argument("--port", type=int, default=int(os.getenv("IMAP_PORT", "143")))
     parser.add_argument("--username", default=os.getenv("IMAP_USER"))
     parser.add_argument("--password", default=os.getenv("IMAP_PASSWORD"))
     parser.add_argument("--mailbox", default=os.getenv("IMAP_MAILBOX", "INBOX"))
@@ -63,6 +67,12 @@ def main() -> None:
                 imap = imaplib.IMAP4(args.host, args.port)
                 if use_starttls:
                     imap.starttls()
+    while True:
+        try:
+            if args.use_ssl:
+                imap = imaplib.IMAP4_SSL(args.host, args.port)
+            else:
+                imap = imaplib.IMAP4(args.host, args.port)
             imap.login(args.username, args.password)
             unseen = check_unseen(imap, args.mailbox)
             imap.logout()
