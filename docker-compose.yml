@@ -69,6 +69,7 @@ services:
       - "8995:995"
       - "8143:143"
       - "8993:993"
+    restart: unless-stopped
     networks:
       - mailu_net
 
@@ -95,8 +96,11 @@ services:
     networks:
       - mailu_net
 
+  # Webmail: choisir UNE seule image.
+  # Option recommandée: SnappyMail (Mailu 2.0) sur GHCR
   mailu-webmail:
     image: ghcr.io/mailu/roundcube:2.0
+    image: ghcr.io/mailu/snappymail:2.0
     container_name: securityupdate_mailu_webmail
     env_file: ./mailu/mailu.env
     restart: unless-stopped

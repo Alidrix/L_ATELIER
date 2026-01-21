@@ -1,5 +1,7 @@
 version: "3.9"
 
+# Optionnel : si vous gardez ce fichier, ne référencez pas d'image supprimée.
 services:
   mailu-webmail:
     image: ghcr.io/mailu/roundcube:2.0
+    image: ghcr.io/mailu/snappymail:2.0
