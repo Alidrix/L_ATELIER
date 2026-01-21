@@ -51,6 +51,7 @@ services:
       - security_net
 
   mailu-front:
+    image: ghcr.io/mailu/nginx:2.0
     image: mailu/nginx:1.9
     container_name: securityupdate_mailu_front
     env_file: ./mailu/mailu.env
@@ -80,6 +81,7 @@ services:
       - mailu_net
 
   mailu-imap:
+    image: ghcr.io/mailu/dovecot:2.0
     image: mailu/dovecot:1.9
     container_name: securityupdate_mailu_imap
     env_file: ./mailu/mailu.env
@@ -88,6 +90,7 @@ services:
       - mailu_net
 
   mailu-smtp:
+    image: ghcr.io/mailu/postfix:2.0
     image: mailu/postfix:1.9
     container_name: securityupdate_mailu_smtp
     env_file: ./mailu/mailu.env
@@ -96,6 +99,7 @@ services:
       - mailu_net
 
   mailu-webmail:
+    image: ghcr.io/mailu/roundcube:2.0
     image: mailu/roundcube:1.9
     container_name: securityupdate_mailu_webmail
     env_file: ./mailu/mailu.env
@@ -104,6 +108,7 @@ services:
       - mailu_net
 
   mailu-admin:
+    image: ghcr.io/mailu/admin:2.0
     image: mailu/admin:1.9
     container_name: securityupdate_mailu_admin
     env_file: ./mailu/mailu.env
