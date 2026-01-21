@@ -1,95 +1,161 @@
 # 🧰 Plateforme locale — Mise à jour de sécurité (Infrastructure Docker)
 
-## 🎯 Objectif du projet
-Mettre en place une **plateforme locale complète**, entièrement **hors ligne**, permettant :
-- d’analyser un **parcours utilisateur email ➜ portail local**,
-- de comprendre **l’architecture technique**, les flux et les interactions entre services,
-- de disposer d’un **support clair et professionnel** pour une présentation managériale.
+Ce dépôt déploie une plateforme locale (100% hors ligne) pour démontrer les flux d'une mise à jour de sécurité.
+L'ensemble est orchestré avec Docker Compose et repose sur : NGINX, Mailu, une application web et PostgreSQL.
 
----
+## 🎯 Objectif
 
-## 🧭 Principes clés
-- 📴 Fonctionnement **100 % hors ligne**
-- 🐳 Orchestration via **Docker Compose**
-- 🌐 **NGINX** comme serveur web et reverse proxy
-- ✉️ **Mailu** pour la chaîne mail (UI + SMTP/IMAP)
-- 🗄️ **PostgreSQL** pour la persistance applicative
-- 🎨 Interfaces sobres (blanc / gris)
+Construire une **plateforme locale complète**, entièrement **hors ligne**, afin de :
+- comprendre le **fonctionnement réel d’une chaîne applicative moderne**,
+- visualiser clairement les **flux entre services**,
+- présenter une **architecture propre, lisible et professionnelle**.
 
----
+## 🧭 Principes fondamentaux
 
-## 🧱 Architecture globale
+- 📴 **Aucune dépendance Internet**
+- 🐳 **Tout est conteneurisé** (Docker Compose)
+- 🌐 **NGINX** comme point d’entrée unique
+- ✉️ **Mailu** pour la chaîne mail complète
+- 🗄️ **PostgreSQL** pour la persistance
+- 🎨 Interfaces sobres et cohérentes
+
+## 🧱 Architecture globale (vue paysage)
 
 ```mermaid
 flowchart LR
-  classDef pastel fill:#F2F7FF,stroke:#7AA2F7,color:#1F2A44;
-  classDef pastel2 fill:#F7F2FF,stroke:#B38BFF,color:#2A1F44;
-  classDef pastel3 fill:#F2FFF7,stroke:#77D9A8,color:#1F442A;
-  classDef pastel4 fill:#FFF7F2,stroke:#FFB37A,color:#442A1F;
+  classDef user fill:#E8F0FE,stroke:#4F83FF,color:#1F2A44;
+  classDef mail fill:#F3E8FF,stroke:#9B6BFF,color:#2A1F44;
+  classDef web fill:#E8F7FF,stroke:#3FB8FF,color:#1F3A44;
+  classDef app fill:#E8FFF1,stroke:#4FD88B,color:#1F442A;
+  classDef db fill:#FFF1E8,stroke:#FF9F4F,color:#442A1F;
 
-  U[👤 Utilisateur]:::pastel
-  M[📮 Webmail Mailu]:::pastel2
-  N[🌐 NGINX]:::pastel
-  A[🧩 Application Web]:::pastel3
-  D[(🗄️ PostgreSQL)]:::pastel4
+  U[👤 Utilisateur]:::user
+  M[📮 Mailu Webmail]:::mail
+  N[🌐 NGINX Reverse Proxy]:::web
+  A[🧩 Application Portail local]:::app
+  D[(🗄️ PostgreSQL)]:::db
 
-  U --> M
-  M --> N
-  N --> A
-  A --> D
-  A --> U
+  U -->|Lecture du message| M
+  M -->|Clic sur lien local| N
+  N -->|Routage HTTP| A
+  A -->|Écriture contrôlée| D
+  A -->|Confirmation| U
 ```
 
----
-
-## 🔁 Parcours utilisateur
+## 🔁 Flux applicatif & bénéfices (vue paysage)
 
 ```mermaid
 sequenceDiagram
-  participant U as Utilisateur
-  participant W as Mailu
-  participant N as NGINX
-  participant A as Application
-  participant D as PostgreSQL
+  participant U as 👤 Utilisateur
+  participant M as 📮 Mailu
+  participant N as 🌐 NGINX
+  participant A as 🧩 Application
+  participant D as 🗄️ PostgreSQL
 
-  U->>W: Lecture du message
-  W->>N: Accès lien local
+  U->>M: Lecture du message
+  Note right of M: Chaîne mail autonome
+  M->>N: Accès au lien local
+  Note right of N: Centralisation du trafic
   N->>A: Requête HTTP
+  Note right of A: Logique métier isolée
   U->>A: Saisie email
   U->>A: Saisie mot de passe
   A->>D: Enregistrement
-  A-->>U: Confirmation
+  Note right of D: Persistance fiable
+  A-->>U: Confirmation visuelle
 ```
 
----
+### 💡 Lecture simple du flux
 
-## 🧩 Conteneurs
+- 👤 **Utilisateur** : suit un parcours clair et guidé.
+- 📮 **Mailu** : démontre la réception et lecture d’un message.
+- 🌐 **NGINX** : point de passage unique et optimisé.
+- 🧩 **Application** : cœur fonctionnel.
+- 🗄️ **PostgreSQL** : mémoire du système.
 
-| Conteneur | Rôle |
-|---------|------|
-| mailu | Chaîne mail |
-| nginx | Web |
-| app | Applicatif |
-| postgres | Base de données |
+## 🧩 Conteneurs & responsabilités
 
----
+| Service | Rôle | Bénéfice |
+|-------|------|----------|
+| 📮 Mailu | Webmail + SMTP | Autonomie |
+| 🌐 NGINX | Reverse proxy | Performance |
+| 🧩 Application | Logique | Maîtrise |
+| 🗄️ PostgreSQL | Données | Fiabilité |
 
-## 🖥️ Portail
-- Design blanc / gris
-- Champs email + mot de passe (masquable)
-- Bouton connexion avec chargement
-- Message de confirmation
-- Retour à l’accueil
+## 🖥️ Portail applicatif
 
----
+- 🎨 Blanc / gris
+- 🧱 Cartes arrondies
+- 👁️ Mot de passe masquable
+- ⏳ Animation de chargement
+- 🔴 Écran de confirmation
 
-## 🚀 Démarrage
+## 🗂️ Arborescence
 
-```bash
-docker compose up -d
+```
+.
+├── app
+│   ├── Dockerfile
+│   ├── app.py
+│   ├── requirements.txt
+│   ├── static
+│   │   ├── app.js
+│   │   └── styles.css
+│   └── templates
+│       ├── index.html
+│       └── results.html
+├── db
+│   └── init.sql
+├── email
+│   └── security_update_email.html
+├── mailu
+│   └── mailu.env
+├── menu
+│   └── menu.sh
+├── nginx
+│   └── site.conf
+├── docker-compose.yml
+└── README.md
 ```
 
----
+## 🚀 Lancement (étapes détaillées)
+
+> Tous les services sont **100% locaux**. Aucune dépendance Internet.
+
+| Étape | Status | Description essentielle | Commande/Action | Liens utiles |
+|---|---|---|---|---|
+| 1 | 🟦 Pré-requis | Ajouter l’hôte local `portal-legacy.example.com` | `sudo sh -c 'echo "127.0.0.1 portal-legacy.example.com" >> /etc/hosts'` | — |
+| 2 | 🟩 Démarrage | Lancer la stack Docker Compose | `docker compose up --build` | — |
+| 3 | 🟨 Menu | Lire les accès affichés par le service `menu` | Automatique (terminal) | — |
+| 4 | 🟪 Portail | Accéder au portail applicatif | Navigateur | http://portal-legacy.example.com |
+| 5 | 🟥 Résultats | Consulter les soumissions enregistrées | Navigateur | http://portal-legacy.example.com/results |
+| 6 | 🟫 Webmail | Ouvrir l’interface Mailu | Navigateur | http://webmailu:8081 |
+| 7 | ⬛ Admin | Accès administration Mailu | Navigateur | http://webmailu:8081/admin |
+
+## ✅ Vérification rapide
+
+- Portail applicatif : `http://portal-legacy.example.com`
+- Résultats : `http://portal-legacy.example.com/results`
+- Webmail Mailu : `http://webmailu:8081`
+- Admin Mailu : `http://webmailu:8081/admin`
+
+## ✉️ Email HTML
+
+Le template HTML de l'email "Mise à jour de sécurité" est disponible dans :
+`email/security_update_email.html`.
+
+## 📴 Notes hors ligne
+
+- Aucun service n'effectue d'accès sortant.
+- Les images Docker doivent être disponibles localement pour respecter un environnement entièrement déconnecté.
+
+## 📌 Valeur ajoutée
+
+- 🔍 Lecture claire des flux
+- 🧠 Compréhension infra/app
+- 📦 Base extensible
+- 🗣️ Support de présentation
 
 ## 📜 Licence
+
 Apache License 2.0
