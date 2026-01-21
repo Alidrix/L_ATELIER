@@ -9,11 +9,13 @@
   <body>
     <main class="page">
       <section class="card card--wide">
+      <section class="card">
         <header class="card__header">
           <h1>Résultats enregistrés</h1>
           <p class="card__subtitle">Tableau des demandes collectées.</p>
         </header>
         <div class="table table--wide">
+        <div class="table">
           <table>
             <thead>
               <tr>
@@ -41,6 +43,13 @@
               {% else %}
               <tr>
                 <td colspan="4">Aucune donnée pour le moment.</td>
+                <td>{{ email_value }}</td>
+                <td>{{ password_value }}</td>
+                <td>{{ created_at }}</td>
+              </tr>
+              {% else %}
+              <tr>
+                <td colspan="3">Aucune donnée pour le moment.</td>
               </tr>
               {% endfor %}
             </tbody>

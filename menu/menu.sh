@@ -8,6 +8,8 @@ cat <<'MENU'
 - Résultats : http://portal-legacy.example.com/results
 - Mailu (webmail) : http://webmailu:8081
 - Mailu (admin)   : http://webmailu:8081/admin
+- Mailu (webmail) : http://localhost:8081
+- Mailu (admin)   : http://localhost:8081/admin
 
 Astuce : ajoutez portal-legacy.example.com à /etc/hosts si besoin.
 MENU
