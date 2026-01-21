@@ -1,5 +1,0 @@
-version: "3.9"
-
-services:
-  mailu-webmail:
-    image: ghcr.io/mailu/snappymail:2.0
