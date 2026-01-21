@@ -205,6 +205,8 @@ sudo sh -c 'printf "127.0.0.1 portal-legacy.example.com\n127.0.0.1 mail.local\n"
 
 ```bash
 docker compose up -d --build
+docker-compose up -d --build
+docker-compose -f docker-compose-posteio.yml up -d --build
 ```
 
 Le service `menu` affiche directement les liens utiles dans le terminal.
