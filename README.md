@@ -169,6 +169,8 @@ Le template HTML de l'email "Mise à jour de sécurité" est disponible dans :
 Un script prêt à l'emploi est fourni pour envoyer l'email HTML via le SMTP local de Poste.io :
 
 ```bash
+SMTP_HOST=localhost \
+SMTP_PORT=25 \
 SMTP_HOST=mail.local \
 SMTP_PORT=587 \
 SMTP_USER=admin@mail.local \
@@ -180,6 +182,8 @@ python3 email/send_security_update.py
 
 - Le template est chargé par défaut depuis `email/security_update_email.html`.
 - Utilisez `--no-tls` si votre configuration SMTP n'utilise pas STARTTLS.
+- Pour l'authentification, ajoutez `SMTP_USER`/`SMTP_PASSWORD`.
+- Pour SMTP SSL (port 465), ajoutez `SMTP_USE_SSL=true`.
 
 ## 🔔 Notification locale (nouvel email)
 
@@ -187,6 +191,8 @@ Un script de surveillance IMAP notifie votre poste via `notify-send` lorsqu'un m
 
 ```bash
 IMAP_HOST=mail.local \
+IMAP_PORT=993 \
+IMAP_USE_SSL=true \
 IMAP_PORT=143 \
 IMAP_USER=admin@mail.local \
 IMAP_PASSWORD=VOTRE_MDP \
@@ -200,6 +206,13 @@ email/install_notifications.sh
 ```
 
 > Le service utilise `notify-send` (libnotify). Si indisponible, un message est affiché dans le terminal.
+
+### 🧪 Diagnostic rapide si aucun mail ne sort/revient
+
+1. Vérifiez que Poste.io expose bien le SMTP local : `telnet localhost 25` ou `nc -vz localhost 25`.
+2. Si vous utilisez `mail.local`, ajoutez une entrée dans `/etc/hosts` ou utilisez `localhost`.
+3. En SMTP, testez sans auth sur le port 25, puis basculez vers 587 (STARTTLS) ou 465 (SSL) si requis.
+4. Pour les notifications, assurez-vous que le compte IMAP contient au moins un message non lu.
 
 `<!doctype html>
 <html lang="fr">

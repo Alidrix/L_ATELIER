@@ -20,6 +20,19 @@ def build_message(sender: str, recipient: str, subject: str, html_body: str) -> 
     return message
 
 
+def send_email(
+    message: EmailMessage,
+    host: str,
+    port: int,
+    username: str | None,
+    password: str | None,
+    use_tls: bool,
+    use_ssl: bool,
+) -> None:
+    smtp_class = smtplib.SMTP_SSL if use_ssl else smtplib.SMTP
+    with smtp_class(host=host, port=port, timeout=10) as smtp:
+        smtp.ehlo()
+        if use_tls and not use_ssl:
 def send_email(message: EmailMessage, host: str, port: int, username: str | None, password: str | None, use_tls: bool) -> None:
     with smtplib.SMTP(host=host, port=port, timeout=10) as smtp:
         smtp.ehlo()
@@ -37,6 +50,12 @@ def main() -> None:
     parser.add_argument("--from", dest="sender", default=os.getenv("SMTP_FROM"))
     parser.add_argument("--subject", default=os.getenv("SMTP_SUBJECT", "Mise à jour de sécurité — action urgente requise"))
     parser.add_argument("--template", default=os.getenv("SMTP_TEMPLATE", str(DEFAULT_TEMPLATE)))
+    parser.add_argument("--host", default=os.getenv("SMTP_HOST", "localhost"))
+    parser.add_argument("--port", type=int, default=int(os.getenv("SMTP_PORT", "25")))
+    parser.add_argument("--username", default=os.getenv("SMTP_USER"))
+    parser.add_argument("--password", default=os.getenv("SMTP_PASSWORD"))
+    parser.add_argument("--no-tls", action="store_true", help="Désactiver STARTTLS")
+    parser.add_argument("--use-ssl", action="store_true", default=os.getenv("SMTP_USE_SSL", "false").lower() == "true")
     parser.add_argument("--host", default=os.getenv("SMTP_HOST", "mail.local"))
     parser.add_argument("--port", type=int, default=int(os.getenv("SMTP_PORT", "587")))
     parser.add_argument("--username", default=os.getenv("SMTP_USER"))
@@ -59,6 +78,7 @@ def main() -> None:
         username=args.username,
         password=args.password,
         use_tls=not args.no_tls,
+        use_ssl=args.use_ssl,
     )
     print(f"Email envoyé à {args.recipient} via {args.host}:{args.port}.")
 
