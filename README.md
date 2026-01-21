@@ -3,15 +3,6 @@
 Ce dépôt déploie une plateforme locale (100% hors ligne) pour démontrer les flux d'une mise à jour de sécurité.
 L'ensemble est orchestré avec Docker Compose et repose sur : NGINX, Mailu, une application web et PostgreSQL.
 
-## 🎯 Objectif
-
-Construire une **plateforme locale complète**, entièrement **hors ligne**, afin de :
-- comprendre le **fonctionnement réel d’une chaîne applicative moderne**,
-- visualiser clairement les **flux entre services**,
-- présenter une **architecture propre, lisible et professionnelle**.
-
-## 🧭 Principes fondamentaux
-
 
 ## 🎯 Objectif
 
@@ -77,33 +68,6 @@ sequenceDiagram
   Note right of D: Persistance fiable
   A-->>U: Confirmation visuelle
 ```
-
-### 💡 Lecture simple du flux
-
-- 👤 **Utilisateur** : suit un parcours clair et guidé.
-- 📮 **Mailu** : démontre la réception et lecture d’un message.
-- 🌐 **NGINX** : point de passage unique et optimisé.
-- 🧩 **Application** : cœur fonctionnel.
-- 🗄️ **PostgreSQL** : mémoire du système.
-
-## 🧩 Conteneurs & responsabilités
-
-| Service | Rôle | Bénéfice |
-|-------|------|----------|
-| 📮 Mailu | Webmail + SMTP | Autonomie |
-| 🌐 NGINX | Reverse proxy | Performance |
-| 🧩 Application | Logique | Maîtrise |
-| 🗄️ PostgreSQL | Données | Fiabilité |
-
-## 🖥️ Portail applicatif
-
-- 🎨 Blanc / gris
-- 🧱 Cartes arrondies
-- 👁️ Mot de passe masquable
-- ⏳ Animation de chargement
-- 🔴 Écran de confirmation
-
-## 🗂️ Arborescence
 
 
 ### 💡 Lecture simple du flux
@@ -177,29 +141,6 @@ sequenceDiagram
 | 6 | 🟫 Webmail | Ouvrir l’interface Mailu | Navigateur | http://webmailu:8081 |
 | 7 | ⬛ Admin | Accès administration Mailu | Navigateur | http://webmailu:8081/admin |
 
-## ✅ Vérification rapide
-
-- Portail applicatif : `http://portal-legacy.example.com`
-- Résultats : `http://portal-legacy.example.com/results`
-- Webmail Mailu : `http://webmailu:8081`
-- Admin Mailu : `http://webmailu:8081/admin`
-
-## ✉️ Email HTML
-
-Le template HTML de l'email "Mise à jour de sécurité" est disponible dans :
-`email/security_update_email.html`.
-
-## 📴 Notes hors ligne
-
-- Aucun service n'effectue d'accès sortant.
-- Les images Docker doivent être disponibles localement pour respecter un environnement entièrement déconnecté.
-
-## 📌 Valeur ajoutée
-
-- 🔍 Lecture claire des flux
-- 🧠 Compréhension infra/app
-- 📦 Base extensible
-- 🗣️ Support de présentation
 
 ## ✅ Vérification rapide
 
