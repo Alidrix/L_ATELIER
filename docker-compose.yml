@@ -10,6 +10,7 @@ services:
       - "80:80"
     volumes:
       - ./nginx/site.conf:/etc/nginx/conf.d/default.conf:ro
+    restart: unless-stopped
     networks:
       - security_net
 
@@ -25,6 +26,7 @@ services:
       DB_PASSWORD: securityupdate
     depends_on:
       - db
+    restart: unless-stopped
     networks:
       - security_net
 
@@ -38,6 +40,7 @@ services:
     volumes:
       - db_data:/var/lib/postgresql/data
       - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    restart: unless-stopped
     networks:
       - security_net
 
@@ -47,8 +50,30 @@ services:
     command: ["sh", "-c", "chmod +x /menu/menu.sh && /menu/menu.sh"]
     volumes:
       - ./menu/menu.sh:/menu/menu.sh:ro
+    restart: unless-stopped
     networks:
       - security_net
+
+  poste:
+    image: analogic/poste.io:latest
+    container_name: securityupdate_posteio
+    hostname: mail.local
+    environment:
+      TZ: Europe/Paris
+    ports:
+      - "8080:80"
+      - "8443:443"
+      - "25:25"
+      - "110:110"
+      - "143:143"
+      - "465:465"
+      - "587:587"
+      - "993:993"
+      - "995:995"
+      - "4190:4190"
+    volumes:
+      - poste_data:/data
+    restart: unless-stopped
 
 networks:
   security_net:
@@ -56,3 +81,4 @@ networks:
 
 volumes:
   db_data:
+  poste_data:

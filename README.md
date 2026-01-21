@@ -116,12 +116,12 @@ sequenceDiagram
 │   └── init.sql
 ├── email
 │   └── security_update_email.html
+├── docker-compose.yml
 ├── docker-compose-posteio.yml
 ├── menu
 │   └── menu.sh
 ├── nginx
 │   └── site.conf
-├── docker-compose.yml
 └── README.md
 ```
 
@@ -133,6 +133,7 @@ sequenceDiagram
 | Étape | Status | Description essentielle | Commande/Action | Liens utiles |
 |---|---|---|---|---|
 | 1 | 🟦 Pré-requis | Ajouter les hôtes locaux `portal-legacy.example.com` et `mail.local` | `sudo sh -c 'printf "127.0.0.1 portal-legacy.example.com\n127.0.0.1 mail.local\n" >> /etc/hosts'` | — |
+| 2 | 🟩 Démarrage | Lancer la stack Docker Compose | `docker compose up -d --build` | — |
 | 2 | 🟩 Démarrage | Lancer la stack Docker Compose | `docker compose -f docker-compose-posteio.yml up -d --build` | — |
 | 3 | 🟨 Menu | Lire les accès affichés par le service `menu` | Automatique (terminal) | — |
 | 4 | 🟪 Portail | Accéder au portail applicatif | Navigateur | http://portal-legacy.example.com |
@@ -194,6 +195,7 @@ sudo sh -c 'printf "127.0.0.1 portal-legacy.example.com\n127.0.0.1 mail.local\n"
 2. Démarrer la plateforme :
 
 ```bash
+docker compose up -d --build
 docker compose -f docker-compose-posteio.yml up -d --build
 ```
 
