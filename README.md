@@ -117,7 +117,6 @@ sequenceDiagram
 ├── email
 │   └── security_update_email.html
 ├── docker-compose.yml
-├── docker-compose-posteio.yml
 ├── menu
 │   └── menu.sh
 ├── nginx
@@ -135,6 +134,7 @@ sequenceDiagram
 | 1 | 🟦 Pré-requis | Ajouter les hôtes locaux `portal-legacy.example.com` et `mail.local` | `sudo sh -c 'printf "127.0.0.1 portal-legacy.example.com\n127.0.0.1 mail.local\n" >> /etc/hosts'` | — |
 | 2 | 🟩 Démarrage | Lancer la stack Docker Compose | `docker compose up -d --build` | — |
 | 2 | 🟩 Démarrage | Lancer la stack Docker Compose (poste.io) | `docker-compose -f docker-compose-posteio.yml up -d --build` | — |
+| 2 | 🟩 Démarrage | Lancer la stack Docker Compose (v2) | `docker compose up -d --build` | — |
 | 3 | 🟨 Menu | Lire les accès affichés par le service `menu` | Automatique (terminal) | — |
 | 4 | 🟪 Portail | Accéder au portail applicatif | Navigateur | http://portal-legacy.example.com |
 | 5 | 🟥 Résultats | Consulter les soumissions enregistrées | Navigateur | http://portal-legacy.example.com/results |
@@ -168,12 +168,13 @@ Le template HTML de l'email "Mise à jour de sécurité" est disponible dans :
 
 - Utilisez **Docker Compose v2** : commande `docker compose ...` quand elle est disponible.
 - Si vous utilisez encore `docker-compose` et `docker-compose-posteio.yml`, assurez-vous que le fichier existe localement.
+- Utilisez **Docker Compose v2** : commande `docker compose ...` (et pas `docker-compose ...`).
 - Si une ancienne stack traîne, supprimez-la avant de relancer.
 - En cas de services bloqués ou d’anciennes ressources, réinitialisez proprement :
 
 ```bash
-docker compose down -v --remove-orphans
-docker compose up -d --build
+docker-compose down -v --remove-orphans
+docker-compose up -d --build
 ```
 
 
@@ -207,7 +208,7 @@ sudo sh -c 'printf "127.0.0.1 portal-legacy.example.com\n127.0.0.1 mail.local\n"
 2. Démarrer la plateforme :
 
 ```bash
-docker compose up -d --build
+docker-compose up -d --build
 docker-compose -f docker-compose-posteio.yml up -d --build
 ```
 
