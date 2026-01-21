@@ -50,75 +50,8 @@ services:
     networks:
       - security_net
 
-  mailu-front:
-    image: ghcr.io/mailu/nginx:2.0
-    container_name: securityupdate_mailu_front
-    env_file: ./mailu/mailu.env
-    depends_on:
-      - mailu-redis
-      - mailu-imap
-      - mailu-smtp
-      - mailu-webmail
-      - mailu-admin
-    ports:
-      - "8081:80"
-      - "8025:25"
-      - "8465:465"
-      - "8587:587"
-      - "8110:110"
-      - "8995:995"
-      - "8143:143"
-      - "8993:993"
-    restart: unless-stopped
-    networks:
-      - mailu_net
-
-  mailu-redis:
-    image: redis:7-alpine
-    container_name: securityupdate_mailu_redis
-    restart: unless-stopped
-    networks:
-      - mailu_net
-
-  mailu-imap:
-    image: ghcr.io/mailu/dovecot:2.0
-    container_name: securityupdate_mailu_imap
-    env_file: ./mailu/mailu.env
-    restart: unless-stopped
-    networks:
-      - mailu_net
-
-  mailu-smtp:
-    image: ghcr.io/mailu/postfix:2.0
-    container_name: securityupdate_mailu_smtp
-    env_file: ./mailu/mailu.env
-    restart: unless-stopped
-    networks:
-      - mailu_net
-
-  # Webmail: choisir UNE seule image.
-  # Option recommandée: SnappyMail (Mailu 2.0) sur GHCR
-  mailu-webmail:
-    image: ghcr.io/mailu/roundcube:2.0
-    image: ghcr.io/mailu/snappymail:2.0
-    container_name: securityupdate_mailu_webmail
-    env_file: ./mailu/mailu.env
-    restart: unless-stopped
-    networks:
-      - mailu_net
-
-  mailu-admin:
-    image: ghcr.io/mailu/admin:2.0
-    container_name: securityupdate_mailu_admin
-    env_file: ./mailu/mailu.env
-    restart: unless-stopped
-    networks:
-      - mailu_net
-
 networks:
   security_net:
-    driver: bridge
-  mailu_net:
     driver: bridge
 
 volumes:
