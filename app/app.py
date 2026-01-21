@@ -30,8 +30,6 @@ def get_db_connection():
         conn = sqlite3.connect(SQLITE_PATH)
         init_sqlite_db(conn)
         return conn
-
-def get_db_connection():
     return psycopg2.connect(
         host=os.environ.get("DB_HOST", "db"),
         port=os.environ.get("DB_PORT", "5432"),
@@ -76,17 +74,6 @@ def submit():
                     (email_value, password_value, created_at),
                 )
             conn.commit()
-    created_at = datetime.utcnow()
-    with get_db_connection() as conn:
-        with conn.cursor() as cur:
-            cur.execute(
-                """
-                INSERT INTO submissions (email_value, password_value, created_at)
-                VALUES (%s, %s, %s)
-                """,
-                (email_value, password_value, created_at),
-            )
-        conn.commit()
 
     return jsonify({"ok": True})
 
@@ -96,8 +83,6 @@ def results():
     with get_db_connection() as conn:
         if DB_DIALECT == "sqlite":
             rows = conn.execute(
-        with conn.cursor() as cur:
-            cur.execute(
                 """
                 SELECT email_value, password_value, created_at
                 FROM submissions
@@ -114,8 +99,6 @@ def results():
                     """
                 )
                 rows = cur.fetchall()
-            )
-            rows = cur.fetchall()
 
     return render_template("results.html", rows=rows)
 
