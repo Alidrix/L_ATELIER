@@ -164,6 +164,10 @@ sequenceDiagram
 Le template HTML de l'email "Mise à jour de sécurité" est disponible dans :
 `email/security_update_email.html`.
 
+Pour l'envoyer depuis le webmail Poste.io (Roundcube) :
+- Activez l'éditeur HTML dans **Paramètres → Préférences → Rédaction** (mettre "Éditeur HTML" sur **Toujours**).
+- Dans la fenêtre de rédaction, utilisez le bouton **Code source** (icône `<>`) pour coller le HTML brut, puis revenez au mode visuel si besoin.
+
 ## 📤 Envoi automatique via SMTP Poste.io
 
 Un script prêt à l'emploi est fourni pour envoyer l'email HTML via le SMTP local de Poste.io :
