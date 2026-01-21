@@ -97,6 +97,7 @@ services:
 
   mailu-webmail:
     image: ghcr.io/mailu/roundcube:latest
+    image: ghcr.io/mailu/roundcube:2.0
     container_name: securityupdate_mailu_webmail
     env_file: ./mailu/mailu.env
     restart: unless-stopped
