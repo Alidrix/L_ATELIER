@@ -132,14 +132,7 @@ sudo sh -c 'printf "127.0.0.1 portal-legacy.example.com\n127.0.0.1 mail.example.
 | Admin | http://mail.example.com:8080/admin |
 
 
-2. Accéder aux interfaces :
-
-| Usage | Lien |
-|---|---|
-| Portail applicatif | http://portal-legacy.example.com |
-| Creds - GUI BDD | http://portal-legacy.example.com/admin |
-
-3. Ports exposés :
+2. Ports exposés :
 
 - HTTP (webmail/admin) : `http://mail.example.com:8080` → conteneur 80
 - HTTPS : `https://mail.example.com:8443` → conteneur 443
