@@ -73,8 +73,6 @@ sequenceDiagram
 - Identifiant : `alix`
 - Mot de passe : `***REDACTED***`
 
-Les données visibles dans l'interface sont des exemples fictifs encodés en base64. Le formulaire principal ne persiste pas les identifiants saisis.
-
 
 
 ## 🗂️ Arborescence du projet
