@@ -4,8 +4,6 @@ const passwordInput = document.getElementById("password");
 const togglePassword = document.getElementById("toggle-password");
 const submitButton = document.getElementById("submit");
 const statusText = document.getElementById("form-status");
-const confirmation = document.getElementById("confirmation");
-const backHome = document.getElementById("back-home");
 const resultsTable = document.querySelector(".table table");
 
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
