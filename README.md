@@ -109,31 +109,51 @@ Les données visibles dans l'interface sont des exemples fictifs encodés en bas
 ```
 
 
-## 🚀 Lancement (étapes détaillées)
+## 🚀 Lancement & accès (optimisé par techno)
 
 > Tous les services sont **100% locaux**. Aucune dépendance Internet.
 
-| Étape | Status | Description essentielle | Commande/Action | Liens utiles |
-|---|---|---|---|---|
-| 1 | 🟦 Pré-requis | Ajouter les hôtes locaux `portal-legacy.example.com` et `mail.local` | `sudo sh -c 'printf "127.0.0.1 portal-legacy.example.com\n127.0.0.1 mail.local\n" >> /etc/hosts'` | — |
-| 2 | 🟩 Démarrage | Lancer la stack Docker Compose | `docker compose up -d --build` | — |
-| 2 | 🟩 Démarrage | Lancer la stack Docker Compose (poste.io) | `docker-compose -f docker-compose-posteio.yml up -d --build` | — |
-| 2 | 🟩 Démarrage | Lancer la stack Docker Compose (v2) | `docker compose up -d --build` | — |
-| 3 | 🟨 Menu | Lire les accès affichés par le service `menu` | Automatique (terminal) | — |
-| 4 | 🟪 Portail | Accéder au portail applicatif | Navigateur | http://portal-legacy.example.com |
-| 5 | 🟥 Résultats | Consulter les données de démonstration (accès admin) | Navigateur | http://portal-legacy.example.com/admin |
-| 6 | 🟫 Webmail | Ouvrir l’interface Poste.io | Navigateur | http://mail.local:8080 |
-| 7 | ⬛ Admin | Accès administration Poste.io | Navigateur | http://mail.local:8080/admin |
+### 🧩 Pré-requis communs
 
+- Ajouter les hôtes locaux `portal-legacy.example.com` et `mail.local` :
 
-## ✅ Vérification rapide
+```bash
+sudo sh -c 'printf "127.0.0.1 portal-legacy.example.com\n127.0.0.1 mail.local\n" >> /etc/hosts'
+```
 
-- Portail applicatif : `http://portal-legacy.example.com`
-- Résultats (admin) : `http://portal-legacy.example.com/admin`
-- Webmail Poste.io : `http://mail.local:8080`
-- Admin Poste.io : `http://mail.local:8080/admin`
+### 🧱 Stack principale (NGINX + app + PostgreSQL + menu)
 
-## ✉️ Poste.io (ports exposés)
+1. Démarrer la stack :
+
+```bash
+docker compose up -d --build
+```
+
+2. Lire les accès affichés par le service `menu` (automatique côté terminal).
+
+3. Accéder aux interfaces :
+
+| Usage | Lien |
+|---|---|
+| Portail applicatif | http://portal-legacy.example.com |
+| Résultats (admin) | http://portal-legacy.example.com/admin |
+
+### ✉️ Poste.io (webmail)
+
+1. Démarrer la stack Poste.io :
+
+```bash
+docker-compose -f docker-compose-posteio.yml up -d --build
+```
+
+2. Accéder aux interfaces :
+
+| Usage | Lien |
+|---|---|
+| Webmail | http://mail.local:8080 |
+| Admin | http://mail.local:8080/admin |
+
+3. Ports exposés :
 
 - HTTP (webmail/admin) : `http://mail.local:8080` → conteneur 80
 - HTTPS : `https://mail.local:8443` → conteneur 443
