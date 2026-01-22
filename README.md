@@ -141,13 +141,7 @@ sudo sh -c 'printf "127.0.0.1 portal-legacy.example.com\n127.0.0.1 mail.local\n"
 
 ### ✉️ Poste.io (webmail)
 
-1. Démarrer la stack Poste.io :
-
-```bash
-docker-compose -f docker-compose.yml up -d --build
-```
-
-2. Accéder aux interfaces :
+1. Accéder aux interfaces :
 
 | Usage | Lien |
 |---|---|
@@ -166,7 +160,6 @@ docker-compose -f docker-compose.yml up -d --build
 
 ```bash
 docker-compose down -v --remove-orphans
-docker-compose up -d --build
 ```
 
 
@@ -189,6 +182,5 @@ sudo sh -c 'printf "127.0.0.1 portal-legacy.example.com\n127.0.0.1 mail.local\n"
 2. Démarrer la plateforme :
 
 ```bash
-docker-compose up -d --build
-docker-compose -f docker-compose.yml up -d --build
+docker-compose up -d --build && docker-compose -f docker-compose.yml up -d --build
 ```
