@@ -113,7 +113,7 @@ Les données visibles dans l'interface sont des exemples fictifs encodés en bas
 ```
 
 
-## 🚀 Lancement & accès (optimisé par techno)
+## 🚀 Lancement & Liens
 
 > Tous les services sont **100% locaux**. Aucune dépendance Internet.
 
