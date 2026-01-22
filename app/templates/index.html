@@ -60,10 +60,16 @@
           <p class="form__status" id="form-status" role="status"></p>
         </form>
       </section>
+      <section id="confirmation" class="confirmation" hidden>
+        <div class="confirmation__panel" role="dialog" aria-modal="true" aria-labelledby="confirmation-title">
+          <h2 id="confirmation-title">Merci, votre demande a bien été enregistrée</h2>
+          <p>Votre mise à jour sera appliquée dans le flux interne sécurisé.</p>
+          <button id="back-home" class="submit" type="button">Revenir à l'accueil</button>
+        </div>
+      </section>
 
     </main>
 
     <script src="/static/app.js?{{ cache_bust }}"></script>
-    <script src="/static/app.js?v=2"></script>
   </body>
 </html>
