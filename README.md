@@ -123,15 +123,8 @@ sudo sh -c 'printf "127.0.0.1 portal-legacy.example.com\n127.0.0.1 mail.local\n"
 
 ### 🧱 Stack principale (NGINX + app + PostgreSQL + menu)
 
-1. Démarrer la stack :
 
-```bash
-docker compose up -d --build
-```
-
-2. Lire les accès affichés par le service `menu` (automatique côté terminal).
-
-3. Accéder aux interfaces :
+1. Accéder aux interfaces :
 
 | Usage | Lien |
 |---|---|
