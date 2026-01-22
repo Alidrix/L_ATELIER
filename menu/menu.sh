@@ -6,11 +6,11 @@ cat <<'MENU'
 =========================================
 - Portail applicatif : http://portal-legacy.example.com
 - Résultats (admin) : http://portal-legacy.example.com/admin
-- Poste.io (admin & webmail) : http://mail.local:8080
+- Poste.io (admin & webmail) : http://mail.example.com:8080
 - Poste.io (admin & webmail) : http://localhost:8080
 
 Astuce : ajoutez portal-legacy.example.com à /etc/hosts si besoin.
-Astuce : ajoutez mail.local à /etc/hosts pour l'interface Poste.io.
+Astuce : ajoutez mail.example.com à /etc/hosts pour l'interface Poste.io.
 MENU
 
 # Garde le conteneur actif pour afficher le menu.

@@ -34,11 +34,11 @@ def resolve_ssl_settings(port: int, use_ssl: bool, use_starttls: bool) -> tuple[
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Notifier l'arrivée de nouveaux emails (Poste.io IMAP).")
-    parser.add_argument("--host", default=os.getenv("IMAP_HOST", "mail.local"))
+    parser.add_argument("--host", default=os.getenv("IMAP_HOST", "mail.example.com"))
     parser.add_argument("--port", type=int, default=int(os.getenv("IMAP_PORT", "993")))
 def main() -> None:
     parser = argparse.ArgumentParser(description="Notifier l'arrivée de nouveaux emails (Poste.io IMAP).")
-    parser.add_argument("--host", default=os.getenv("IMAP_HOST", "mail.local"))
+    parser.add_argument("--host", default=os.getenv("IMAP_HOST", "mail.example.com"))
     parser.add_argument("--port", type=int, default=int(os.getenv("IMAP_PORT", "143")))
     parser.add_argument("--username", default=os.getenv("IMAP_USER"))
     parser.add_argument("--password", default=os.getenv("IMAP_PASSWORD"))
