@@ -95,34 +95,6 @@ def admin_login():
         )
     return render_template("admin_login.html", cache_bust="v5")
 
-if "admin_login_route" not in app.view_functions:
-    app.add_url_rule(
-        "/admin",
-        view_func=admin_login,
-        methods=["GET", "POST"],
-        endpoint="admin_login_route",
-    )
-
-@app.get("/logout")
-def logout():
-    session.pop("admin_authenticated", None)
-    return redirect(url_for("admin_login_route"))
-    return redirect(url_for("admin_login"))
-
-
-@app.route("/admin", methods=["GET", "POST"])
-def admin_login():
-    if request.method == "POST":
-        username = (request.form.get("username") or "").strip()
-        password = request.form.get("password") or ""
-        if username == ADMIN_USER and password == ADMIN_PASSWORD:
-            session["admin_authenticated"] = True
-            return redirect(url_for("results"))
-        return render_template(
-            "admin_login.html", error="Identifiants invalides. Réessayez."
-        )
-    return render_template("admin_login.html")
-
 
 @app.get("/logout")
 def logout():
@@ -145,7 +117,6 @@ def submit():
 @app.get("/results")
 def results():
     if not is_admin_authenticated():
-        return redirect(url_for("admin_login_route"))
         return redirect(url_for("admin_login"))
     with get_db_connection() as conn:
         if DB_DIALECT == "sqlite":
