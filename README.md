@@ -69,7 +69,6 @@ sequenceDiagram
 
 ## 🔐 Accès GUI BDD
 
-- URL : `http://portal-legacy.example.com/admin`
 - Identifiant : `alix`
 - Mot de passe : `***REDACTED***`
 
@@ -120,7 +119,7 @@ sudo sh -c 'printf "127.0.0.1 portal-legacy.example.com\n127.0.0.1 mail.example.
 | Usage | Lien |
 |---|---|
 | Portail applicatif | http://portal-legacy.example.com |
-| Résultats (admin) | http://portal-legacy.example.com/admin |
+| Creds - GUI BDD | http://portal-legacy.example.com/admin |
 
 ### ✉️ Poste.io (webmail)
 
