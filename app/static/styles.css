@@ -193,6 +193,10 @@ body {
   padding: 24px;
 }
 
+.confirmation[hidden] {
+  display: none;
+}
+
 .confirmation__panel {
   background: #fff5f5;
   border: 3px solid #e04b4b;
