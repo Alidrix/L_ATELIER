@@ -5,8 +5,6 @@ const passwordInput = document.getElementById("password");
 const togglePassword = document.getElementById("toggle-password");
 const submitButton = document.getElementById("submit");
 const statusText = document.getElementById("form-status");
-const confirmation = document.getElementById("confirmation");
-const backHome = document.getElementById("back-home");
 const resultsTable = document.querySelector(".table table");
 
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -127,3 +125,71 @@ function updateFormState() {
     updateFormState();
   }
 });
+      if (confirmation) {
+        confirmation.hidden = false;
+      }
+      if (backHome) {
+        backHome.hidden = true;
+        setTimeout(() => {
+          backHome.hidden = false;
+        }, 2000);
+      }
+    } catch (error) {
+      statusText.textContent = error.message;
+    } finally {
+      submitButton.classList.remove("loading");
+      updateFormState();
+    }
+  });
+
+  if (backHome) {
+    backHome.addEventListener("click", () => {
+      confirmation.hidden = true;
+      form.reset();
+      passwordInput.type = "password";
+      togglePassword.textContent = "Afficher";
+      statusText.textContent = "";
+      updateFormState();
+    });
+  }
+}
+
+function toggleMaskedValue(target, button) {
+  const isHidden = target.dataset.state !== "visible";
+  target.textContent = isHidden ? target.dataset.value : "••••••••••";
+  target.dataset.state = isHidden ? "visible" : "hidden";
+  button.textContent = isHidden ? "Masquer" : button.dataset.label;
+}
+
+if (resultsTable) {
+  resultsTable.addEventListener("click", (event) => {
+    const button = event.target.closest("[data-toggle]");
+    if (!button) {
+      return;
+    }
+    const toggleType = button.dataset.toggle;
+    const row = button.closest("tr");
+    const cells = row ? row.querySelectorAll(".maskable") : null;
+    if (!cells || cells.length < 2) {
+      return;
+    }
+    if (toggleType === "email") {
+      toggleMaskedValue(cells[0], button);
+    }
+    if (toggleType === "password") {
+      toggleMaskedValue(cells[1], button);
+    }
+  });
+
+  resultsTable.querySelectorAll("[data-toggle]").forEach((button) => {
+    const label =
+      button.dataset.toggle === "email"
+        ? "Afficher email"
+        : "Afficher mot de passe";
+    button.dataset.label = label;
+  });
+}
+
+if (form) {
+  updateFormState();
+}

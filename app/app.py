@@ -102,6 +102,26 @@ def logout():
     return redirect(url_for("admin_login"))
 
 
+@app.route("/admin", methods=["GET", "POST"])
+def admin_login():
+    if request.method == "POST":
+        username = (request.form.get("username") or "").strip()
+        password = request.form.get("password") or ""
+        if username == ADMIN_USER and password == ADMIN_PASSWORD:
+            session["admin_authenticated"] = True
+            return redirect(url_for("results"))
+        return render_template(
+            "admin_login.html", error="Identifiants invalides. Réessayez."
+        )
+    return render_template("admin_login.html")
+
+
+@app.get("/logout")
+def logout():
+    session.pop("admin_authenticated", None)
+    return redirect(url_for("admin_login"))
+
+
 @app.post("/api/submit")
 def submit():
     payload = request.get_json(silent=True) or {}
