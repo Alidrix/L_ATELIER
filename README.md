@@ -22,7 +22,7 @@ Construire une **plateforme locale complète**, entièrement **hors ligne**, afi
 - 🎨 Interfaces sobres et cohérentes
 
 
-## 🧱 Architecture globale (vue paysage)
+## 🧱 Architecture globale
 
 ```mermaid
 flowchart LR
@@ -47,7 +47,7 @@ flowchart LR
 ```
 
 
-## 🔁 Flux applicatif & bénéfices (vue paysage)
+## 🔁 Flux applicatif
 
 ```mermaid
 sequenceDiagram
