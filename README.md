@@ -10,6 +10,7 @@ Plateforme **100% locale** pour présenter un parcours complet de mise à jour d
 | Accès admin (résultats) | http://portal-legacy.example.com/admin |
 | Webmail Poste.io | http://mail.local:8080 |
 | Admin Poste.io | http://mail.local:8080/admin |
+| Install - Configuration Poste.io | http://mail.local:8443/admin |
 
 > Pré-requis local unique : ajouter `portal-legacy.example.com` et `mail.local` dans `/etc/hosts`.
 
