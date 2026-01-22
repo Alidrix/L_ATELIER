@@ -121,7 +121,7 @@ sudo sh -c 'printf "127.0.0.1 portal-legacy.example.com\n127.0.0.1 mail.local\n"
 | Usage | Lien |
 |---|---|
 | Portail applicatif | http://portal-legacy.example.com |
-| Résultats (admin) | http://portal-legacy.example.com/admin |
+| Creds - GUI BDD | http://portal-legacy.example.com/admin |
 
 ### ✉️ Poste.io (webmail)
 
