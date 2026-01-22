@@ -38,6 +38,7 @@ flowchart LR
 ```
 
 
+
 ## 🔁 Flux applicatif
 
 ```mermaid
@@ -73,6 +74,8 @@ sequenceDiagram
 - 🔴 Écran de confirmation
 - 🔐 Accès admin séparé pour les données de démonstration
 
+
+
 ## 🔐 Accès GUI BDD
 
 - URL : `http://portal-legacy.example.com/admin`
@@ -80,6 +83,7 @@ sequenceDiagram
 - Mot de passe : `***REDACTED***`
 
 Les données visibles dans l'interface sont des exemples fictifs encodés en base64. Le formulaire principal ne persiste pas les identifiants saisis.
+
 
 
 ## 🗂️ Arborescence du projet
@@ -113,6 +117,8 @@ Les données visibles dans l'interface sont des exemples fictifs encodés en bas
 
 > Tous les services sont **100% locaux**. Aucune dépendance Internet.
 
+
+
 ### 🧩 Pré-requis communs
 
 - Ajouter les hôtes locaux `portal-legacy.example.com` et `mail.local` :
@@ -120,6 +126,8 @@ Les données visibles dans l'interface sont des exemples fictifs encodés en bas
 ```bash
 sudo sh -c 'printf "127.0.0.1 portal-legacy.example.com\n127.0.0.1 mail.local\n" >> /etc/hosts'
 ```
+
+
 
 ### 🧱 Stack principale (NGINX + app + PostgreSQL + menu)
 
@@ -136,7 +144,7 @@ sudo sh -c 'printf "127.0.0.1 portal-legacy.example.com\n127.0.0.1 mail.local\n"
 1. Démarrer la stack Poste.io :
 
 ```bash
-docker-compose -f docker-compose-posteio.yml up -d --build
+docker-compose -f docker-compose.yml up -d --build
 ```
 
 2. Accéder aux interfaces :
@@ -153,6 +161,7 @@ docker-compose -f docker-compose-posteio.yml up -d --build
 
 
 
+
 ## 🧰 Dépannage rapide
 
 ```bash
@@ -161,10 +170,12 @@ docker-compose up -d --build
 ```
 
 
+
 ## 📴 Notes hors ligne
 
 - Aucun service n'effectue d'accès sortant.
 - Les images Docker doivent être disponibles localement pour respecter un environnement entièrement déconnecté.
+
 
 
 ## 🚀 Démarrage de l'infra
