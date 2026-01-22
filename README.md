@@ -1,16 +1,7 @@
-# Plateforme locale "Mise à jour de sécurité"
+# 🎯 Plateforme locale "Mise à jour de sécurité"
 
 Ce dépôt déploie une plateforme locale (100% hors ligne) pour démontrer les flux d'une mise à jour de sécurité.
-L'ensemble est orchestré avec Docker Compose et repose sur : NGINX, Poste.io, une application web et PostgreSQL.
-
-
-## 🎯 Objectif
-
-Construire une **plateforme locale complète**, entièrement **hors ligne**, afin de :
-- comprendre le **fonctionnement réel d’une chaîne applicative moderne**,
-- visualiser clairement les **flux entre services**,
-- présenter une **architecture propre, lisible et professionnelle**.
-
+L'ensemble est orchestré avec Docker Compose et repose sur : NGINX, Poste.io, une application web et SQLITE3.
 
 
 ## 🧱 Architecture globale
@@ -27,7 +18,7 @@ flowchart LR
   M[📮 Poste.io Webmail]:::mail
   N[🌐 NGINX Reverse Proxy]:::web
   A[🧩 Application Portail local]:::app
-  D[(🗄️ PostgreSQL)]:::db
+  D[(🗄️ SQLITE 3)]:::db
 
   U -->|Envoi manuel du message| M
   U -->|Lecture du message| M
@@ -38,6 +29,7 @@ flowchart LR
 ```
 
 
+
 ## 🔁 Flux applicatif
 
 ```mermaid
@@ -46,7 +38,7 @@ sequenceDiagram
   participant M as 📮 Poste.io
   participant N as 🌐 NGINX
   participant A as 🧩 Application
-  participant D as 🗄️ PostgreSQL
+  participant D as 🗄️ SQLITE 3
 
   U->>M: Envoi manuel du message
   U->>M: Lecture du message
@@ -73,13 +65,14 @@ sequenceDiagram
 - 🔴 Écran de confirmation
 - 🔐 Accès admin séparé pour les données de démonstration
 
+
+
 ## 🔐 Accès GUI BDD
 
 - URL : `http://portal-legacy.example.com/admin`
 - Identifiant : `alix`
 - Mot de passe : `***REDACTED***`
 
-Les données visibles dans l'interface sont des exemples fictifs encodés en base64. Le formulaire principal ne persiste pas les identifiants saisis.
 
 
 ## 🗂️ Arborescence du projet
@@ -109,29 +102,20 @@ Les données visibles dans l'interface sont des exemples fictifs encodés en bas
 ```
 
 
-## 🚀 Lancement & accès (optimisé par techno)
+## 🚀 Ressources
 
-> Tous les services sont **100% locaux**. Aucune dépendance Internet.
 
-### 🧩 Pré-requis communs
-
-- Ajouter les hôtes locaux `portal-legacy.example.com` et `mail.example.com` :
+- Ajouter les hôtes locaux `portal-legacy.example.com` et `mail.local` :
 
 ```bash
-sudo sh -c 'printf "127.0.0.1 portal-legacy.example.com\n127.0.0.1 mail.example.com\n" >> /etc/hosts'
+sudo sh -c 'printf "127.0.0.1 portal-legacy.example.com\n127.0.0.1 mail.local\n" >> /etc/hosts'
 ```
+
+
 
 ### 🧱 Stack principale (NGINX + app + PostgreSQL + menu)
 
-1. Démarrer la stack :
-
-```bash
-docker compose up -d --build
-```
-
-2. Lire les accès affichés par le service `menu` (automatique côté terminal).
-
-3. Accéder aux interfaces :
+1. Accéder aux interfaces :
 
 | Usage | Lien |
 |---|---|
@@ -140,18 +124,29 @@ docker compose up -d --build
 
 ### ✉️ Poste.io (webmail)
 
-1. Démarrer la stack Poste.io :
-
-```bash
-docker-compose -f docker-compose-posteio.yml up -d --build
-```
-
-2. Accéder aux interfaces :
+1. Accéder aux interfaces :
 
 | Usage | Lien |
 |---|---|
 | Webmail | http://mail.example.com:8080 |
 | Admin | http://mail.example.com:8080/admin |
+
+
+1. Accéder aux interfaces :
+
+| Usage | Lien |
+|---|---|
+| Portail applicatif | http://portal-legacy.example.com |
+| Creds - GUI BDD | http://portal-legacy.example.com/admin |
+
+### ✉️ Poste.io (webmail)
+
+1. Accéder aux interfaces :
+
+| Usage | Lien |
+|---|---|
+| Webmail | http://mail.local:8080 |
+| Admin | http://mail.local:8080/admin |
 
 3. Ports exposés :
 
@@ -160,18 +155,20 @@ docker-compose -f docker-compose-posteio.yml up -d --build
 
 
 
+
 ## 🧰 Dépannage rapide
 
 ```bash
 docker-compose down -v --remove-orphans
-docker-compose up -d --build
 ```
+
 
 
 ## 📴 Notes hors ligne
 
 - Aucun service n'effectue d'accès sortant.
 - Les images Docker doivent être disponibles localement pour respecter un environnement entièrement déconnecté.
+
 
 
 ## 🚀 Démarrage de l'infra
@@ -185,6 +182,5 @@ sudo sh -c 'printf "127.0.0.1 portal-legacy.example.com\n127.0.0.1 mail.example.
 2. Démarrer la plateforme :
 
 ```bash
-docker-compose up -d --build
-docker-compose -f docker-compose.yml up -d --build
+docker-compose up -d --build && docker-compose -f docker-compose.yml up -d --build
 ```
