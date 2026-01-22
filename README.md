@@ -22,7 +22,7 @@ Construire une **plateforme locale complète**, entièrement **hors ligne**, afi
 - 🎨 Interfaces sobres et cohérentes
 
 
-## 🧱 Architecture globale (vue paysage)
+## 🧱 Architecture globale
 
 ```mermaid
 flowchart LR
@@ -47,7 +47,7 @@ flowchart LR
 ```
 
 
-## 🔁 Flux applicatif & bénéfices (vue paysage)
+## 🔁 Flux applicatif
 
 ```mermaid
 sequenceDiagram
@@ -181,7 +181,8 @@ Pour l'envoyer depuis le webmail Poste.io (Roundcube) :
 
 > L'envoi est prévu **manuellement** via le webmail. Le script SMTP ci-dessous reste optionnel si vous souhaitez automatiser.
 
-## 📤 Envoi via SMTP Poste.io (optionnel)
+
+## 📤 Envoi automatique via SMTP Poste.io
 
 Un script prêt à l'emploi est fourni pour envoyer l'email HTML via le SMTP local de Poste.io :
 
@@ -380,7 +381,7 @@ sudo sh -c 'printf "127.0.0.1 portal-legacy.example.com\n127.0.0.1 mail.local\n"
 
 ```bash
 docker-compose up -d --build
-docker-compose -f docker-compose-posteio.yml up -d --build
+docker-compose -f docker-compose.yml up -d --build
 ```
 
 Le service `menu` affiche directement les liens utiles dans le terminal.
