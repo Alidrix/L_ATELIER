@@ -18,7 +18,7 @@ flowchart LR
   M[📮 Poste.io Webmail]:::mail
   N[🌐 NGINX Reverse Proxy]:::web
   A[🧩 Application Portail local]:::app
-  D[(🗄️ SQLITE)]:::db
+  D[(🗄️ SQLITE 3)]:::db
 
   U -->|Envoi manuel du message| M
   U -->|Lecture du message| M
@@ -38,7 +38,7 @@ sequenceDiagram
   participant M as 📮 Poste.io
   participant N as 🌐 NGINX
   participant A as 🧩 Application
-  participant D as 🗄️ SQLITE
+  participant D as 🗄️ SQLITE 3
 
   U->>M: Envoi manuel du message
   U->>M: Lecture du message
