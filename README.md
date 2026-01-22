@@ -105,10 +105,10 @@ sequenceDiagram
 ## 🚀 Ressources
 
 
-- Ajouter les hôtes locaux `portal-legacy.example.com` et `mail.local` :
+- Ajouter les hôtes locaux `portal-legacy.example.com` et `mail.example.com` :
 
 ```bash
-sudo sh -c 'printf "127.0.0.1 portal-legacy.example.com\n127.0.0.1 mail.local\n" >> /etc/hosts'
+sudo sh -c 'printf "127.0.0.1 portal-legacy.example.com\n127.0.0.1 mail.example.com\n" >> /etc/hosts'
 ```
 
 
@@ -132,21 +132,12 @@ sudo sh -c 'printf "127.0.0.1 portal-legacy.example.com\n127.0.0.1 mail.local\n"
 | Admin | http://mail.example.com:8080/admin |
 
 
-1. Accéder aux interfaces :
+2. Accéder aux interfaces :
 
 | Usage | Lien |
 |---|---|
 | Portail applicatif | http://portal-legacy.example.com |
 | Creds - GUI BDD | http://portal-legacy.example.com/admin |
-
-### ✉️ Poste.io (webmail)
-
-1. Accéder aux interfaces :
-
-| Usage | Lien |
-|---|---|
-| Webmail | http://mail.local:8080 |
-| Admin | http://mail.local:8080/admin |
 
 3. Ports exposés :
 
