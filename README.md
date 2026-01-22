@@ -38,10 +38,11 @@ flowchart LR
   A[🧩 Application Portail local]:::app
   D[(🗄️ PostgreSQL)]:::db
 
+  U -->|Envoi manuel du message| M
   U -->|Lecture du message| M
   M -->|Clic sur lien local| N
   N -->|Routage HTTP| A
-  A -->|Écriture contrôlée| D
+  A -->|Lecture données de démonstration| D
   A -->|Confirmation| U
 ```
 
@@ -56,6 +57,7 @@ sequenceDiagram
   participant A as 🧩 Application
   participant D as 🗄️ PostgreSQL
 
+  U->>M: Envoi manuel du message
   U->>M: Lecture du message
   Note right of M: Chaîne mail autonome
   M->>N: Accès au lien local
@@ -64,8 +66,8 @@ sequenceDiagram
   Note right of A: Logique métier isolée
   U->>A: Saisie email
   U->>A: Saisie mot de passe
-  A->>D: Enregistrement
-  Note right of D: Persistance fiable
+  A->>D: Lecture des données de démonstration
+  Note right of D: Données fictives encodées (base64)
   A-->>U: Confirmation visuelle
 ```
 
@@ -96,6 +98,15 @@ sequenceDiagram
 - 👁️ Mot de passe masquable
 - ⏳ Animation de chargement
 - 🔴 Écran de confirmation
+- 🔐 Accès admin séparé pour les données de démonstration
+
+## 🔐 Accès admin (données de démonstration)
+
+- URL : `http://portal-legacy.example.com/admin`
+- Identifiant : `alix`
+- Mot de passe : `***REDACTED***`
+
+Les données visibles dans l'interface sont des exemples fictifs encodés en base64. Le formulaire principal ne persiste pas les identifiants saisis.
 
 
 ## 🗂️ Arborescence
@@ -137,7 +148,7 @@ sequenceDiagram
 | 2 | 🟩 Démarrage | Lancer la stack Docker Compose (v2) | `docker compose up -d --build` | — |
 | 3 | 🟨 Menu | Lire les accès affichés par le service `menu` | Automatique (terminal) | — |
 | 4 | 🟪 Portail | Accéder au portail applicatif | Navigateur | http://portal-legacy.example.com |
-| 5 | 🟥 Résultats | Consulter les soumissions enregistrées | Navigateur | http://portal-legacy.example.com/results |
+| 5 | 🟥 Résultats | Consulter les données de démonstration (accès admin) | Navigateur | http://portal-legacy.example.com/admin |
 | 6 | 🟫 Webmail | Ouvrir l’interface Poste.io | Navigateur | http://mail.local:8080 |
 | 7 | ⬛ Admin | Accès administration Poste.io | Navigateur | http://mail.local:8080/admin |
 
@@ -145,7 +156,7 @@ sequenceDiagram
 ## ✅ Vérification rapide
 
 - Portail applicatif : `http://portal-legacy.example.com`
-- Résultats : `http://portal-legacy.example.com/results`
+- Résultats (admin) : `http://portal-legacy.example.com/admin`
 - Webmail Poste.io : `http://mail.local:8080`
 - Admin Poste.io : `http://mail.local:8080/admin`
 
@@ -159,12 +170,18 @@ sequenceDiagram
 - Sieve : `4190`
 
 
-## ✉️ Email HTML
+## ✉️ Email HTML (envoi manuel)
 
 Le template HTML de l'email "Mise à jour de sécurité" est disponible dans :
 `email/security_update_email.html`.
 
-## 📤 Envoi automatique via SMTP Poste.io
+Pour l'envoyer depuis le webmail Poste.io (Roundcube) :
+- Activez l'éditeur HTML dans **Paramètres → Préférences → Rédaction** (mettre "Éditeur HTML" sur **Toujours**).
+- Dans la fenêtre de rédaction, utilisez le bouton **Code source** (icône `<>`) pour coller le HTML brut, puis revenez au mode visuel si besoin.
+
+> L'envoi est prévu **manuellement** via le webmail. Le script SMTP ci-dessous reste optionnel si vous souhaitez automatiser.
+
+## 📤 Envoi via SMTP Poste.io (optionnel)
 
 Un script prêt à l'emploi est fourni pour envoyer l'email HTML via le SMTP local de Poste.io :
 

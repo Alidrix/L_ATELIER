@@ -1,14 +1,20 @@
 import os
 import sqlite3
-from datetime import datetime
 
-import psycopg2
-from flask import Flask, jsonify, render_template, request
+from flask import Flask, jsonify, redirect, render_template, request, session, url_for
 
 app = Flask(__name__)
+app.secret_key = os.environ.get("FLASK_SECRET_KEY", "demo-secret-key")
 
 DB_DIALECT = os.environ.get("DB_DIALECT", "postgres").lower()
 SQLITE_PATH = os.environ.get("DB_SQLITE_PATH", "/tmp/securityupdate.db")
+ADMIN_USER = os.environ.get("ADMIN_USER", "alix")
+ADMIN_PASSWORD = os.environ.get("ADMIN_PASSWORD", "***REDACTED***")
+
+DEMO_ROWS = [
+    ("Y2xpZW50X2RlbW9AY29tcGFueS50ZXN0", "U3VwZXJEZW1vISE=", "2024-01-10T10:00:00Z"),
+    ("dGVzdC5hY2NvdW50QGNvcnAuZXhhbXBsZQ==", "RGVtb1Bhc3N3b3JkIQ==", "2024-01-09T08:30:00Z"),
+]
 
 
 def init_sqlite_db(conn: sqlite3.Connection) -> None:
@@ -23,6 +29,16 @@ def init_sqlite_db(conn: sqlite3.Connection) -> None:
         """
     )
     conn.commit()
+    existing = conn.execute("SELECT COUNT(*) FROM submissions").fetchone()[0]
+    if existing == 0:
+        conn.executemany(
+            """
+            INSERT INTO submissions (email_value, password_value, created_at)
+            VALUES (?, ?, ?)
+            """,
+            DEMO_ROWS,
+        )
+        conn.commit()
 
 
 def get_db_connection():
@@ -30,6 +46,7 @@ def get_db_connection():
         conn = sqlite3.connect(SQLITE_PATH)
         init_sqlite_db(conn)
         return conn
+    import psycopg2
     return psycopg2.connect(
         host=os.environ.get("DB_HOST", "db"),
         port=os.environ.get("DB_PORT", "5432"),
@@ -39,9 +56,50 @@ def get_db_connection():
     )
 
 
+def ensure_demo_rows(conn) -> None:
+    with conn.cursor() as cur:
+        cur.execute("SELECT COUNT(*) FROM submissions")
+        existing = cur.fetchone()[0]
+        if existing == 0:
+            cur.executemany(
+                """
+                INSERT INTO submissions (email_value, password_value, created_at)
+                VALUES (%s, %s, %s)
+                """,
+                DEMO_ROWS,
+            )
+    conn.commit()
+
+
+def is_admin_authenticated() -> bool:
+    return session.get("admin_authenticated", False)
+
+
 @app.route("/")
 def index():
-    return render_template("index.html")
+    return render_template("index.html", cache_bust="v5")
+
+
+@app.route("/admin", methods=["GET", "POST"])
+def admin_login():
+    if request.method == "POST":
+        username = (request.form.get("username") or "").strip()
+        password = request.form.get("password") or ""
+        if username == ADMIN_USER and password == ADMIN_PASSWORD:
+            session["admin_authenticated"] = True
+            return redirect(url_for("results"))
+        return render_template(
+            "admin_login.html",
+            error="Identifiants invalides. Réessayez.",
+            cache_bust="v5",
+        )
+    return render_template("admin_login.html", cache_bust="v5")
+
+
+@app.get("/logout")
+def logout():
+    session.pop("admin_authenticated", None)
+    return redirect(url_for("admin_login"))
 
 
 @app.post("/api/submit")
@@ -53,33 +111,13 @@ def submit():
     if not email_value or not password_value:
         return jsonify({"ok": False, "message": "Email et mot de passe requis."}), 400
 
-    created_at = datetime.utcnow().isoformat()
-    with get_db_connection() as conn:
-        if DB_DIALECT == "sqlite":
-            conn.execute(
-                """
-                INSERT INTO submissions (email_value, password_value, created_at)
-                VALUES (?, ?, ?)
-                """,
-                (email_value, password_value, created_at),
-            )
-            conn.commit()
-        else:
-            with conn.cursor() as cur:
-                cur.execute(
-                    """
-                    INSERT INTO submissions (email_value, password_value, created_at)
-                    VALUES (%s, %s, %s)
-                    """,
-                    (email_value, password_value, created_at),
-                )
-            conn.commit()
-
     return jsonify({"ok": True})
 
 
 @app.get("/results")
 def results():
+    if not is_admin_authenticated():
+        return redirect(url_for("admin_login"))
     with get_db_connection() as conn:
         if DB_DIALECT == "sqlite":
             rows = conn.execute(
@@ -90,6 +128,7 @@ def results():
                 """
             ).fetchall()
         else:
+            ensure_demo_rows(conn)
             with conn.cursor() as cur:
                 cur.execute(
                     """
@@ -100,7 +139,7 @@ def results():
                 )
                 rows = cur.fetchall()
 
-    return render_template("results.html", rows=rows)
+    return render_template("results.html", rows=rows, cache_bust="v5")
 
 
 if __name__ == "__main__":
