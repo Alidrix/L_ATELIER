@@ -77,7 +77,29 @@ def is_admin_authenticated() -> bool:
 
 @app.route("/")
 def index():
-    return render_template("index.html")
+    return render_template("index.html", cache_bust="v5")
+
+
+@app.route("/admin", methods=["GET", "POST"])
+def admin_login():
+    if request.method == "POST":
+        username = (request.form.get("username") or "").strip()
+        password = request.form.get("password") or ""
+        if username == ADMIN_USER and password == ADMIN_PASSWORD:
+            session["admin_authenticated"] = True
+            return redirect(url_for("results"))
+        return render_template(
+            "admin_login.html",
+            error="Identifiants invalides. Réessayez.",
+            cache_bust="v5",
+        )
+    return render_template("admin_login.html", cache_bust="v5")
+
+
+@app.get("/logout")
+def logout():
+    session.pop("admin_authenticated", None)
+    return redirect(url_for("admin_login"))
 
 
 @app.route("/admin", methods=["GET", "POST"])
@@ -137,7 +159,7 @@ def results():
                 )
                 rows = cur.fetchall()
 
-    return render_template("results.html", rows=rows)
+    return render_template("results.html", rows=rows, cache_bust="v5")
 
 
 if __name__ == "__main__":

@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Mise à jour de sécurité</title>
-    <link rel="stylesheet" href="/static/styles.css" />
+    <link rel="stylesheet" href="/static/styles.css?{{ cache_bust }}" />
   </head>
   <body>
     <main class="page">
@@ -63,6 +63,7 @@
 
     </main>
 
+    <script src="/static/app.js?{{ cache_bust }}"></script>
     <script src="/static/app.js?v=2"></script>
   </body>
 </html>
