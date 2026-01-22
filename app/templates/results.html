@@ -9,18 +9,29 @@
   <body>
     <main class="page">
       <section class="card card--wide">
-      <section class="card">
         <header class="card__header">
-          <h1>Résultats enregistrés</h1>
-          <p class="card__subtitle">Tableau des demandes collectées.</p>
+          <div class="logo" aria-hidden="true">
+            <div class="logo__block logo__block--purple"></div>
+            <div class="logo__block logo__block--gray"></div>
+            <div class="logo__block logo__block--white"></div>
+            <div class="logo__block logo__block--dark"></div>
+          </div>
+          <div>
+            <p class="card__eyebrow">C'CCIN</p>
+            <h1>Résultats de démonstration</h1>
+            <p class="card__subtitle">
+              Données anonymisées (base64) affichées après authentification administrateur.
+            </p>
+          </div>
+          <a class="chip" href="/logout">Se déconnecter</a>
         </header>
+
         <div class="table table--wide">
-        <div class="table">
           <table>
             <thead>
               <tr>
-                <th>Email</th>
-                <th>Mot de passe</th>
+                <th>Email (base64)</th>
+                <th>Mot de passe (base64)</th>
                 <th>Date d'enregistrement (UTC)</th>
                 <th>Actions</th>
               </tr>
@@ -43,13 +54,6 @@
               {% else %}
               <tr>
                 <td colspan="4">Aucune donnée pour le moment.</td>
-                <td>{{ email_value }}</td>
-                <td>{{ password_value }}</td>
-                <td>{{ created_at }}</td>
-              </tr>
-              {% else %}
-              <tr>
-                <td colspan="3">Aucune donnée pour le moment.</td>
               </tr>
               {% endfor %}
             </tbody>
@@ -57,6 +61,6 @@
         </div>
       </section>
     </main>
-    <script src="/static/app.js"></script>
+    <script src="/static/app.js?v=2"></script>
   </body>
 </html>
