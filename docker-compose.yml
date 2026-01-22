@@ -57,7 +57,7 @@ services:
   poste:
     image: analogic/poste.io:latest
     container_name: securityupdate_posteio
-    hostname: mail.local
+    hostname: mail.example.com
     environment:
       TZ: Europe/Paris
     ports:

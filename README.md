@@ -115,6 +115,22 @@ sudo sh -c 'printf "127.0.0.1 portal-legacy.example.com\n127.0.0.1 mail.local\n"
 
 ### 🧱 Stack principale (NGINX + app + PostgreSQL + menu)
 
+1. Accéder aux interfaces :
+
+| Usage | Lien |
+|---|---|
+| Portail applicatif | http://portal-legacy.example.com |
+| Résultats (admin) | http://portal-legacy.example.com/admin |
+
+### ✉️ Poste.io (webmail)
+
+1. Accéder aux interfaces :
+
+| Usage | Lien |
+|---|---|
+| Webmail | http://mail.example.com:8080 |
+| Admin | http://mail.example.com:8080/admin |
+
 
 1. Accéder aux interfaces :
 
@@ -134,8 +150,8 @@ sudo sh -c 'printf "127.0.0.1 portal-legacy.example.com\n127.0.0.1 mail.local\n"
 
 3. Ports exposés :
 
-- HTTP (webmail/admin) : `http://mail.local:8080` → conteneur 80
-- HTTPS : `https://mail.local:8443` → conteneur 443
+- HTTP (webmail/admin) : `http://mail.example.com:8080` → conteneur 80
+- HTTPS : `https://mail.example.com:8443` → conteneur 443
 
 
 
@@ -160,7 +176,7 @@ docker-compose down -v --remove-orphans
 1. Ajouter les hôtes locaux (si nécessaire) :
 
 ```bash
-sudo sh -c 'printf "127.0.0.1 portal-legacy.example.com\n127.0.0.1 mail.local\n" >> /etc/hosts'
+sudo sh -c 'printf "127.0.0.1 portal-legacy.example.com\n127.0.0.1 mail.example.com\n" >> /etc/hosts'
 ```
 
 2. Démarrer la plateforme :

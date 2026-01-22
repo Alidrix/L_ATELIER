@@ -56,7 +56,7 @@ def main() -> None:
     parser.add_argument("--password", default=os.getenv("SMTP_PASSWORD"))
     parser.add_argument("--no-tls", action="store_true", help="Désactiver STARTTLS")
     parser.add_argument("--use-ssl", action="store_true", default=os.getenv("SMTP_USE_SSL", "false").lower() == "true")
-    parser.add_argument("--host", default=os.getenv("SMTP_HOST", "mail.local"))
+    parser.add_argument("--host", default=os.getenv("SMTP_HOST", "mail.example.com"))
     parser.add_argument("--port", type=int, default=int(os.getenv("SMTP_PORT", "587")))
     parser.add_argument("--username", default=os.getenv("SMTP_USER"))
     parser.add_argument("--password", default=os.getenv("SMTP_PASSWORD"))
