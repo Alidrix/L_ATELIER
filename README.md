@@ -1,68 +1,73 @@
-# Plateforme locale "Mise à jour de sécurité"
+# 🌟 Plateforme locale « Mise à jour de sécurité »
 
-Ce dépôt déploie une plateforme locale (100% hors ligne) pour démontrer les flux d'une mise à jour de sécurité.
-L'ensemble est orchestré avec Docker Compose et repose sur : NGINX, Poste.io, une application web et PostgreSQL.
+## 1) Contexte du projet
 
+Plateforme **100% locale** pour présenter un parcours complet de mise à jour de sécurité, sans dépendance Internet. L’objectif est de montrer le cheminement utilisateur, puis d’exposer clairement les blocs techniques (mail, reverse proxy, app, base de données). Le tout est orchestré par **Docker Compose**.
 
-## 🎯 Objectif
+| 🔎 Navigation rapide | 🔗 Lien |
+| --- | --- |
+| 🧭 Portail utilisateur | http://portal-legacy.example.com |
+| 🔐 Accès admin (résultats) | http://portal-legacy.example.com/admin |
+| 📮 Webmail Poste.io | http://mail.local:8080 |
+| 🛠️ Admin Poste.io | http://mail.local:8080/admin |
 
-Construire une **plateforme locale complète**, entièrement **hors ligne**, afin de :
-- comprendre le **fonctionnement réel d’une chaîne applicative moderne**,
-- visualiser clairement les **flux entre services**,
-- présenter une **architecture propre, lisible et professionnelle**.
+> ⚠️ Pré-requis local unique : ajouter `portal-legacy.example.com` et `mail.local` dans `/etc/hosts`.
 
+---
 
+## 2) Déroulé de la présentation (vision simple)
+
+**Objectif :** expliquer le parcours sans technique, pour tout le monde. 🎯
 
 ## 🧱 Architecture globale
 
 ```mermaid
 flowchart LR
-  classDef user fill:#E8F0FE,stroke:#4F83FF,color:#1F2A44;
-  classDef mail fill:#F3E8FF,stroke:#9B6BFF,color:#2A1F44;
-  classDef web fill:#E8F7FF,stroke:#3FB8FF,color:#1F3A44;
-  classDef app fill:#E8FFF1,stroke:#4FD88B,color:#1F442A;
-  classDef db fill:#FFF1E8,stroke:#FF9F4F,color:#442A1F;
+  classDef user fill:#F4EFFF,stroke:#B39DDB,color:#3E2F5B;
+  classDef mail fill:#EAF7FF,stroke:#7EC3FF,color:#1F3A4D;
+  classDef web fill:#E9FFF4,stroke:#78D5A5,color:#1C4A34;
+  classDef app fill:#FFF6E8,stroke:#F6B26B,color:#4A2F12;
 
   U[👤 Utilisateur]:::user
-  M[📮 Poste.io Webmail]:::mail
-  N[🌐 NGINX Reverse Proxy]:::web
-  A[🧩 Application Portail local]:::app
-  D[(🗄️ PostgreSQL)]:::db
+  M[📮 Boîte mail]:::mail
+  W[🌐 Page web]:::web
+  A[✅ Confirmation]:::app
 
-  U -->|Envoi manuel du message| M
-  U -->|Lecture du message| M
-  M -->|Clic sur lien local| N
-  N -->|Routage HTTP| A
-  A -->|Lecture données de démonstration| D
-  A -->|Confirmation| U
+  U -->|Ouvre le mail| M
+  M -->|Clique sur le lien| W
+  W -->|Saisit ses infos| A
 ```
 
+**Ce que l’on montre :**
+- 👤 L’utilisateur suit un parcours guidé.
+- 📮 Le mail déclenche l’action.
+- 🌐 Le portail centralise l’expérience.
+- ✅ Une confirmation clôt le parcours.
 
-## 🔁 Flux applicatif
+---
+
+## 3) Détails techniques (bloc par bloc)
+
+### Vue d’ensemble technique
 
 ```mermaid
-sequenceDiagram
-  participant U as 👤 Utilisateur
-  participant M as 📮 Poste.io
-  participant N as 🌐 NGINX
-  participant A as 🧩 Application
-  participant D as 🗄️ PostgreSQL
+flowchart LR
+  classDef edge fill:#EAF7FF,stroke:#7EC3FF,color:#1F3A4D;
+  classDef mail fill:#F4EFFF,stroke:#B39DDB,color:#3E2F5B;
+  classDef app fill:#E9FFF4,stroke:#78D5A5,color:#1C4A34;
+  classDef db fill:#FFF6E8,stroke:#F6B26B,color:#4A2F12;
 
-  U->>M: Envoi manuel du message
-  U->>M: Lecture du message
-  Note right of M: Chaîne mail autonome
-  M->>N: Accès au lien local
-  Note right of N: Centralisation du trafic
-  N->>A: Requête HTTP
-  Note right of A: Logique métier isolée
-  U->>A: Saisie email
-  U->>A: Saisie mot de passe
-  A->>D: Lecture des données de démonstration
-  Note right of D: Données fictives encodées (base64)
-  A-->>U: Confirmation visuelle
-```
+  U[👤 Navigateur]:::edge
+  N[🌐 NGINX - reverse proxy]:::edge
+  P[📮 Poste.io - mail]:::mail
+  A[🧩 app.py - Flask]:::app
+  D[(🗄️ SQLite3)]:::db
 
-
+  U -->|HTTP| N
+  N -->|/| A
+  N -->|/admin| A
+  N -->|mail.local| P
+  A -->|lecture résultats| D
 
 ## 🖥️ Portail applicatif
 
@@ -146,6 +151,27 @@ Les données visibles dans l'interface sont des exemples fictifs encodés en bas
 docker-compose down -v --remove-orphans
 docker-compose up -d --build
 ```
+
+### Blocs techniques
+
+| 🧱 Bloc | ✅ Rôle essentiel | 📌 Fichiers / endpoints clés |
+| --- | --- | --- |
+| 📮 Poste.io | Webmail local complet (lecture/envoi) | `email/security_update_email.html`, `mail.local:8080` |
+| 🌐 NGINX | Point d’entrée unique + routage | `nginx/site.conf` |
+| 🧩 Web (Flask) | Portail + admin + API locale | `app/app.py`, `app/templates/*` |
+| 🗄️ SQLite3 | Stockage local des résultats démo | `app/app.py` (DB sqlite) |
+
+### 🚀 Lancement & accès (optimisé par techno)
+
+> Tous les services sont **100% locaux**. Aucune dépendance Internet.
+
+| 🔧 Techno | ✅ Action essentielle | 💻 Commande / Accès | 🔗 Détails utiles |
+| --- | --- | --- | --- |
+| 🧭 Hôtes locaux | Déclarer les domaines locaux | `sudo sh -c 'printf "127.0.0.1 portal-legacy.example.com\n127.0.0.1 mail.local\n" >> /etc/hosts'` | Prérequis unique |
+| 🐳 Docker Compose | Démarrer la stack principale | `docker compose up -d --build` | — |
+| 📮 Poste.io | Démarrer la stack mail | `docker-compose -f docker-compose-posteio.yml up -d --build` | Webmail: http://mail.local:8080 |
+| 🧩 Application web | Accéder au portail | http://portal-legacy.example.com | Admin résultats: http://portal-legacy.example.com/admin |
+| 📮 Poste.io (ports) | Accéder aux ports exposés | HTTP: http://mail.local:8080 | HTTPS: https://mail.local:8443 |
 
 
 ## 📴 Notes hors ligne
