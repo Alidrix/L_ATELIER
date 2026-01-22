@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Accès administrateur</title>
+    <link rel="stylesheet" href="/static/styles.css?{{ cache_bust }}" />
+  </head>
+  <body>
+    <main class="page">
+      <section class="card" aria-live="polite">
+        <header class="card__header">
+          <div class="logo" aria-hidden="true">
+            <div class="logo__block logo__block--purple"></div>
+            <div class="logo__block logo__block--gray"></div>
+            <div class="logo__block logo__block--white"></div>
+            <div class="logo__block logo__block--dark"></div>
+          </div>
+          <div>
+            <p class="card__eyebrow">C'CCIN</p>
+            <h1>Accès administrateur</h1>
+            <p class="card__subtitle">Connexion requise pour consulter les données de démonstration.</p>
+          </div>
+        </header>
+
+        <form class="form" method="post">
+          <label class="field">
+            <span>Identifiant</span>
+            <input id="username" name="username" type="text" autocomplete="username" required />
+          </label>
+
+          <label class="field">
+            <span>Mot de passe</span>
+            <input id="admin-password" name="password" type="password" autocomplete="current-password" required />
+          </label>
+
+          {% if error %}
+          <p class="form__status" role="status">{{ error }}</p>
+          {% endif %}
+
+          <button class="submit" type="submit">
+            <span class="submit__text">Se connecter</span>
+          </button>
+        </form>
+      </section>
+    </main>
+  </body>
+</html>
