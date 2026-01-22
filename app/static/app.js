@@ -55,6 +55,15 @@ if (form) {
         throw new Error(data.message || "Erreur lors de l'envoi.");
       }
 
+      if (confirmation) {
+        confirmation.hidden = false;
+      }
+      if (backHome) {
+        backHome.hidden = true;
+        setTimeout(() => {
+          backHome.hidden = false;
+        }, 2000);
+      }
     } catch (error) {
       statusText.textContent = error.message;
     } finally {
@@ -62,6 +71,17 @@ if (form) {
       updateFormState();
     }
   });
+
+  if (backHome) {
+    backHome.addEventListener("click", () => {
+      confirmation.hidden = true;
+      form.reset();
+      passwordInput.type = "password";
+      togglePassword.textContent = "Afficher";
+      statusText.textContent = "";
+      updateFormState();
+    });
+  }
 }
 
 function toggleMaskedValue(target, button) {
