@@ -1,9 +1,17 @@
-# Plateforme locale « Mise à jour de sécurité »
+# 🌟 Plateforme locale « Mise à jour de sécurité »
 
 ## 1) Contexte du projet
 
 Plateforme **100% locale** pour présenter un parcours complet de mise à jour de sécurité, sans dépendance Internet. L’objectif est de montrer le cheminement utilisateur, puis d’exposer clairement les blocs techniques (mail, reverse proxy, app, base de données). Le tout est orchestré par **Docker Compose**.
 
+| 🔎 Navigation rapide | 🔗 Lien |
+| --- | --- |
+| 🧭 Portail utilisateur | http://portal-legacy.example.com |
+| 🔐 Accès admin (résultats) | http://portal-legacy.example.com/admin |
+| 📮 Webmail Poste.io | http://mail.local:8080 |
+| 🛠️ Admin Poste.io | http://mail.local:8080/admin |
+
+> ⚠️ Pré-requis local unique : ajouter `portal-legacy.example.com` et `mail.local` dans `/etc/hosts`.
 | Navigation rapide | Lien |
 | --- | --- |
 | Portail utilisateur | http://portal-legacy.example.com |
@@ -18,6 +26,7 @@ Plateforme **100% locale** pour présenter un parcours complet de mise à jour d
 
 ## 2) Déroulé de la présentation (vision simple)
 
+**Objectif :** expliquer le parcours sans technique, pour tout le monde. 🎯
 **Objectif :** expliquer le parcours sans technique, pour tout le monde.
 
 ```mermaid
@@ -57,6 +66,9 @@ flowchart LR
   classDef db fill:#FFF6E8,stroke:#F6B26B,color:#4A2F12;
 
   U[👤 Navigateur]:::edge
+  N[🌐 NGINX - reverse proxy]:::edge
+  P[📮 Poste.io - mail]:::mail
+  A[🧩 app.py - Flask]:::app
   N[🌐 NGINX (reverse proxy)]:::edge
   P[📮 Poste.io (mail)]:::mail
   A[🧩 app.py (Flask)]:::app
@@ -71,6 +83,7 @@ flowchart LR
 
 ### Blocs techniques
 
+| 🧱 Bloc | ✅ Rôle essentiel | 📌 Fichiers / endpoints clés |
 | Bloc | Rôle essentiel | Fichiers / endpoints clés |
 | --- | --- | --- |
 | 📮 Poste.io | Webmail local complet (lecture/envoi) | `email/security_update_email.html`, `mail.local:8080` |
@@ -80,6 +93,7 @@ flowchart LR
 
 ### Lancement minimal (essentiel)
 
+| 🚀 Étape | 💻 Commande |
 | Étape | Commande |
 | --- | --- |
 | Démarrer l’ensemble | `docker compose up -d --build` |
