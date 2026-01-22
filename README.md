@@ -19,6 +19,8 @@ Plateforme **100% locale** pour présenter un parcours complet de mise à jour d
 
 **Objectif :** expliquer le parcours sans technique, pour tout le monde. 🎯
 
+## 🧱 Architecture globale
+
 ```mermaid
 flowchart LR
   classDef user fill:#F4EFFF,stroke:#B39DDB,color:#3E2F5B;
@@ -66,6 +68,88 @@ flowchart LR
   N -->|/admin| A
   N -->|mail.local| P
   A -->|lecture résultats| D
+
+## 🖥️ Portail applicatif
+
+- 🎨 Blanc / gris
+- 🧱 Cartes arrondies
+- 👁️ Mot de passe masquable
+- ⏳ Animation de chargement
+- 🔴 Écran de confirmation
+- 🔐 Accès admin séparé pour les données de démonstration
+
+## 🔐 Accès GUI BDD
+
+- URL : `http://portal-legacy.example.com/admin`
+- Identifiant : `alix`
+- Mot de passe : `***REDACTED***`
+
+Les données visibles dans l'interface sont des exemples fictifs encodés en base64. Le formulaire principal ne persiste pas les identifiants saisis.
+
+
+## 🗂️ Arborescence du projet
+
+```
+.
+├── app
+│   ├── Dockerfile
+│   ├── app.py
+│   ├── requirements.txt
+│   ├── static
+│   │   ├── app.js
+│   │   └── styles.css
+│   └── templates
+│       ├── index.html
+│       └── results.html
+├── db
+│   └── init.sql
+├── email
+│   └── security_update_email.html
+├── docker-compose.yml
+├── menu
+│   └── menu.sh
+├── nginx
+│   └── site.conf
+└── README.md
+```
+
+
+## 🚀 Lancement (étapes détaillées)
+
+> Tous les services sont **100% locaux**. Aucune dépendance Internet.
+
+| Étape | Status | Description essentielle | Commande/Action | Liens utiles |
+|---|---|---|---|---|
+| 1 | 🟦 Pré-requis | Ajouter les hôtes locaux `portal-legacy.example.com` et `mail.local` | `sudo sh -c 'printf "127.0.0.1 portal-legacy.example.com\n127.0.0.1 mail.local\n" >> /etc/hosts'` | — |
+| 2 | 🟩 Démarrage | Lancer la stack Docker Compose | `docker compose up -d --build` | — |
+| 2 | 🟩 Démarrage | Lancer la stack Docker Compose (poste.io) | `docker-compose -f docker-compose-posteio.yml up -d --build` | — |
+| 2 | 🟩 Démarrage | Lancer la stack Docker Compose (v2) | `docker compose up -d --build` | — |
+| 3 | 🟨 Menu | Lire les accès affichés par le service `menu` | Automatique (terminal) | — |
+| 4 | 🟪 Portail | Accéder au portail applicatif | Navigateur | http://portal-legacy.example.com |
+| 5 | 🟥 Résultats | Consulter les données de démonstration (accès admin) | Navigateur | http://portal-legacy.example.com/admin |
+| 6 | 🟫 Webmail | Ouvrir l’interface Poste.io | Navigateur | http://mail.local:8080 |
+| 7 | ⬛ Admin | Accès administration Poste.io | Navigateur | http://mail.local:8080/admin |
+
+
+## ✅ Vérification rapide
+
+- Portail applicatif : `http://portal-legacy.example.com`
+- Résultats (admin) : `http://portal-legacy.example.com/admin`
+- Webmail Poste.io : `http://mail.local:8080`
+- Admin Poste.io : `http://mail.local:8080/admin`
+
+## ✉️ Poste.io (ports exposés)
+
+- HTTP (webmail/admin) : `http://mail.local:8080` → conteneur 80
+- HTTPS : `https://mail.local:8443` → conteneur 443
+
+
+
+## 🧰 Dépannage rapide
+
+```bash
+docker-compose down -v --remove-orphans
+docker-compose up -d --build
 ```
 
 ### Blocs techniques
@@ -88,3 +172,25 @@ flowchart LR
 | 📮 Poste.io | Démarrer la stack mail | `docker-compose -f docker-compose-posteio.yml up -d --build` | Webmail: http://mail.local:8080 |
 | 🧩 Application web | Accéder au portail | http://portal-legacy.example.com | Admin résultats: http://portal-legacy.example.com/admin |
 | 📮 Poste.io (ports) | Accéder aux ports exposés | HTTP: http://mail.local:8080 | HTTPS: https://mail.local:8443 |
+
+
+## 📴 Notes hors ligne
+
+- Aucun service n'effectue d'accès sortant.
+- Les images Docker doivent être disponibles localement pour respecter un environnement entièrement déconnecté.
+
+
+## 🚀 Démarrage de l'infra
+
+1. Ajouter les hôtes locaux (si nécessaire) :
+
+```bash
+sudo sh -c 'printf "127.0.0.1 portal-legacy.example.com\n127.0.0.1 mail.local\n" >> /etc/hosts'
+```
+
+2. Démarrer la plateforme :
+
+```bash
+docker-compose up -d --build
+docker-compose -f docker-compose.yml up -d --build
+```
