@@ -181,7 +181,7 @@ Pour l'envoyer depuis le webmail Poste.io (Roundcube) :
 
 > L'envoi est prévu **manuellement** via le webmail. Le script SMTP ci-dessous reste optionnel si vous souhaitez automatiser.
 
-## 📤 Envoi via SMTP Poste.io (optionnel)
+
 ## 📤 Envoi automatique via SMTP Poste.io
 
 Un script prêt à l'emploi est fourni pour envoyer l'email HTML via le SMTP local de Poste.io :
