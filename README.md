@@ -113,13 +113,8 @@ Les données visibles dans l'interface sont des exemples fictifs encodés en bas
 ```
 
 
-## 🚀 Lancement & Liens
+## 🚀 Ressources
 
-> Tous les services sont **100% locaux**. Aucune dépendance Internet.
-
-
-
-### 🧩 Pré-requis communs
 
 - Ajouter les hôtes locaux `portal-legacy.example.com` et `mail.local` :
 
