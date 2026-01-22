@@ -1,16 +1,7 @@
-# Plateforme locale "Mise à jour de sécurité"
+# 🎯 Plateforme locale "Mise à jour de sécurité"
 
 Ce dépôt déploie une plateforme locale (100% hors ligne) pour démontrer les flux d'une mise à jour de sécurité.
-L'ensemble est orchestré avec Docker Compose et repose sur : NGINX, Poste.io, une application web et PostgreSQL.
-
-
-## 🎯 Objectif
-
-Construire une **plateforme locale complète**, entièrement **hors ligne**, afin de :
-- comprendre le **fonctionnement réel d’une chaîne applicative moderne**,
-- visualiser clairement les **flux entre services**,
-- présenter une **architecture propre, lisible et professionnelle**.
-
+L'ensemble est orchestré avec Docker Compose et repose sur : NGINX, Poste.io, une application web et SQLITE3.
 
 
 ## 🧱 Architecture globale
@@ -27,7 +18,7 @@ flowchart LR
   M[📮 Poste.io Webmail]:::mail
   N[🌐 NGINX Reverse Proxy]:::web
   A[🧩 Application Portail local]:::app
-  D[(🗄️ PostgreSQL)]:::db
+  D[(🗄️ SQLITE)]:::db
 
   U -->|Envoi manuel du message| M
   U -->|Lecture du message| M
@@ -47,7 +38,7 @@ sequenceDiagram
   participant M as 📮 Poste.io
   participant N as 🌐 NGINX
   participant A as 🧩 Application
-  participant D as 🗄️ PostgreSQL
+  participant D as 🗄️ SQLITE
 
   U->>M: Envoi manuel du message
   U->>M: Lecture du message
