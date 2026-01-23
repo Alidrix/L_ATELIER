@@ -316,3 +316,114 @@ body {
     transform: rotate(360deg);
   }
 }
+
+.login-body {
+  background: #fbe6cf;
+  color: #4d2c3c;
+}
+
+.login {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: minmax(320px, 420px) minmax(280px, 1fr);
+  gap: 0;
+  align-items: center;
+  padding: 48px clamp(20px, 6vw, 80px);
+}
+
+.login__illustration {
+  background: radial-gradient(circle at top left, #fbead9 0%, #f8d7c6 55%, #f1c7bb 100%);
+  border-radius: 0 32px 32px 0;
+  padding: clamp(16px, 4vw, 40px);
+  display: grid;
+  place-items: center;
+  box-shadow: 0 20px 50px rgba(120, 46, 68, 0.18);
+}
+
+.login__illustration img {
+  width: min(520px, 100%);
+  height: auto;
+  display: block;
+}
+
+.login__panel {
+  background: #ffffff;
+  border-radius: 32px 0 0 32px;
+  padding: clamp(28px, 5vw, 40px);
+  box-shadow: 0 24px 60px rgba(88, 35, 61, 0.16);
+  display: grid;
+  gap: 24px;
+}
+
+.login__title {
+  font-size: clamp(24px, 2.5vw, 32px);
+  font-weight: 700;
+  color: #5a2d45;
+}
+
+.login__subtitle {
+  font-size: 14px;
+  color: #8b5c6d;
+}
+
+.login .form {
+  gap: 16px;
+}
+
+.login .field span {
+  font-weight: 600;
+  color: #6a3c52;
+}
+
+.login .field input {
+  border-radius: 12px;
+  border: 1px solid #efd7c9;
+  padding: 12px 14px;
+  font-size: 15px;
+  background: #fffaf6;
+  color: #4d2c3c;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.login .field input:focus {
+  outline: none;
+  border-color: #c76a74;
+  box-shadow: 0 0 0 4px rgba(199, 106, 116, 0.2);
+}
+
+.login .submit {
+  border: none;
+  border-radius: 14px;
+  padding: 12px 16px;
+  font-size: 15px;
+  font-weight: 600;
+  background: #7a2f56;
+  color: #ffffff;
+  cursor: pointer;
+  box-shadow: 0 12px 30px rgba(122, 47, 86, 0.3);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.login .submit:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 16px 32px rgba(122, 47, 86, 0.35);
+}
+
+.login .form__status {
+  color: #b4575d;
+}
+
+@media (max-width: 960px) {
+  .login {
+    grid-template-columns: 1fr;
+  }
+
+  .login__illustration {
+    order: 2;
+    border-radius: 0 0 32px 32px;
+  }
+
+  .login__panel {
+    border-radius: 32px 32px 0 0;
+  }
+}

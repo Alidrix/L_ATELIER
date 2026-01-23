@@ -1,0 +1,88 @@
+<svg width="640" height="640" viewBox="0 0 640 640" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="96" y1="24" x2="540" y2="616" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FBE4C4" />
+      <stop offset="0.55" stop-color="#F6D2B8" />
+      <stop offset="1" stop-color="#F2C2B7" />
+    </linearGradient>
+    <radialGradient id="glow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(320 250) rotate(90) scale(180)">
+      <stop stop-color="#FFEEDD" stop-opacity="0.9" />
+      <stop offset="1" stop-color="#F6C8B9" stop-opacity="0" />
+    </radialGradient>
+    <linearGradient id="planet" x1="44" y1="44" x2="120" y2="116" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#D86A5F" />
+      <stop offset="1" stop-color="#A73C4E" />
+    </linearGradient>
+    <linearGradient id="speech" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#5C2345" />
+      <stop offset="1" stop-color="#7A2F56" />
+    </linearGradient>
+  </defs>
+  <rect width="640" height="640" rx="40" fill="url(#bg)" />
+  <circle cx="122" cy="104" r="64" fill="url(#planet)" />
+  <circle cx="520" cy="120" r="18" fill="#C05C6F" />
+  <circle cx="520" cy="520" r="36" fill="#E3A2A5" opacity="0.7" />
+  <circle cx="320" cy="250" r="210" fill="url(#glow)" />
+
+  <path d="M124 138C178 118 248 114 302 128" stroke="#EBC2B4" stroke-width="4" stroke-linecap="round" />
+  <path d="M480 168C456 152 410 144 384 150" stroke="#EBC2B4" stroke-width="4" stroke-linecap="round" />
+
+  <g fill="#B54E5D">
+    <circle cx="428" cy="98" r="4" />
+    <circle cx="470" cy="188" r="3" />
+    <circle cx="210" cy="184" r="3" />
+    <circle cx="164" cy="250" r="2" />
+  </g>
+
+  <g>
+    <path d="M122 324L218 292" stroke="#E8BDAE" stroke-width="6" stroke-linecap="round" />
+    <path d="M518 330L424 292" stroke="#E8BDAE" stroke-width="6" stroke-linecap="round" />
+  </g>
+
+  <g>
+    <path d="M232 400C232 345 276 306 328 306C380 306 424 345 424 400V424C424 456 398 482 366 482H290C258 482 232 456 232 424V400Z" fill="#F5F4EA" />
+    <ellipse cx="328" cy="250" rx="76" ry="78" fill="#F5F4EA" />
+    <circle cx="296" cy="246" r="20" fill="#2F2434" />
+    <circle cx="360" cy="246" r="20" fill="#2F2434" />
+    <path d="M322 274H336L332 292H326L322 274Z" fill="#2F2434" />
+    <path d="M288 306C300 326 356 326 368 306" stroke="#2F2434" stroke-width="6" stroke-linecap="round" />
+    <path d="M270 370H386" stroke="#D8C9BE" stroke-width="12" stroke-linecap="round" />
+    <path d="M272 402H384" stroke="#D8C9BE" stroke-width="10" stroke-linecap="round" />
+    <path d="M278 432H378" stroke="#D8C9BE" stroke-width="10" stroke-linecap="round" />
+  </g>
+
+  <g>
+    <rect x="238" y="420" width="180" height="94" rx="12" fill="#DAD9D6" />
+    <rect x="238" y="420" width="180" height="16" rx="8" fill="#C7C6C3" />
+    <circle cx="328" cy="468" r="16" fill="#5B3A57" />
+    <circle cx="322" cy="466" r="3" fill="#F5F4EA" />
+    <circle cx="334" cy="466" r="3" fill="#F5F4EA" />
+    <path d="M322 474C326 477 330 477 334 474" stroke="#F5F4EA" stroke-width="3" stroke-linecap="round" />
+  </g>
+
+  <g>
+    <path d="M86 504C120 474 156 476 194 500" fill="#D26E59" />
+    <path d="M142 528C172 496 204 502 230 526" fill="#B9534E" />
+    <path d="M188 516C220 486 260 490 286 518" fill="#7A2E57" />
+    <path d="M352 512C384 482 424 488 454 516" fill="#9A3A52" />
+    <path d="M394 534C422 506 458 510 498 538" fill="#C2665B" />
+    <path d="M456 520C484 496 520 498 556 522" fill="#8F2F55" />
+  </g>
+
+  <g>
+    <rect x="120" y="236" width="120" height="64" rx="18" fill="url(#speech)" />
+    <circle cx="152" cy="268" r="6" fill="#F4E7D6" />
+    <circle cx="176" cy="268" r="6" fill="#F4E7D6" />
+    <circle cx="200" cy="268" r="6" fill="#F4E7D6" />
+    <rect x="400" y="236" width="120" height="64" rx="18" fill="url(#speech)" />
+    <circle cx="432" cy="268" r="6" fill="#F4E7D6" />
+    <circle cx="456" cy="268" r="6" fill="#F4E7D6" />
+    <circle cx="480" cy="268" r="6" fill="#F4E7D6" />
+  </g>
+
+  <g>
+    <circle cx="468" cy="414" r="10" fill="#C05C6F" />
+    <circle cx="504" cy="372" r="6" fill="#C05C6F" />
+    <circle cx="176" cy="396" r="8" fill="#B94B5D" />
+  </g>
+</svg>

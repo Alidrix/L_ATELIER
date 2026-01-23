@@ -6,23 +6,11 @@
     <title>Accès administrateur</title>
     <link rel="stylesheet" href="/static/styles.css?{{ cache_bust }}" />
   </head>
-  <body>
-    <main class="page">
-      <section class="card" aria-live="polite">
-        <header class="card__header">
-          <div class="logo" aria-hidden="true">
-            <div class="logo__block logo__block--purple"></div>
-            <div class="logo__block logo__block--gray"></div>
-            <div class="logo__block logo__block--white"></div>
-            <div class="logo__block logo__block--dark"></div>
-          </div>
-          <div>
-            <p class="card__eyebrow">MICROSOFT</p>
-            <h1>Accès administrateur</h1>
-            <p class="card__subtitle">Connexion requise pour consulter les données.</p>
-          </div>
-        </header>
-
+  <body class="login-body">
+    <main class="login">
+      <section class="login__panel" aria-live="polite">
+        <h1 class="login__title">Accès administrateur</h1>
+        <p class="login__subtitle">Connexion requise pour consulter les données.</p>
         <form class="form" method="post">
           <label class="field">
             <span>Identifiant</span>
@@ -42,6 +30,9 @@
             <span class="submit__text">Se connecter</span>
           </button>
         </form>
+      </section>
+      <section class="login__illustration" aria-hidden="true">
+        <img src="/static/illustration-login.svg" alt="" />
       </section>
     </main>
   </body>
