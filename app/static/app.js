@@ -4,20 +4,41 @@ window.addEventListener("DOMContentLoaded", () => {
   const passwordInput = document.getElementById("password");
   const togglePassword = document.getElementById("toggle-password");
   const submitButton = document.getElementById("submit");
+  const nextButton = document.getElementById("next");
+  const backButton = document.getElementById("back-email");
+  const emailDisplay = document.getElementById("email-display");
   const statusText = document.getElementById("form-status");
   const confirmation = document.getElementById("confirmation");
   const backHome = document.getElementById("back-home");
   const resultsTable = document.querySelector(".table table");
+  const steps = document.querySelectorAll(".form-step");
 
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  function setStep(stepName) {
+    steps.forEach((step) => {
+      step.classList.toggle(
+        "form-step--active",
+        step.dataset.step === stepName
+      );
+    });
+  }
 
   function updateFormState() {
     if (!form) {
       return;
     }
     const isEmailValid = emailRegex.test(emailInput.value.trim());
-    passwordInput.disabled = !isEmailValid;
-    togglePassword.disabled = !isEmailValid;
+    if (nextButton) {
+      nextButton.disabled = !isEmailValid;
+    }
+    if (passwordInput) {
+      const isPasswordStep =
+        document.querySelector(".form-step--active")?.dataset.step ===
+        "password";
+      passwordInput.disabled = !(isEmailValid && isPasswordStep);
+      togglePassword.disabled = !(isEmailValid && isPasswordStep);
+    }
     const isPasswordValid = passwordInput.value.trim().length > 0;
     submitButton.disabled = !(isEmailValid && isPasswordValid);
   }
@@ -31,6 +52,35 @@ window.addEventListener("DOMContentLoaded", () => {
     });
 
     passwordInput.addEventListener("input", updateFormState);
+
+    if (nextButton) {
+      nextButton.addEventListener("click", () => {
+        if (!emailRegex.test(emailInput.value.trim())) {
+          statusText.textContent =
+            "Veuillez saisir un email valide pour continuer.";
+          return;
+        }
+        statusText.textContent = "";
+        setStep("password");
+        if (emailDisplay) {
+          emailDisplay.textContent = emailInput.value.trim();
+        }
+        updateFormState();
+        passwordInput.focus();
+      });
+    }
+
+    if (backButton) {
+      backButton.addEventListener("click", () => {
+        setStep("email");
+        passwordInput.value = "";
+        if (emailDisplay) {
+          emailDisplay.textContent = "";
+        }
+        updateFormState();
+        emailInput.focus();
+      });
+    }
 
     togglePassword.addEventListener("click", () => {
       const isHidden = passwordInput.type === "password";
@@ -77,9 +127,13 @@ window.addEventListener("DOMContentLoaded", () => {
     backHome.addEventListener("click", () => {
       confirmation.hidden = true;
       form.reset();
+      setStep("email");
       passwordInput.type = "password";
       togglePassword.textContent = "Afficher";
       statusText.textContent = "";
+      if (emailDisplay) {
+        emailDisplay.textContent = "";
+      }
       updateFormState();
       emailInput.focus();
     });
@@ -121,5 +175,6 @@ window.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  setStep("email");
   updateFormState();
 });

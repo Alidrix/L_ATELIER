@@ -8,55 +8,76 @@
   </head>
   <body>
     <main class="page">
-      <section class="card" aria-live="polite">
-        <header class="card__header">
+      <section class="panel" aria-live="polite">
+        <div class="panel__brand">
           <div class="logo" aria-hidden="true">
-            <div class="logo__block logo__block--purple"></div>
-            <div class="logo__block logo__block--gray"></div>
-            <div class="logo__block logo__block--white"></div>
-            <div class="logo__block logo__block--dark"></div>
+            <div class="logo__block logo__block--red"></div>
+            <div class="logo__block logo__block--green"></div>
+            <div class="logo__block logo__block--blue"></div>
+            <div class="logo__block logo__block--yellow"></div>
           </div>
-          <div>
-            <p class="card__eyebrow">MICROLOFT</p>
-            <h1>Mise à jour de sécurité</h1>
-            <p class="card__subtitle">Authentifiez-vous pour finaliser la mise à jour locale.</p>
-          </div>
-        </header>
+          <span class="brand-name">MICROLOFT</span>
+        </div>
 
         <form id="login-form" class="form" autocomplete="off">
-          <label class="field">
-            <span>Email</span>
-            <input
-              id="email"
-              name="email"
-              type="email"
-              placeholder="prenom.nom@mail.example.com"
-              required
-            />
-            <small class="hint" id="email-hint">Format attendu : nom@domaine</small>
-          </label>
+          <div class="form-step form-step--active" data-step="email">
+            <h1>Se connecter</h1>
+            <p class="panel__subtitle">Renseignez l’adresse e-mail utilisée dans votre organisation.</p>
 
-          <label class="field">
-            <span>Mot de passe</span>
-            <div class="password">
+            <label class="field">
+              <span>Email ou téléphone</span>
               <input
-                id="password"
-                name="password"
-                type="password"
-                placeholder="••••••••"
+                id="email"
+                name="email"
+                type="email"
+                placeholder="prenom.nom@mail.example.com"
                 required
-                disabled
               />
-              <button type="button" id="toggle-password" class="ghost" disabled>
-                Afficher
+              <small class="hint" id="email-hint">Format attendu : nom@domaine</small>
+            </label>
+
+            <a class="link" href="#">Votre compte n’est pas accessible ?</a>
+
+            <div class="form-actions">
+              <button id="next" class="button button--primary" type="button" disabled>
+                Suivant
               </button>
             </div>
-          </label>
+          </div>
 
-          <button id="submit" class="submit" type="submit" disabled>
-            <span class="submit__text">Se connecter</span>
-            <span class="submit__loader" aria-hidden="true"></span>
-          </button>
+          <div class="form-step" data-step="password">
+            <button type="button" class="back" id="back-email" aria-label="Retour">
+              ←
+            </button>
+            <p class="email-display" id="email-display"></p>
+            <h1>Entrez le mot de passe</h1>
+
+            <label class="field">
+              <span>Mot de passe</span>
+              <div class="password">
+                <input
+                  id="password"
+                  name="password"
+                  type="password"
+                  placeholder="Mot de passe"
+                  required
+                  disabled
+                />
+                <button type="button" id="toggle-password" class="ghost" disabled>
+                  Afficher
+                </button>
+              </div>
+            </label>
+
+            <a class="link" href="#">J’ai oublié mon mot de passe</a>
+
+            <div class="form-actions form-actions--end">
+              <button id="submit" class="button button--primary" type="submit" disabled>
+                <span class="submit__text">Se connecter</span>
+                <span class="submit__loader" aria-hidden="true"></span>
+              </button>
+            </div>
+          </div>
           <p class="form__status" id="form-status" role="status"></p>
         </form>
       </section>
@@ -64,7 +85,7 @@
         <div class="confirmation__panel" role="dialog" aria-modal="true" aria-labelledby="confirmation-title">
           <h2 id="confirmation-title">Merci, votre demande a bien été enregistrée</h2>
           <p>Votre mise à jour sera appliquée dans le flux interne sécurisé.</p>
-          <button id="back-home" class="submit" type="button">Revenir à l'accueil</button>
+          <button id="back-home" class="button button--primary" type="button">Revenir à l'accueil</button>
         </div>
       </section>
 
