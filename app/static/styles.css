@@ -1,11 +1,11 @@
 :root {
   color-scheme: light;
   --white: #ffffff;
-  --light: #f4f5f7;
+  --light: #f5f7fb;
   --gray: #d9dbe2;
-  --dark: #2f2f3a;
-  --purple: #6f5cff;
-  --shadow: 0 20px 40px rgba(34, 37, 50, 0.12);
+  --dark: #24262b;
+  --primary: #0a63c9;
+  --shadow: 0 16px 40px rgba(19, 27, 45, 0.18);
   --shadow-strong: 0 16px 32px rgba(164, 36, 32, 0.25);
 }
 
@@ -17,8 +17,9 @@
 }
 
 body {
-  background: var(--light);
+  background: radial-gradient(circle at top left, #eef4ff 0%, #f7f2fb 45%, #f6f8fc 100%);
   color: var(--dark);
+  min-height: 100vh;
 }
 
 .page {
@@ -29,85 +30,86 @@ body {
   padding: 48px 16px;
 }
 
-.card {
+.panel {
   background: var(--white);
-  border-radius: 24px;
+  border-radius: 4px;
   box-shadow: var(--shadow);
-  padding: 32px;
-  max-width: 520px;
+  padding: 32px 40px 36px;
+  max-width: 460px;
   width: 100%;
 }
 
-.card--wide {
-  max-width: 900px;
-}
-
-.card__header {
-  display: flex;
-  gap: 16px;
+.panel__brand {
+  display: inline-flex;
   align-items: center;
-  margin-bottom: 24px;
-}
-
-.card__eyebrow {
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  font-size: 12px;
-  color: #7b7c87;
-}
-
-.card__subtitle {
-  margin-top: 6px;
-  color: #62646f;
+  gap: 10px;
+  margin-bottom: 18px;
   font-size: 14px;
+  color: #4b4e57;
+}
+
+.brand-name {
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
+.panel h1 {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.panel__subtitle {
+  color: #61656f;
+  font-size: 14px;
+  margin-bottom: 20px;
 }
 
 .logo {
-  width: 52px;
-  height: 52px;
+  width: 28px;
+  height: 28px;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(2, 1fr);
-  gap: 4px;
+  gap: 2px;
 }
 
 .logo__block {
-  border-radius: 6px;
+  border-radius: 1px;
 }
 
-.logo__block--purple {
-  background: var(--purple);
+.logo__block--red {
+  background: #f25022;
 }
 
-.logo__block--gray {
-  background: var(--gray);
+.logo__block--green {
+  background: #7fba00;
 }
 
-.logo__block--white {
-  background: var(--white);
-  border: 1px solid var(--gray);
+.logo__block--blue {
+  background: #00a4ef;
 }
 
-.logo__block--dark {
-  background: var(--dark);
+.logo__block--yellow {
+  background: #ffb900;
 }
 
 .form {
   display: grid;
-  gap: 16px;
+  gap: 18px;
 }
 
 .field {
   display: grid;
-  gap: 8px;
+  gap: 6px;
   font-size: 14px;
   color: #3c3f4c;
 }
 
 .field input {
-  border-radius: 12px;
-  border: 1px solid var(--gray);
-  padding: 12px 14px;
+  border-radius: 2px;
+  border: 1px solid #b3b6bf;
+  padding: 10px 12px;
   font-size: 15px;
   background: var(--white);
 }
@@ -131,37 +133,16 @@ body {
 
 .ghost {
   border: none;
-  background: #eef0ff;
-  color: #4c4fa1;
-  padding: 8px 12px;
-  border-radius: 10px;
+  background: transparent;
+  color: var(--primary);
+  padding: 6px 8px;
+  border-radius: 4px;
   cursor: pointer;
 }
 
 .ghost:disabled {
   cursor: not-allowed;
   opacity: 0.6;
-}
-
-.submit {
-  width: 100%;
-  background: var(--purple);
-  color: var(--white);
-  border: none;
-  border-radius: 14px;
-  padding: 12px 16px;
-  font-size: 16px;
-  font-weight: 600;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  cursor: pointer;
-}
-
-.submit:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
 }
 
 .submit__loader {
@@ -184,6 +165,70 @@ body {
   min-height: 18px;
 }
 
+.form-step {
+  display: none;
+}
+
+.form-step--active {
+  display: grid;
+  gap: 16px;
+}
+
+.form-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.form-actions--end {
+  justify-content: flex-end;
+}
+
+.button {
+  border: none;
+  border-radius: 2px;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.button--primary {
+  background: var(--primary);
+  color: var(--white);
+}
+
+.button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.link {
+  color: var(--primary);
+  font-size: 13px;
+  text-decoration: none;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+.back {
+  border: none;
+  background: transparent;
+  font-size: 16px;
+  cursor: pointer;
+  width: fit-content;
+}
+
+.email-display {
+  font-size: 13px;
+  color: #5b5f69;
+}
+
 .confirmation {
   position: fixed;
   inset: 0;
@@ -200,11 +245,11 @@ body {
 .confirmation__panel {
   background: #fff5f5;
   border: 3px solid #e04b4b;
-  border-radius: 24px;
+  border-radius: 12px;
   box-shadow: var(--shadow-strong);
-  padding: 32px;
+  padding: 32px 28px;
   text-align: center;
-  max-width: 520px;
+  max-width: 480px;
 }
 
 .confirmation__panel h2 {
