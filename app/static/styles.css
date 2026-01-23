@@ -318,10 +318,11 @@ body {
 .confirmation {
   position: fixed;
   inset: 0;
-  background: rgba(244, 245, 247, 0.9);
+  background: rgba(16, 18, 24, 0.4);
   display: grid;
   place-items: center;
   padding: 24px;
+  backdrop-filter: blur(4px);
 }
 
 .confirmation[hidden] {
@@ -329,23 +330,23 @@ body {
 }
 
 .confirmation__panel {
-  background: #fff5f5;
-  border: 3px solid #e04b4b;
-  border-radius: 12px;
-  box-shadow: var(--shadow-strong);
+  background: #ffffff;
+  border: 1px solid #e0e3ef;
+  border-radius: 16px;
+  box-shadow: 0 24px 60px rgba(19, 27, 45, 0.2);
   padding: 32px 28px;
   text-align: center;
   max-width: 480px;
 }
 
 .confirmation__panel h2 {
-  color: #b12f2f;
+  color: #1b1f2a;
   font-size: 22px;
   margin-bottom: 12px;
 }
 
 .confirmation__panel p {
-  color: #5c2b2b;
+  color: #4b5563;
   margin-bottom: 20px;
 }
 
@@ -415,6 +416,9 @@ body {
   min-height: 100vh;
   display: grid;
   grid-template-columns: minmax(280px, 1fr) minmax(320px, 420px);
+  gap: clamp(24px, 6vw, 120px);
+  align-items: center;
+  justify-content: center;
   gap: clamp(24px, 6vw, 72px);
   align-items: center;
   padding: clamp(24px, 6vw, 80px);
