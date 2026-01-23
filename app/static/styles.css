@@ -419,6 +419,8 @@ body {
   gap: clamp(24px, 6vw, 120px);
   align-items: center;
   justify-content: center;
+  gap: clamp(24px, 6vw, 72px);
+  align-items: center;
   padding: clamp(24px, 6vw, 80px);
 }
 
