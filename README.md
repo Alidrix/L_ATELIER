@@ -127,15 +127,8 @@ sudo sh -c 'printf "127.0.0.1 portal-legacy.example.com\n127.0.0.1 mail.example.
 
 | Usage | Lien |
 |---|---|
-| Webmail | http://mail.example.com:8080 |
-| Admin | http://mail.example.com:8080/admin |
-
-
-2. Ports exposés :
-
-- HTTP (webmail/admin) : `http://mail.example.com:8080` → conteneur 80
-- HTTPS : `https://mail.example.com:8443` → conteneur 443
-
+| Webmail | https://mail.local:8443 |
+| Admin | https://mail.local:8443/admin/login |
 
 
 
