@@ -146,23 +146,70 @@ window.addEventListener("DOMContentLoaded", () => {
     button.textContent = isHidden ? "Masquer" : button.dataset.label;
   }
 
+  function getRawValue(target) {
+    return target?.dataset?.value || "";
+  }
+
+  async function copyToClipboard(text) {
+    if (!text) {
+      return false;
+    }
+    if (navigator.clipboard?.writeText) {
+      await navigator.clipboard.writeText(text);
+      return true;
+    }
+    const fallback = document.createElement("textarea");
+    fallback.value = text;
+    fallback.style.position = "fixed";
+    fallback.style.opacity = "0";
+    document.body.appendChild(fallback);
+    fallback.focus();
+    fallback.select();
+    const success = document.execCommand("copy");
+    fallback.remove();
+    return success;
+  }
+
+  async function handleCopy(button, target) {
+    const originalLabel = button.dataset.label;
+    try {
+      const success = await copyToClipboard(getRawValue(target));
+      button.textContent = success ? "Copié" : "Erreur";
+    } catch (error) {
+      button.textContent = "Erreur";
+    } finally {
+      setTimeout(() => {
+        button.textContent = originalLabel;
+      }, 1500);
+    }
+  }
+
   if (resultsTable) {
     resultsTable.addEventListener("click", (event) => {
-      const button = event.target.closest("[data-toggle]");
+      const button = event.target.closest("[data-toggle], [data-copy]");
       if (!button) {
         return;
       }
-      const toggleType = button.dataset.toggle;
       const row = button.closest("tr");
       const cells = row ? row.querySelectorAll(".maskable") : null;
       if (!cells || cells.length < 2) {
         return;
       }
-      if (toggleType === "email") {
-        toggleMaskedValue(cells[0], button);
+      if (button.dataset.toggle) {
+        const toggleType = button.dataset.toggle;
+        if (toggleType === "email") {
+          toggleMaskedValue(cells[0], button);
+        }
+        if (toggleType === "password") {
+          toggleMaskedValue(cells[1], button);
+        }
+        return;
       }
-      if (toggleType === "password") {
-        toggleMaskedValue(cells[1], button);
+      if (button.dataset.copy === "email") {
+        handleCopy(button, cells[0]);
+      }
+      if (button.dataset.copy === "password") {
+        handleCopy(button, cells[1]);
       }
     });
 
@@ -171,6 +218,14 @@ window.addEventListener("DOMContentLoaded", () => {
         button.dataset.toggle === "email"
           ? "Afficher adresse mail"
           : "Afficher mot de passe";
+      button.dataset.label = label;
+    });
+
+    resultsTable.querySelectorAll("[data-copy]").forEach((button) => {
+      const label =
+        button.dataset.copy === "email"
+          ? "Copier adresse mail"
+          : "Copier mot de passe";
       button.dataset.label = label;
     });
   }
