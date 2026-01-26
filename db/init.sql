@@ -7,5 +7,5 @@ CREATE TABLE IF NOT EXISTS submissions (
 
 INSERT INTO submissions (email_value, password_value, created_at)
 VALUES
-  ('Y2xpZW50X2RlbW9AY29tcGFueS50ZXN0', 'U3VwZXJEZW1vISE=', '2024-01-10T10:00:00Z'),
-  ('dGVzdC5hY2NvdW50QGNvcnAuZXhhbXBsZQ==', 'RGVtb1Bhc3N3b3JkIQ==', '2024-01-09T08:30:00Z');
+  ('client_demo@company.test', 'SuperDemo!!', '2024-01-10T10:00:00Z'),
+  ('test.account@corp.example', 'DemoPassword!', '2024-01-09T08:30:00Z');
