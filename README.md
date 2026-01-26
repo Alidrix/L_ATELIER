@@ -1,4 +1,4 @@
-# 🧱 Architecture globale
+# 🧱 Architecture globale "local only"
 
 ```mermaid
 flowchart LR
@@ -125,14 +125,6 @@ sequenceDiagram
 ```bash
 docker-compose down -v --remove-orphans
 ```
-
-
-
-## 📴 Notes hors ligne
-
-- Aucun service n'effectue d'accès sortant.
-- Les images Docker doivent être disponibles localement pour respecter un environnement entièrement déconnecté.
-
 
 
 ## 🚀 Démarrage de l'infra
