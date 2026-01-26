@@ -2,7 +2,8 @@ version: "3.9"
 
 services:
   nginx:
-    image: nginx:1.25-alpine
+    build:
+      context: ./nginx
     container_name: securityupdate_nginx
     depends_on:
       - app
