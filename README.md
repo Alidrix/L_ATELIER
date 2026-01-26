@@ -73,24 +73,37 @@ sequenceDiagram
 ```
 .
 ├── app
-│   ├── Dockerfile
-│   ├── app.py
-│   ├── requirements.txt
-│   ├── static
-│   │   ├── app.js
-│   │   └── styles.css
-│   └── templates
-│       ├── index.html
-│       └── results.html
+│   ├── app.py
+│   ├── Dockerfile
+│   ├── requirements.txt
+│   ├── static
+│   │   ├── app.js
+│   │   ├── illustration-login.svg
+│   │   ├── rubix-favicon.svg
+│   │   └── styles.css
+│   └── templates
+│       ├── admin_login.html
+│       ├── index.html
+│       └── results.html
 ├── db
-│   └── init.sql
-├── email
-│   └── security_update_email.html
+│   └── init.sql
 ├── docker-compose.yml
+├── email
+│   ├── install_notifications.sh
+│   ├── notify-mail.service
+│   ├── notify-mail.timer
+│   ├── notify_new_mail.py
+│   ├── security_update_email.html
+│   └── send_security_update.py
 ├── menu
-│   └── menu.sh
+│   └── menu.sh
 ├── nginx
-│   └── site.conf
+│   ├── Dockerfile
+│   ├── entrypoint.sh
+│   ├── site.conf
+│   └── ssl
+│       ├── portal.example.crt
+│       └── portal.example.key
 └── README.md
 ```
 
