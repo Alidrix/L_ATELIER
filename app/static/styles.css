@@ -60,6 +60,13 @@ body {
   flex-wrap: wrap;
 }
 
+.results-page .results-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
 .results-page .card__eyebrow {
   font-size: 12px;
   letter-spacing: 0.2em;

@@ -48,41 +48,9 @@ services:
     networks:
       - security_net
 
-  menu:
-    image: alpine:3.19
-    container_name: securityupdate_menu
-    command: ["sh", "-c", "chmod +x /menu/menu.sh && /menu/menu.sh"]
-    volumes:
-      - ./menu/menu.sh:/menu/menu.sh:ro
-    restart: unless-stopped
-    networks:
-      - security_net
-
-  poste:
-    image: analogic/poste.io:latest
-    container_name: securityupdate_posteio
-    hostname: mail.example.com
-    environment:
-      TZ: Europe/Paris
-    ports:
-      - "8080:80"
-      - "8443:443"
-      - "25:25"
-      - "110:110"
-      - "143:143"
-      - "465:465"
-      - "587:587"
-      - "993:993"
-      - "995:995"
-      - "4190:4190"
-    volumes:
-      - poste_data:/data
-    restart: unless-stopped
-
 networks:
   security_net:
     driver: bridge
 
 volumes:
   db_data:
-  poste_data:
