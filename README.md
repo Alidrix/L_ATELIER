@@ -1,10 +1,4 @@
-# 🎯 Plateforme locale "Mise à jour de sécurité"
-
-Ce dépôt déploie une plateforme locale (100% hors ligne) pour démontrer les flux d'une mise à jour de sécurité.
-L'ensemble est orchestré avec Docker Compose et repose sur : NGINX, Poste.io, une application web et SQLITE3.
-
-
-## 🧱 Architecture globale
+# 🧱 Architecture globale
 
 ```mermaid
 flowchart LR
