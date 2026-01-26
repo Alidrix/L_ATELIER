@@ -48,6 +48,13 @@ sequenceDiagram
   A-->>U: Confirmation visuelle
 ```
 
+## 🔐 Accès Mail "Poste.io"
+
+- Identifiant : `noreply@example.com`
+- Mot de passe : `***REDACTED***`
+
+- Identifiant : `fxxxxxxx.mxxxxxxxx@cxxx.fr`
+- Mot de passe : `***REDACTED***`
 
 
 ## 🔐 Accès GUI BDD
