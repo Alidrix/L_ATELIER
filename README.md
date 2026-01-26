@@ -101,17 +101,6 @@ sequenceDiagram
 ```
 
 
-## 🚀 Ressources
-
-
-- Ajouter les hôtes locaux `portal-legacy.example.com` et `mail.example.com` :
-
-```bash
-sudo sh -c 'printf "127.0.0.1 portal-legacy.example.com\n127.0.0.1 mail.example.com\n" >> /etc/hosts'
-```
-
-
-
 ### 🧱 Stack principale (NGINX + app + PostgreSQL + menu)
 
 1. Accéder aux interfaces :
@@ -152,7 +141,7 @@ docker-compose down -v --remove-orphans
 1. Ajouter les hôtes locaux (si nécessaire) :
 
 ```bash
-sudo sh -c 'printf "127.0.0.1 portal-legacy.example.com\n127.0.0.1 mail.example.com\n" >> /etc/hosts'
+sudo sh -c 'printf "127.0.0.1 portal-legacy.example.com\n127.0.0.1 mail.local\n" >> /etc/hosts'
 ```
 
 2. Démarrer la plateforme :
