@@ -16,7 +16,12 @@
               Données collectées affichées après authentification administrateur.
             </p>
           </div>
-          <a class="chip" href="/logout">Se déconnecter</a>
+          <div class="results-actions">
+            <form method="post" action="/results/clear">
+              <button class="chip" type="submit">Clear database</button>
+            </form>
+            <a class="chip" href="/logout">Se déconnecter</a>
+          </div>
         </header>
 
         <div class="table table--wide">

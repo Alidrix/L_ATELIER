@@ -99,5 +99,16 @@ def results():
     return render_template("results.html", rows=rows, cache_bust="v5")
 
 
+@app.post("/results/clear")
+def clear_results():
+    if not is_admin_authenticated():
+        return redirect(url_for("admin_login"))
+    with get_db_connection() as conn:
+        with conn.cursor() as cur:
+            cur.execute("DELETE FROM submissions")
+        conn.commit()
+    return redirect(url_for("results"))
+
+
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)
