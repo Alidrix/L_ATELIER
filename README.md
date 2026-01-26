@@ -50,17 +50,6 @@ sequenceDiagram
 
 
 
-## 🖥️ Portail applicatif
-
-- 🎨 Blanc / gris
-- 🧱 Cartes arrondies
-- 👁️ Mot de passe masquable
-- ⏳ Animation de chargement
-- 🔴 Écran de confirmation
-- 🔐 Accès admin séparé pour les données de démonstration
-
-
-
 ## 🔐 Accès GUI BDD
 
 - Identifiant : `alix`
