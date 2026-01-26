@@ -1,4 +1,3 @@
-import base64
 import os
 import sqlite3
 from datetime import datetime, timezone
@@ -58,6 +57,7 @@ def get_db_connection():
     )
 
 
+def store_submission(email_value: str, password_value: str) -> None:
 def encode_base64(value: str) -> str:
     return base64.b64encode(value.encode("utf-8")).decode("utf-8")
 
@@ -74,6 +74,7 @@ def store_submission(email_value: str, password_value: str) -> None:
                 INSERT INTO submissions (email_value, password_value, created_at)
                 VALUES (?, ?, ?)
                 """,
+                (email_value, password_value, created_at),
                 (encoded_email, encoded_password, created_at),
             )
         else:
@@ -83,6 +84,7 @@ def store_submission(email_value: str, password_value: str) -> None:
                     INSERT INTO submissions (email_value, password_value, created_at)
                     VALUES (%s, %s, %s)
                     """,
+                    (email_value, password_value, created_at),
                     (encoded_email, encoded_password, created_at),
                 )
         conn.commit()
