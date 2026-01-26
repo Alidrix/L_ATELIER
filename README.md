@@ -3,25 +3,20 @@
 ```mermaid
 flowchart LR
   classDef user fill:#E8F0FE,stroke:#4F83FF,color:#1F2A44;
-  classDef mail fill:#F3E8FF,stroke:#9B6BFF,color:#2A1F44;
   classDef web fill:#E8F7FF,stroke:#3FB8FF,color:#1F3A44;
   classDef app fill:#E8FFF1,stroke:#4FD88B,color:#1F442A;
   classDef db fill:#FFF1E8,stroke:#FF9F4F,color:#442A1F;
 
   U[👤 Utilisateur]:::user
-  M[📮 Poste.io Webmail]:::mail
   N[🌐 NGINX Reverse Proxy]:::web
-  A[🧩 Application Portail local]:::app
-  D[(🗄️ SQLITE 3)]:::db
+  A[🧩 Application Portail]:::app
+  D[(🗄️ PostgreSQL)]:::db
 
-  U -->|Envoi manuel du message| M
-  U -->|Lecture du message| M
-  M -->|Clic sur lien local| N
+  U -->|Accès web| N
   N -->|Routage HTTP| A
-  A -->|Lecture données de démonstration| D
+  A -->|Enregistrement identifiants| D
   A -->|Confirmation| U
 ```
-
 
 
 ## 🔁 Flux applicatif
@@ -29,25 +24,17 @@ flowchart LR
 ```mermaid
 sequenceDiagram
   participant U as 👤 Utilisateur
-  participant M as 📮 Poste.io
   participant N as 🌐 NGINX
   participant A as 🧩 Application
-  participant D as 🗄️ SQLITE 3
+  participant D as 🗄️ PostgreSQL
 
-  U->>M: Envoi manuel du message
-  U->>M: Lecture du message
-  Note right of M: Chaîne mail autonome
-  M->>N: Accès au lien local
-  Note right of N: Centralisation du trafic
+  U->>N: Accès au portail
   N->>A: Requête HTTP
-  Note right of A: Logique métier isolée
   U->>A: Saisie email
   U->>A: Saisie mot de passe
-  A->>D: Lecture des données de démonstration
-  Note right of D: Données fictives encodées (base64)
+  A->>D: Enregistrement des identifiants
   A-->>U: Confirmation visuelle
 ```
-
 
 
 ## 🖥️ Portail applicatif
@@ -57,15 +44,13 @@ sequenceDiagram
 - 👁️ Mot de passe masquable
 - ⏳ Animation de chargement
 - 🔴 Écran de confirmation
-- 🔐 Accès admin séparé pour les données de démonstration
-
+- 🔐 Accès admin séparé pour les identifiants
 
 
 ## 🔐 Accès GUI BDD
 
 - Identifiant : `alix`
 - Mot de passe : `***REDACTED***`
-
 
 
 ## 🗂️ Arborescence du projet
@@ -95,8 +80,6 @@ sequenceDiagram
 │   ├── notify_new_mail.py
 │   ├── security_update_email.html
 │   └── send_security_update.py
-├── menu
-│   └── menu.sh
 ├── nginx
 │   ├── Dockerfile
 │   ├── entrypoint.sh
@@ -108,18 +91,13 @@ sequenceDiagram
 ```
 
 
-### ✉️ Poste.io (webmail) + (NGINX + app + PostgreSQL + menu)
-
-1. Accéder aux interfaces :
+### ✅ Interfaces disponibles
 
 | Usage | Lien |
 |---|---|
-| Webmail | https://mail.local:8443 |
-| Webmail - Admin Panel | https://mail.local:8443/admin/login |
 | Portail applicatif | https://portal-legacy.example.com |
 | Auth Panel - BDD | https://portal-legacy.example.com/admin |
 | Identifiants - GUI BDD | https://portal-legacy.example.com/results |
-
 
 
 ## 🧰 Dépannage rapide
@@ -129,24 +107,16 @@ docker-compose down -v --remove-orphans
 ```
 
 
-
-## 📴 Notes hors ligne
-
-- Aucun service n'effectue d'accès sortant.
-- Les images Docker doivent être disponibles localement pour respecter un environnement entièrement déconnecté.
-
-
-
 ## 🚀 Démarrage de l'infra
 
 1. Ajouter les hôtes locaux (si nécessaire) :
 
 ```bash
-sudo sh -c 'printf "127.0.0.1 portal-legacy.example.com\n127.0.0.1 mail.local\n" >> /etc/hosts'
+sudo sh -c 'printf "127.0.0.1 portal-legacy.example.com\n" >> /etc/hosts'
 ```
 
 2. Démarrer la plateforme :
 
 ```bash
-docker-compose up -d --build && docker-compose -f docker-compose.yml up -d --build
+docker-compose up -d --build
 ```
