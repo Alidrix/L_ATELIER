@@ -169,7 +169,7 @@ window.addEventListener("DOMContentLoaded", () => {
     resultsTable.querySelectorAll("[data-toggle]").forEach((button) => {
       const label =
         button.dataset.toggle === "email"
-          ? "Afficher email"
+          ? "Afficher adresse mail"
           : "Afficher mot de passe";
       button.dataset.label = label;
     });
