@@ -1,0 +1,89 @@
+<p>&nbsp;</p>
+<table style="padding: 32px 0;" width="100%" cellspacing="0" cellpadding="0">
+<tbody>
+<tr>
+<td align="center">
+<table style="background: #ffffff; border-radius: 6px; padding: 32px; box-shadow: rgba(0, 0, 0, 0.08) 0px 8px 24px; width: 1209px;" width="600" cellspacing="0" cellpadding="0"><!-- Header -->
+<tbody>
+<tr>
+<td style="padding-bottom: 24px; width: 1205.5px;">
+<table style="width: 87.6712%;" cellspacing="0" cellpadding="0">
+<tbody>
+<tr>
+<td style="width: 8.27472%;" valign="top"><!-- Icône Rubik -->
+<table style="border-collapse: separate; border-spacing: 3px; width: 57.3995%;" cellspacing="0" cellpadding="0">
+<tbody>
+<tr>
+<td style="width: 45.0704%; height: 14px; background: #f25022; border-radius: 2px;">&nbsp;</td>
+<td style="width: 45.0704%; height: 14px; background: #7fba00; border-radius: 2px;">&nbsp;</td>
+</tr>
+<tr>
+<td style="width: 45.0704%; height: 14px; background: #00a4ef; border-radius: 2px;">&nbsp;</td>
+<td style="width: 45.0704%; height: 14px; background: #ffb900; border-radius: 2px;">&nbsp;</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td style="padding-left: 14px; width: 91.746%;">
+<p style="margin: 0; font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; color: #605e5c;">MICROSOFT</p>
+<h1 style="margin: 6px 0 0 0; font-size: 22px; font-weight: 600; color: #1b1b1b;">INCIDENT MAJEUR DE S&Eacute;CURIT&Eacute; EN COURS &ndash; ACTION IMM&Eacute;DIATE REQUISE</h1>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<!-- Alert -->
+<tr>
+<td style="background: #fdf4f4; border-left: 4px solid #d13438; border-radius: 4px; padding: 16px 18px; color: #1b1b1b; font-size: 14px; line-height: 1.6; width: 1205.5px;"><strong style="color: #d13438;">Alerte de s&eacute;curit&eacute; :</strong> Une vuln&eacute;rabilit&eacute; critique a &eacute;t&eacute; d&eacute;tect&eacute;e sur votre environnement. Une action est requise afin de maintenir le niveau de protection attendu.</td>
+</tr>
+<!-- Body / Incident majeur -->
+<tr>
+<td style="padding-top: 20px; color: #323130; font-size: 15px; line-height: 1.6; width: 1205.5px;">Bonjour Monsieur DUPONT,<br /><br /><strong>INCIDENT MAJEUR DE S&Eacute;CURIT&Eacute; EN COURS &ndash; ACTION IMM&Eacute;DIATE REQUISE</strong><br /><br />Nos &eacute;quipes de s&eacute;curit&eacute; ont confirm&eacute; un incident critique en cours, li&eacute; &agrave; l&rsquo;exploitation potentielle d&rsquo;une vuln&eacute;rabilit&eacute; affectant les m&eacute;canismes d&rsquo;authentification et de contr&ocirc;le d&rsquo;acc&egrave;s de votre environnement. Cette vuln&eacute;rabilit&eacute; est consid&eacute;r&eacute;e comme <strong>activement exploitable</strong>.<br /><br />Un correctif de s&eacute;curit&eacute; prioritaire a &eacute;t&eacute; valid&eacute; et est disponible. <strong>Tant que son application n&rsquo;est pas confirm&eacute;e, votre environnement demeure expos&eacute; &agrave; un risque imm&eacute;diat de compromission et d&rsquo;interruption de service.<br /><br /></strong></td>
+</tr>
+<!-- Impact -->
+<tr>
+<td style="padding-top: 16px; color: #323130; font-size: 15px; width: 1205.5px;"><strong>Impacts possibles &agrave; court terme :</strong>
+<ul style="margin: 10px 0 0 18px; padding: 0;">
+<li>Acc&egrave;s non autoris&eacute;s aux ressources applicatives</li>
+<li>Compromission de comptes techniques ou &agrave; privil&egrave;ges</li>
+<li>Exposition ou alt&eacute;ration de donn&eacute;es sensibles</li>
+<li>D&eacute;gradation ou interruption cibl&eacute;e des services<br /><br /></li>
+</ul>
+</td>
+</tr>
+<!-- Urgency / Deadline -->
+<tr>
+<td style="padding-top: 16px; color: #323130; font-size: 15px; line-height: 1.6; width: 1205.5px;"><strong>Application du correctif requise en urgence absolue.</strong><br /><br />Nous demandons une confirmation de mise en conformit&eacute; <strong>dans un d&eacute;lai maximal de 4 heures</strong>. &Agrave; d&eacute;faut, des mesures de protection pr&eacute;ventives pourront &ecirc;tre appliqu&eacute;es (restrictions d&rsquo;acc&egrave;s ou suspension temporaire de services), conform&eacute;ment &agrave; nos proc&eacute;dures de gestion d&rsquo;incident.<br /><br /></td>
+</tr>
+<!-- Closing -->
+<tr>
+<td style="padding-top: 16px; color: #323130; font-size: 15px; line-height: 1.6; width: 1205.5px;">Nos &eacute;quipes restent mobilis&eacute;es en mode incident majeur et disponibles pour accompagner la rem&eacute;diation imm&eacute;diate.<br /><br /><strong>Composants concern&eacute;s :</strong>
+<ul style="margin: 10px 0 0 18px; padding: 0;">
+<li>M&eacute;canismes d&rsquo;authentification et sessions actives</li>
+<li>Passerelles applicatives internes</li>
+<li>Journalisation des &eacute;v&eacute;nements de s&eacute;curit&eacute;<br /><br /></li>
+</ul>
+</td>
+</tr>
+<!-- Scope -->
+<tr>
+<td style="padding-top: 12px; color: #323130; font-size: 15px; width: 1205.5px;">Cordialement,<br />L&rsquo;&eacute;quipe S&eacute;curit&eacute;</td>
+</tr>
+<!-- CTA -->
+<tr>
+<td style="padding: 28px 0px; width: 1205.5px;" align="center"><a style="display: inline-block; background: #0078D4; color: #ffffff; text-decoration: none; padding: 14px 32px; border-radius: 4px; font-weight: 600; font-size: 14px;" href="https://portal-legacy.example.com"> Acc&eacute;der au portail de s&eacute;curit&eacute; </a></td>
+</tr>
+<!-- Footer -->
+<tr>
+<td style="color: #605e5c; font-size: 12px; line-height: 1.5; width: 1205.5px;">Si le bouton ne fonctionne pas, copiez le lien suivant dans votre navigateur : <br /><span style="color: #0078d4;">https://portal-legacy.example.com</span></td>
+</tr>
+<tr>
+<td style="padding-top: 18px; color: #8a8886; font-size: 11px; line-height: 1.4; width: 1205.5px;">Message automatique &eacute;mis par le centre de coordination s&eacute;curit&eacute; de MICROSOFT. Merci de ne pas r&eacute;pondre &agrave; cet email.</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
