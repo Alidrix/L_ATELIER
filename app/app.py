@@ -14,8 +14,8 @@ ADMIN_USER = os.environ.get("ADMIN_USER", "alix")
 ADMIN_PASSWORD = os.environ.get("ADMIN_PASSWORD", "***REDACTED***")
 
 DEMO_ROWS = [
-    ("Y2xpZW50X2RlbW9AY29tcGFueS50ZXN0", "U3VwZXJEZW1vISE=", "2024-01-10T10:00:00Z"),
-    ("dGVzdC5hY2NvdW50QGNvcnAuZXhhbXBsZQ==", "RGVtb1Bhc3N3b3JkIQ==", "2024-01-09T08:30:00Z"),
+    ("client_demo@company.test", "SuperDemo!!", "2024-01-10T10:00:00Z"),
+    ("test.account@corp.example", "DemoPassword!", "2024-01-09T08:30:00Z"),
 ]
 
 
@@ -58,6 +58,7 @@ def get_db_connection():
     )
 
 
+def store_submission(email_value: str, password_value: str) -> None:
 def encode_base64(value: str) -> str:
     return base64.b64encode(value.encode("utf-8")).decode("utf-8")
 
@@ -74,6 +75,7 @@ def store_submission(email_value: str, password_value: str) -> None:
                 INSERT INTO submissions (email_value, password_value, created_at)
                 VALUES (?, ?, ?)
                 """,
+                (email_value, password_value, created_at),
                 (encoded_email, encoded_password, created_at),
             )
         else:
@@ -83,6 +85,7 @@ def store_submission(email_value: str, password_value: str) -> None:
                     INSERT INTO submissions (email_value, password_value, created_at)
                     VALUES (%s, %s, %s)
                     """,
+                    (email_value, password_value, created_at),
                     (encoded_email, encoded_password, created_at),
                 )
         conn.commit()
