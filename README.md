@@ -109,9 +109,10 @@ sequenceDiagram
 |---|---|
 | Webmail | https://mail.local:8443 |
 | Admin | https://mail.local:8443/admin/login |
-| Portail applicatif | https://portal-legacy.example.com/ |
+| Portail applicatif | https://portal-legacy.example.com |
 | Auth Panel - BDD | https://portal-legacy.example.com/admin |
 | Identifiants - GUI BDD | https://portal-legacy.example.com/results |
+
 
 
 ## 🧰 Dépannage rapide
