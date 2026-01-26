@@ -1,5 +1,4 @@
 import os
-import sqlite3
 from datetime import datetime, timezone
 
 from flask import Flask, jsonify, redirect, render_template, request, session, url_for
@@ -7,47 +6,12 @@ from flask import Flask, jsonify, redirect, render_template, request, session, u
 app = Flask(__name__)
 app.secret_key = os.environ.get("FLASK_SECRET_KEY", "demo-secret-key")
 
-DB_DIALECT = os.environ.get("DB_DIALECT", "postgres").lower()
-SQLITE_PATH = os.environ.get("DB_SQLITE_PATH", "/tmp/securityupdate.db")
 ADMIN_USER = os.environ.get("ADMIN_USER", "alix")
 ADMIN_PASSWORD = os.environ.get("ADMIN_PASSWORD", "***REDACTED***")
 
-DEMO_ROWS = [
-    ("client_demo@company.test", "SuperDemo!!", "2024-01-10T10:00:00Z"),
-    ("test.account@corp.example", "DemoPassword!", "2024-01-09T08:30:00Z"),
-]
-
-
-def init_sqlite_db(conn: sqlite3.Connection) -> None:
-    conn.execute(
-        """
-        CREATE TABLE IF NOT EXISTS submissions (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            email_value TEXT NOT NULL,
-            password_value TEXT NOT NULL,
-            created_at TEXT NOT NULL
-        )
-        """
-    )
-    conn.commit()
-    existing = conn.execute("SELECT COUNT(*) FROM submissions").fetchone()[0]
-    if existing == 0:
-        conn.executemany(
-            """
-            INSERT INTO submissions (email_value, password_value, created_at)
-            VALUES (?, ?, ?)
-            """,
-            DEMO_ROWS,
-        )
-        conn.commit()
-
-
 def get_db_connection():
-    if DB_DIALECT == "sqlite":
-        conn = sqlite3.connect(SQLITE_PATH)
-        init_sqlite_db(conn)
-        return conn
     import psycopg2
+
     return psycopg2.connect(
         host=os.environ.get("DB_HOST", "db"),
         port=os.environ.get("DB_PORT", "5432"),
@@ -61,39 +25,15 @@ def store_submission(email_value: str, password_value: str) -> None:
     created_at = datetime.now(timezone.utc).replace(microsecond=0).isoformat()
 
     with get_db_connection() as conn:
-        if DB_DIALECT == "sqlite":
-            conn.execute(
-                """
-                INSERT INTO submissions (email_value, password_value, created_at)
-                VALUES (?, ?, ?)
-                """,
-                (email_value, password_value, created_at),
-            )
-        else:
-            with conn.cursor() as cur:
-                cur.execute(
-                    """
-                    INSERT INTO submissions (email_value, password_value, created_at)
-                    VALUES (%s, %s, %s)
-                    """,
-                    (email_value, password_value, created_at),
-                )
-        conn.commit()
-
-
-def ensure_demo_rows(conn) -> None:
-    with conn.cursor() as cur:
-        cur.execute("SELECT COUNT(*) FROM submissions")
-        existing = cur.fetchone()[0]
-        if existing == 0:
-            cur.executemany(
+        with conn.cursor() as cur:
+            cur.execute(
                 """
                 INSERT INTO submissions (email_value, password_value, created_at)
                 VALUES (%s, %s, %s)
                 """,
-                DEMO_ROWS,
+                (email_value, password_value, created_at),
             )
-    conn.commit()
+        conn.commit()
 
 
 def is_admin_authenticated() -> bool:
@@ -146,25 +86,15 @@ def results():
     if not is_admin_authenticated():
         return redirect(url_for("admin_login"))
     with get_db_connection() as conn:
-        if DB_DIALECT == "sqlite":
-            rows = conn.execute(
+        with conn.cursor() as cur:
+            cur.execute(
                 """
                 SELECT email_value, password_value, created_at
                 FROM submissions
                 ORDER BY created_at DESC
                 """
-            ).fetchall()
-        else:
-            ensure_demo_rows(conn)
-            with conn.cursor() as cur:
-                cur.execute(
-                    """
-                    SELECT email_value, password_value, created_at
-                    FROM submissions
-                    ORDER BY created_at DESC
-                    """
-                )
-                rows = cur.fetchall()
+            )
+            rows = cur.fetchall()
 
     return render_template("results.html", rows=rows, cache_bust="v5")
 
