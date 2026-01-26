@@ -224,8 +224,8 @@ window.addEventListener("DOMContentLoaded", () => {
     resultsTable.querySelectorAll("[data-copy]").forEach((button) => {
       const label =
         button.dataset.copy === "email"
-          ? "copié"
-          : "copié";
+          ? "Copié"
+          : "Copié";
       button.dataset.label = label;
     });
   }
