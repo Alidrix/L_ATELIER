@@ -4,8 +4,8 @@ cat <<'MENU'
 =========================================
  Plateforme "Mise à jour de sécurité"
 =========================================
-- Portail applicatif : http://portal-legacy.example.com
-- Résultats (admin) : http://portal-legacy.example.com/admin
+- Portail applicatif : https://portal-legacy.example.com
+- Résultats (admin) : https://portal-legacy.example.com/admin
 - Poste.io (admin & webmail) : http://mail.example.com:8080
 - Poste.io (admin & webmail) : http://localhost:8080
 
