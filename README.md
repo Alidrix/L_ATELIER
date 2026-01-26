@@ -95,8 +95,6 @@ sequenceDiagram
 │   ├── notify_new_mail.py
 │   ├── security_update_email.html
 │   └── send_security_update.py
-├── menu
-│   └── menu.sh
 ├── nginx
 │   ├── Dockerfile
 │   ├── entrypoint.sh
