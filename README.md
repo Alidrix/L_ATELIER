@@ -108,7 +108,8 @@ sequenceDiagram
 | Usage | Lien |
 |---|---|
 | Portail applicatif | http://portal-legacy.example.com |
-| Creds - GUI BDD | http://portal-legacy.example.com/admin |
+| Auth Panel - BDD | http://portal-legacy.example.com/admin |
+| Identifiants - GUI BDD | http://portal-legacy.example.com/results |
 
 ### ✉️ Poste.io (webmail)
 
