@@ -150,8 +150,6 @@ window.addEventListener("DOMContentLoaded", () => {
   if (backHome && confirmation && form) {
     backHome.addEventListener("click", async () => {
       await submitSavedCredentials();
-    backHome.addEventListener("click", () => {
-      submitSavedCredentials();
       confirmation.hidden = true;
       form.reset();
       setStep("email");
