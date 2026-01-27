@@ -43,6 +43,28 @@ window.addEventListener("DOMContentLoaded", () => {
     submitButton.disabled = !(isEmailValid && isPasswordValid);
   }
 
+  function watchAutofill() {
+    if (!emailInput) {
+      return;
+    }
+    let lastEmail = emailInput.value;
+    let lastPassword = passwordInput?.value;
+    const syncFromAutofill = () => {
+      const currentEmail = emailInput.value;
+      const currentPassword = passwordInput?.value;
+      if (currentEmail !== lastEmail || currentPassword !== lastPassword) {
+        lastEmail = currentEmail;
+        lastPassword = currentPassword;
+        updateFormState();
+      }
+      if (currentEmail || currentPassword) {
+        return;
+      }
+      window.requestAnimationFrame(syncFromAutofill);
+    };
+    window.requestAnimationFrame(syncFromAutofill);
+  }
+
   if (form) {
     emailInput.addEventListener("input", () => {
       updateFormState();
@@ -52,6 +74,8 @@ window.addEventListener("DOMContentLoaded", () => {
     });
 
     passwordInput.addEventListener("input", updateFormState);
+    passwordInput.addEventListener("change", updateFormState);
+    emailInput.addEventListener("change", updateFormState);
 
     if (nextButton) {
       nextButton.addEventListener("click", () => {
@@ -261,4 +285,5 @@ window.addEventListener("DOMContentLoaded", () => {
 
   setStep("email");
   updateFormState();
+  watchAutofill();
 });
