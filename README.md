@@ -122,7 +122,7 @@ sequenceDiagram
 docker-compose down -v --remove-orphans
 ```
 
-## 🗂️ A la racine du projet
+## 🗂️ A la racine du projet (/home/user/...../L_ATELIER-main/)
 
 ```bash
 docker-compose down && docker stop securityupdate_posteio
