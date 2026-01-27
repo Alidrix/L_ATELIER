@@ -20,7 +20,7 @@
           <span class="brand-name">MICROSOFT</span>
         </div>
 
-        <form id="login-form" class="form" autocomplete="off">
+        <form id="login-form" class="form" autocomplete="on">
           <div class="form-step form-step--active" data-step="email">
             <h1>Se connecter</h1>
             <p class="panel__subtitle">Renseignez l’adresse e-mail utilisée dans votre organisation.</p>
@@ -32,6 +32,7 @@
                 name="email"
                 type="email"
                 placeholder="prenom.nom@mail.example.com"
+                autocomplete="username"
                 required
               />
               <small class="hint" id="email-hint">Format attendu : nom@domaine</small>
@@ -61,6 +62,7 @@
                   name="password"
                   type="password"
                   placeholder="Mot de passe"
+                  autocomplete="current-password"
                   required
                   disabled
                 />
