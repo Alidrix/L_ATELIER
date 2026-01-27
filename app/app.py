@@ -42,7 +42,7 @@ def is_admin_authenticated() -> bool:
 
 @app.route("/")
 def index():
-    return render_template("index.html", cache_bust="v5")
+    return render_template("index.html", cache_bust="v6")
 
 
 @app.route("/admin", methods=["GET", "POST"])
@@ -56,9 +56,9 @@ def admin_login():
         return render_template(
             "admin_login.html",
             error="Identifiants invalides. Réessayez.",
-            cache_bust="v5",
+            cache_bust="v6",
         )
-    return render_template("admin_login.html", cache_bust="v5")
+    return render_template("admin_login.html", cache_bust="v6")
 
 
 @app.get("/logout")
@@ -96,7 +96,7 @@ def results():
             )
             rows = cur.fetchall()
 
-    return render_template("results.html", rows=rows, cache_bust="v5")
+    return render_template("results.html", rows=rows, cache_bust="v6")
 
 
 @app.post("/results/clear")
