@@ -129,7 +129,7 @@ docker-compose down && docker stop securityupdate_posteio
 ```
 
 
-## 🚀 Démarrage de l'infra
+## 🚀 Démarrage de l'infra -> manuellement
 
 1. Ajouter les hôtes locaux (si nécessaire) :
 
@@ -140,5 +140,19 @@ sudo sh -c 'printf "127.0.0.1 portal-legacy.example.com\n127.0.0.1 mail.local\n"
 2. Démarrer la plateforme :
 
 ```bash
+docker-compose up -d --build && docker-compose -f docker-compose.yml up -d --build && docker start securityupdate_posteio
+```
+
+
+## 🚀 Démarrage de l'infra -> automatsié
+
+```bash
+docker-compose down && docker stop securityupdate_posteio &&
+cd .. &&
+rm -fr L_ATELIER-main &&
+rm L_ATELIER-main.zip &&
+mv /home/sisu/Téléchargements/L_ATELIER-main.zip /home/sisu/workspace/ATELIER/L_ATELIER-main.zip &&
+unzip L_ATELIER-main &&
+cd L_ATELIER-main &&
 docker-compose up -d --build && docker-compose -f docker-compose.yml up -d --build && docker start securityupdate_posteio
 ```
