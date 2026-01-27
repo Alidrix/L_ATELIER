@@ -126,6 +126,8 @@ window.addEventListener("DOMContentLoaded", () => {
   if (backHome && confirmation && form) {
     backHome.addEventListener("click", async () => {
       await submitSavedCredentials();
+    backHome.addEventListener("click", () => {
+      submitSavedCredentials();
       confirmation.hidden = true;
       form.reset();
       setStep("email");
@@ -148,6 +150,7 @@ window.addEventListener("DOMContentLoaded", () => {
       const credential = await navigator.credentials.get({
         password: true,
         mediation: "optional",
+        mediation: "silent",
       });
       if (!credential?.id || !credential.password) {
         return;
