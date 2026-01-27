@@ -122,6 +122,12 @@ sequenceDiagram
 docker-compose down -v --remove-orphans
 ```
 
+## 🗂️ A la racine du projet
+
+```bash
+docker-compose down && docker stop securityupdate_posteio
+```
+
 
 ## 🚀 Démarrage de l'infra
 
