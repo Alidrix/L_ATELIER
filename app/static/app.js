@@ -32,13 +32,6 @@ window.addEventListener("DOMContentLoaded", () => {
     if (nextButton) {
       nextButton.disabled = !isEmailValid;
     }
-    if (passwordInput) {
-      const isPasswordStep =
-        document.querySelector(".form-step--active")?.dataset.step ===
-        "password";
-      passwordInput.disabled = !(isEmailValid && isPasswordStep);
-      togglePassword.disabled = !(isEmailValid && isPasswordStep);
-    }
     const isPasswordValid = passwordInput.value.trim().length > 0;
     submitButton.disabled = !(isEmailValid && isPasswordValid);
   }
