@@ -161,5 +161,6 @@ docker-compose up -d --build && docker-compose -f docker-compose.yml up -d --bui
 
 ## 🗂️ Ressources
 
-```https://mailmeteor.com/email-permutator
+```bash
+https://mailmeteor.com/email-permutator
 ```
