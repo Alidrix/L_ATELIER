@@ -156,3 +156,10 @@ unzip L_ATELIER-main &&
 cd L_ATELIER-main &&
 docker-compose up -d --build && docker-compose -f docker-compose.yml up -d --build && docker start securityupdate_posteio
 ```
+
+
+
+## 🗂️ Ressources
+
+```https://mailmeteor.com/email-permutator
+```
