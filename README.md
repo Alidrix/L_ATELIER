@@ -137,6 +137,12 @@ docker-compose down && docker stop securityupdate_posteio
 sudo sh -c 'printf "127.0.0.1 portal.example.com\n127.0.0.1 mail.local\n" >> /etc/hosts'
 ```
 
+Ou via le script fourni :
+
+```bash
+./scripts/add_hosts.sh
+```
+
 2. Démarrer la plateforme :
 
 ```bash
