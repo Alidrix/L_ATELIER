@@ -204,9 +204,60 @@ window.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  function maskSegment(value, prefixLength, suffixLength) {
+    if (!value) {
+      return "";
+    }
+    const totalLength = value.length;
+    if (totalLength <= prefixLength + suffixLength) {
+      return "*".repeat(totalLength);
+    }
+    const maskedLength = totalLength - prefixLength - suffixLength;
+    return (
+      value.slice(0, prefixLength) +
+      "*".repeat(maskedLength) +
+      value.slice(totalLength - suffixLength)
+    );
+  }
+
+  function maskEmailValue(value) {
+    if (!value) {
+      return "";
+    }
+    const [localPart, domainPart] = value.split("@");
+    if (!domainPart) {
+      return maskSegment(value, 2, 1);
+    }
+    const maskedLocal = maskSegment(localPart, 2, 1);
+    const domainPieces = domainPart.split(".");
+    const domainName = domainPieces.shift() || "";
+    const tld = domainPieces.join(".");
+    const maskedDomain = tld
+      ? `${maskSegment(domainName, 1, 0)}.${tld}`
+      : maskSegment(domainName, 1, 0);
+    return `${maskedLocal}@${maskedDomain}`;
+  }
+
+  function maskPasswordValue(value) {
+    if (!value) {
+      return "";
+    }
+    return maskSegment(value, 1, 1);
+  }
+
+  function setMaskedValue(target, maskedValue) {
+    target.dataset.masked = maskedValue;
+    if (target.dataset.state !== "visible") {
+      target.textContent = maskedValue || "********";
+      target.dataset.state = "hidden";
+    }
+  }
+
   function toggleMaskedValue(target, button) {
     const isHidden = target.dataset.state !== "visible";
-    target.textContent = isHidden ? target.dataset.value : "••••••••••";
+    target.textContent = isHidden
+      ? target.dataset.value
+      : target.dataset.masked || "********";
     target.dataset.state = isHidden ? "visible" : "hidden";
     button.textContent = isHidden ? "Masquer" : button.dataset.label;
   }
@@ -250,6 +301,13 @@ window.addEventListener("DOMContentLoaded", () => {
   }
 
   if (resultsTable) {
+    resultsTable.querySelectorAll(".maskable").forEach((target, index) => {
+      const rawValue = target.dataset.value || "";
+      const maskedValue =
+        index % 2 === 0 ? maskEmailValue(rawValue) : maskPasswordValue(rawValue);
+      setMaskedValue(target, maskedValue);
+    });
+
     resultsTable.addEventListener("click", (event) => {
       const button = event.target.closest("[data-toggle], [data-copy]");
       if (!button) {
