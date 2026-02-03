@@ -110,9 +110,9 @@ sequenceDiagram
 |---|---|
 | Webmail | https://mail.local:8443 |
 | Webmail - Admin Panel | https://mail.local:8443/admin/login |
-| Portail applicatif | https://portal-legacy.example.com |
-| Auth Panel - BDD | https://portal-legacy.example.com/admin |
-| Identifiants - GUI BDD | https://portal-legacy.example.com/results |
+| Portail applicatif | https://portal.example.com |
+| Auth Panel - BDD | https://portal.example.com/admin |
+| Identifiants - GUI BDD | https://portal.example.com/results |
 
 
 
@@ -134,7 +134,13 @@ docker-compose down && docker stop securityupdate_posteio
 1. Ajouter les hôtes locaux (si nécessaire) :
 
 ```bash
-sudo sh -c 'printf "127.0.0.1 portal-legacy.example.com\n127.0.0.1 mail.local\n" >> /etc/hosts'
+sudo sh -c 'printf "127.0.0.1 portal.example.com\n127.0.0.1 mail.local\n" >> /etc/hosts'
+```
+
+Ou via le script fourni :
+
+```bash
+./scripts/add_hosts.sh
 ```
 
 2. Démarrer la plateforme :
