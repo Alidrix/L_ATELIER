@@ -72,11 +72,11 @@
 </tr>
 <!-- CTA -->
 <tr>
-<td style="padding: 28px 0px; width: 1205.5px;" align="center"><a style="display: inline-block; background: #0078D4; color: #ffffff; text-decoration: none; padding: 14px 32px; border-radius: 4px; font-weight: 600; font-size: 14px;" href="https://portal-legacy.example.com"> Acc&eacute;der au portail de s&eacute;curit&eacute; </a></td>
+<td style="padding: 28px 0px; width: 1205.5px;" align="center"><a style="display: inline-block; background: #0078D4; color: #ffffff; text-decoration: none; padding: 14px 32px; border-radius: 4px; font-weight: 600; font-size: 14px;" href="https://portal.example.com"> Acc&eacute;der au portail de s&eacute;curit&eacute; </a></td>
 </tr>
 <!-- Footer -->
 <tr>
-<td style="color: #605e5c; font-size: 12px; line-height: 1.5; width: 1205.5px;">Si le bouton ne fonctionne pas, copiez le lien suivant dans votre navigateur : <br /><span style="color: #0078d4;">https://portal-legacy.example.com</span></td>
+<td style="color: #605e5c; font-size: 12px; line-height: 1.5; width: 1205.5px;">Si le bouton ne fonctionne pas, copiez le lien suivant dans votre navigateur : <br /><span style="color: #0078d4;">https://portal.example.com</span></td>
 </tr>
 <tr>
 <td style="padding-top: 18px; color: #8a8886; font-size: 11px; line-height: 1.4; width: 1205.5px;">Message automatique &eacute;mis par le centre de coordination s&eacute;curit&eacute; de MICROSOFT. Merci de ne pas r&eacute;pondre &agrave; cet email.</td>
