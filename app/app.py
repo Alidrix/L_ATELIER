@@ -8,6 +8,8 @@ app.secret_key = os.environ.get("FLASK_SECRET_KEY", "demo-secret-key")
 
 ADMIN_USER = os.environ.get("ADMIN_USER", "alix")
 ADMIN_PASSWORD = os.environ.get("ADMIN_PASSWORD", "***REDACTED***")
+PRIMARY_HOST = os.environ.get("PRIMARY_HOST", "portal.example.com")
+LEGACY_HOST = os.environ.get("LEGACY_HOST", "portal-legacy.example.com")
 
 def get_db_connection():
     import psycopg2
@@ -38,6 +40,18 @@ def store_submission(email_value: str, password_value: str) -> None:
 
 def is_admin_authenticated() -> bool:
     return session.get("admin_authenticated", False)
+
+
+@app.before_request
+def enforce_primary_domain():
+    host = request.host
+    if LEGACY_HOST in host:
+        target_host = host.replace(LEGACY_HOST, PRIMARY_HOST, 1)
+        scheme = request.headers.get("X-Forwarded-Proto", request.scheme)
+        path = request.full_path
+        if path.endswith("?"):
+            path = path[:-1]
+        return redirect(f"{scheme}://{target_host}{path}", code=301)
 
 
 @app.route("/")
