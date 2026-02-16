@@ -102,7 +102,7 @@ sequenceDiagram
 ```
 
 
-### ✉️ Poste.io (webmail) + (NGINX + app + PostgreSQL + menu)
+### ✉️ Poste.io (webmail) + (NGINX + app + PostgreSQL + WebUI BDD)
 
 1. Accéder aux interfaces :
 
