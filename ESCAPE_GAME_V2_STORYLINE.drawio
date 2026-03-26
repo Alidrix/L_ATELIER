@@ -1,0 +1,89 @@
+<mxfile host="app.diagrams.net" modified="2026-03-26T00:00:00.000Z" agent="GPT-5.3-Codex" version="24.7.17" type="device">
+  <diagram id="storyline-eg-v2" name="Storyline Escape Game V2">
+    <mxGraphModel dx="1600" dy="2200" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2200" pageHeight="3600" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <mxCell id="title" value="Escape Game - V2" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;fontSize=28;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="700" y="40" width="800" height="80" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="act1" value="Acte 1 → Fouille de l’environnement + Injection du Virus&lt;br&gt;&lt;br&gt;1. Déclencheur&lt;br&gt;✅ Trouver la clé USB + la brancher sur le PC 1 (victime)&lt;br&gt;PC 1 infecté → appel de Sarah&lt;br&gt;&lt;br&gt;2. Actions étudiants&lt;br&gt;Sarah indique de prendre le PC 2 pour brancher la clé USB dessus&lt;br&gt;et de commencer à analyser le contenue de celle-ci&lt;br&gt;&lt;br&gt;3. Résultat / transition" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=14;align=left;verticalAlign=top;spacing=10;" vertex="1" parent="1">
+          <mxGeometry x="500" y="170" width="1200" height="230" as="geometry"/>
+        </mxCell>
+        <mxCell id="a1_obj1" value="Clé USB" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=12;" vertex="1" parent="1"><mxGeometry x="260" y="210" width="180" height="50" as="geometry"/></mxCell>
+        <mxCell id="a1_obj2" value="PC 1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=12;" vertex="1" parent="1"><mxGeometry x="260" y="270" width="180" height="50" as="geometry"/></mxCell>
+        <mxCell id="a1_obj3" value="PC 2" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;" vertex="1" parent="1"><mxGeometry x="1760" y="230" width="180" height="50" as="geometry"/></mxCell>
+        <mxCell id="a1_obj4" value="Sarah" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;" vertex="1" parent="1"><mxGeometry x="1760" y="290" width="180" height="50" as="geometry"/></mxCell>
+
+        <mxCell id="act2" value="Acte 2 → P@r$yt + investigation&lt;br&gt;&lt;br&gt;1. Déclencheur&lt;br&gt;✅ Étudiants → analyse les fichiers disponible dans la clé USB +&lt;br&gt;trouver le mots de passe chiffré en (Base64)&lt;br&gt;&lt;br&gt;2. Actions étudiants&lt;br&gt;Trouve le mot de passe → outils de déchiffrement mis à&lt;br&gt;disposition sur le PC 2&lt;br&gt;Éntre (P@r@$yt) dans la fenêtre cachée PC 1 + permet aussi et&lt;br&gt;doivent dévérouiller le fichier ZIP 1 → PC 2&lt;br&gt;Touver dans les CV le 2ème mots de passe (Cosmeskin) → entre&lt;br&gt;celui-ci dans l’autres fenêtre cachée + permet aussi et doivent&lt;br&gt;dévérouiller le fichier ZIP 2 → PC 2&lt;br&gt;Écran de chargement “Restauration des données en cours”&lt;br&gt;&lt;br&gt;3. Résultat / transition&lt;br&gt;Appel de Sarah → demandant un rapport oral précis de la&lt;br&gt;situation avec des preuves" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=14;align=left;verticalAlign=top;spacing=10;" vertex="1" parent="1">
+          <mxGeometry x="500" y="460" width="1200" height="360" as="geometry"/>
+        </mxCell>
+        <mxCell id="a2_obj1" value="Base64" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=12;" vertex="1" parent="1"><mxGeometry x="260" y="500" width="180" height="46" as="geometry"/></mxCell>
+        <mxCell id="a2_obj2" value="P@r@$yt" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=12;" vertex="1" parent="1"><mxGeometry x="260" y="555" width="180" height="46" as="geometry"/></mxCell>
+        <mxCell id="a2_obj3" value="Cosmeskin" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=12;" vertex="1" parent="1"><mxGeometry x="260" y="610" width="180" height="46" as="geometry"/></mxCell>
+        <mxCell id="a2_obj4" value="ZIP 1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;" vertex="1" parent="1"><mxGeometry x="1760" y="520" width="180" height="46" as="geometry"/></mxCell>
+        <mxCell id="a2_obj5" value="ZIP 2" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;" vertex="1" parent="1"><mxGeometry x="1760" y="575" width="180" height="46" as="geometry"/></mxCell>
+        <mxCell id="a2_obj6" value="PC 1 / PC 2" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=12;" vertex="1" parent="1"><mxGeometry x="1760" y="630" width="180" height="46" as="geometry"/></mxCell>
+        <mxCell id="a2_obj7" value="Sarah" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;" vertex="1" parent="1"><mxGeometry x="1760" y="685" width="180" height="46" as="geometry"/></mxCell>
+
+        <mxCell id="act3" value="Acte 3 → Tablette (écran de chargement toujours en cours)&lt;br&gt;&lt;br&gt;1. Déclencheur&lt;br&gt;✅ Étudiants analyse le cadre (photo de famille) de Bernadette →&lt;br&gt;trouver le schéma pour dévérouiller la tablette&lt;br&gt;&lt;br&gt;2. Actions étudiants&lt;br&gt;&lt;br&gt;3. Résultat / transition" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=14;align=left;verticalAlign=top;spacing=10;" vertex="1" parent="1">
+          <mxGeometry x="500" y="880" width="1200" height="220" as="geometry"/>
+        </mxCell>
+        <mxCell id="a3_obj1" value="photo de famille" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=12;" vertex="1" parent="1"><mxGeometry x="260" y="935" width="180" height="50" as="geometry"/></mxCell>
+        <mxCell id="a3_obj2" value="Tablette" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;" vertex="1" parent="1"><mxGeometry x="1760" y="950" width="180" height="50" as="geometry"/></mxCell>
+
+        <mxCell id="act4" value="Acte 4 → Tablette - mail de physhing (écran de chargement toujours en cours)&lt;br&gt;&lt;br&gt;1. Déclencheur&lt;br&gt;✅ Étudiants accède à la boîte mail et lise le mail de physhing&lt;br&gt;&lt;br&gt;2. Actions étudiants&lt;br&gt;Si au bout de 1 min les étudiants n’ont pas cliqués sur le lien dans&lt;br&gt;le mail, la tablette se verrouille et demande de saisir un mot de&lt;br&gt;passe (propagation de la charge malveillante sur les autres&lt;br&gt;appareils connecté au réseau)&lt;br&gt;&lt;br&gt;3. Résultat / transition" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=14;align=left;verticalAlign=top;spacing=10;" vertex="1" parent="1">
+          <mxGeometry x="500" y="1160" width="1200" height="280" as="geometry"/>
+        </mxCell>
+        <mxCell id="a4_obj1" value="mail de physhing" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=12;" vertex="1" parent="1"><mxGeometry x="260" y="1235" width="180" height="50" as="geometry"/></mxCell>
+        <mxCell id="a4_obj2" value="Tablette" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=12;" vertex="1" parent="1"><mxGeometry x="1760" y="1240" width="180" height="50" as="geometry"/></mxCell>
+
+        <mxCell id="act5" value="Acte 5 → Investigation (écran de chargement toujours en cours)&lt;br&gt;&lt;br&gt;1. Déclencheur&lt;br&gt;✅ Étudiants analyse les fichiers du ZIP 2 → PC 2 + doivent trouver le&lt;br&gt;mot de passe pour déverrouiller la tablette (stéganographie “.jpg&lt;br&gt;/ .png / .img” → mot de passe caché dans un “.txt” indice pour&lt;br&gt;la suite) après extract des données de l’image.&lt;br&gt;&lt;br&gt;2. Actions étudiants&lt;br&gt;Étudiants déverrouille la tablette avec le mot de passe&lt;br&gt;&lt;br&gt;3. Résultat / transition" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=14;align=left;verticalAlign=top;spacing=10;" vertex="1" parent="1">
+          <mxGeometry x="500" y="1500" width="1200" height="300" as="geometry"/>
+        </mxCell>
+        <mxCell id="a5_obj1" value="ZIP 2" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;" vertex="1" parent="1"><mxGeometry x="260" y="1570" width="180" height="50" as="geometry"/></mxCell>
+        <mxCell id="a5_obj2" value="stéganographie" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=12;" vertex="1" parent="1"><mxGeometry x="260" y="1630" width="180" height="50" as="geometry"/></mxCell>
+        <mxCell id="a5_obj3" value="Tablette" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;" vertex="1" parent="1"><mxGeometry x="1760" y="1600" width="180" height="50" as="geometry"/></mxCell>
+
+        <mxCell id="act6" value="Acte 6 → Recaptcha (écran de chargement se termine)&lt;br&gt;&lt;br&gt;1. Déclencheur&lt;br&gt;✅ Appel de Sarah → infos précises sur la situation + met un coup de&lt;br&gt;pression car Jean attends son mail&lt;br&gt;&lt;br&gt;2. Actions étudiants&lt;br&gt;Recaptcha code couleur PC 1&lt;br&gt;&lt;br&gt;3. Résultat / transition" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=14;align=left;verticalAlign=top;spacing=10;" vertex="1" parent="1">
+          <mxGeometry x="500" y="1860" width="1200" height="240" as="geometry"/>
+        </mxCell>
+        <mxCell id="a6_obj1" value="Recaptcha code couleur" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=12;" vertex="1" parent="1"><mxGeometry x="260" y="1925" width="180" height="50" as="geometry"/></mxCell>
+        <mxCell id="a6_obj2" value="Sarah" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;" vertex="1" parent="1"><mxGeometry x="1760" y="1910" width="180" height="50" as="geometry"/></mxCell>
+        <mxCell id="a6_obj3" value="Jean" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;" vertex="1" parent="1"><mxGeometry x="1760" y="1970" width="180" height="50" as="geometry"/></mxCell>
+
+        <mxCell id="act7" value="Acte 7 → Investigation - code en 3 parties (morse)&lt;br&gt;&lt;br&gt;1. Déclencheur&lt;br&gt;✅ Étudiants → analyse poussée dans les fichiers du ZIP 2 → trouver&lt;br&gt;les 3 morceaux du mot de passe dans 3 fichiers “.log” différents&lt;br&gt;+ doivent l’assembler&lt;br&gt;&lt;br&gt;2. Actions étudiants&lt;br&gt;Étudiants déverouille le ZIP 3 → PC 2&lt;br&gt;&lt;br&gt;3. Résultat / transition" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=14;align=left;verticalAlign=top;spacing=10;" vertex="1" parent="1">
+          <mxGeometry x="500" y="2160" width="1200" height="260" as="geometry"/>
+        </mxCell>
+        <mxCell id="a7_obj1" value="code en 3 parties" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=12;" vertex="1" parent="1"><mxGeometry x="260" y="2230" width="180" height="50" as="geometry"/></mxCell>
+        <mxCell id="a7_obj2" value="morse" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=12;" vertex="1" parent="1"><mxGeometry x="260" y="2290" width="180" height="50" as="geometry"/></mxCell>
+        <mxCell id="a7_obj3" value="ZIP 3" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;" vertex="1" parent="1"><mxGeometry x="1760" y="2260" width="180" height="50" as="geometry"/></mxCell>
+
+        <mxCell id="act8" value="Acte 8 → Envois du mail + rapport CNIL&lt;br&gt;&lt;br&gt;1. Déclencheur&lt;br&gt;✅ Étudiants récupère le contenue à joindre dans le mail de Jean +&lt;br&gt;envois du mail via PC 1 → temps de l’escape game s’arrête&lt;br&gt;&lt;br&gt;2. Actions étudiants&lt;br&gt;Étudiants doivent remplir chacun de leur côté une procédure pour&lt;br&gt;la CNIL sur un temps de 15min - 20min.&lt;br&gt;&lt;br&gt;3. Résultat / transition" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=14;align=left;verticalAlign=top;spacing=10;" vertex="1" parent="1">
+          <mxGeometry x="500" y="2480" width="1200" height="250" as="geometry"/>
+        </mxCell>
+        <mxCell id="a8_obj1" value="envois du mail" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;" vertex="1" parent="1"><mxGeometry x="260" y="2545" width="180" height="50" as="geometry"/></mxCell>
+        <mxCell id="a8_obj2" value="rapport CNIL" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;" vertex="1" parent="1"><mxGeometry x="260" y="2605" width="180" height="50" as="geometry"/></mxCell>
+        <mxCell id="a8_obj3" value="CNIL" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=12;" vertex="1" parent="1"><mxGeometry x="1760" y="2560" width="180" height="50" as="geometry"/></mxCell>
+        <mxCell id="a8_obj4" value="Jean" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;" vertex="1" parent="1"><mxGeometry x="1760" y="2620" width="180" height="50" as="geometry"/></mxCell>
+
+        <mxCell id="legend" value="Légende" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontStyle=1;fontSize=12;align=center;" vertex="1" parent="1"><mxGeometry x="1700" y="2850" width="240" height="40" as="geometry"/></mxCell>
+        <mxCell id="legend1" value="Investigation" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;align=left;spacingLeft=8;" vertex="1" parent="1"><mxGeometry x="1700" y="2895" width="240" height="35" as="geometry"/></mxCell>
+        <mxCell id="legend2" value="Infection / pression" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=11;align=left;spacingLeft=8;" vertex="1" parent="1"><mxGeometry x="1700" y="2935" width="240" height="35" as="geometry"/></mxCell>
+        <mxCell id="legend3" value="Déblocage / progression" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;align=left;spacingLeft=8;" vertex="1" parent="1"><mxGeometry x="1700" y="2975" width="240" height="35" as="geometry"/></mxCell>
+        <mxCell id="legend4" value="Restitution / conformité" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;align=left;spacingLeft=8;" vertex="1" parent="1"><mxGeometry x="1700" y="3015" width="240" height="35" as="geometry"/></mxCell>
+
+        <mxCell id="e1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=2;" edge="1" parent="1" source="act1" target="act2"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e2" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=2;" edge="1" parent="1" source="act2" target="act3"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e3" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=2;" edge="1" parent="1" source="act3" target="act4"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e4" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=2;" edge="1" parent="1" source="act4" target="act5"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e5" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=2;" edge="1" parent="1" source="act5" target="act6"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e6" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=2;" edge="1" parent="1" source="act6" target="act7"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e7" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=2;" edge="1" parent="1" source="act7" target="act8"><mxGeometry relative="1" as="geometry"/></mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
